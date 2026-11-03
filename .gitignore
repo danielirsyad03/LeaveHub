@@ -1,43 +1,71 @@
 
-# Java compiled files
+# ==========================================
+# JAVA COMPILED FILES
+# ==========================================
+
 *.class
 
-# Build output
+# ==========================================
+# BUILD OUTPUT
+# ==========================================
+
 /build/
 /bin/
 /target/
 /dist/
 
-# Eclipse workspace metadata
+# ==========================================
+# ECLIPSE WORKSPACE
+# ==========================================
+
 .metadata/
 .settings/org.eclipse.core.resources.prefs
 
-# Temporary files
+# ==========================================
+# TEMPORARY FILES
+# ==========================================
+
 *.log
 *.tmp
 *.bak
 
-# Local database files and backups
+# ==========================================
+# LOCAL DATABASE FILES
+# ==========================================
+
 *.db
 *.sqlite
 *.zip
 
-# Environment credentials
+# ==========================================
+# ENVIRONMENT CREDENTIALS
+# ==========================================
+
 .env
 .env.local
+.env.*
+!.env.example
 
-# Operating system
-.DS_Store
-Thumbs.db
+# ==========================================
+# LOCAL CONFIGURATION
+# ==========================================
 
-# Local configuration
-.env
-.env.local
 config.properties
+config.local.properties
 
-# Database exports and backups
+# ==========================================
+# DATABASE EXPORTS AND BACKUPS
+# ==========================================
+
 *.sql.zip
 *_backup.sql
 
-# Old database script - replace with clean schema
+# Old database script
 database/leavehub.sql
+
+# ==========================================
+# OPERATING SYSTEM
+# ==========================================
+
+.DS_Store
+Thumbs.db

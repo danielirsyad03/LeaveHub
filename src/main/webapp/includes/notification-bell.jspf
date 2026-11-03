@@ -1,0 +1,1007 @@
+<style>
+
+.notification-header-area {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+/* =========================================================
+   BELL BUTTON
+   ========================================================= */
+
+.notification-bell-button {
+    position: relative;
+
+    width: 42px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e2e5eb;
+
+    border-radius: 11px;
+
+    color: #566173;
+
+    cursor: pointer;
+
+    transition:
+        border-color .15s ease,
+        background .15s ease,
+        color .15s ease;
+}
+
+
+.notification-bell-button:hover {
+    background: #fff7f8;
+    border-color: #d9b9be;
+    color: #8d1f2d;
+}
+
+
+.notification-bell-button svg {
+    width: 19px;
+    height: 19px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.notification-count-badge {
+    position: absolute;
+
+    top: -5px;
+    right: -5px;
+
+    min-width: 18px;
+    height: 18px;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    background: #8d1f2d;
+
+    border:
+        2px solid #ffffff;
+
+    border-radius: 999px;
+
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+.notification-count-badge.show {
+    display: flex;
+}
+
+
+/* =========================================================
+   DROPDOWN
+   ========================================================= */
+
+.notification-dropdown {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    z-index: 9999;
+
+    width: 360px;
+
+    max-width:
+        calc(100vw - 30px);
+
+    display: none;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e4e7ec;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(31,41,61,.16);
+}
+
+
+.notification-dropdown.show {
+    display: block;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.notification-dropdown-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 14px 16px;
+
+    border-bottom:
+        1px solid #eceef2;
+}
+
+
+.notification-dropdown-header strong {
+    color: #202a3b;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.notification-dropdown-header span {
+    color: #8d96a5;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   LIST
+   ========================================================= */
+
+.notification-dropdown-list {
+    max-height: 360px;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   ITEM
+   ========================================================= */
+
+.notification-dropdown-item {
+    position: relative;
+
+    display: block;
+
+    padding:
+        13px 15px
+        13px 20px;
+
+    border-bottom:
+        1px solid #f0f1f4;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    transition:
+        background .15s ease;
+}
+
+
+.notification-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+
+.notification-dropdown-item:hover {
+    background: #faf7f7;
+}
+
+
+.notification-dropdown-item.unread {
+    background: #fffafb;
+}
+
+
+.notification-dropdown-item.unread::before {
+    content: "";
+
+    position: absolute;
+
+    left: 8px;
+    top: 20px;
+
+    width: 6px;
+    height: 6px;
+
+    background: #8d1f2d;
+
+    border-radius: 50%;
+}
+
+
+.notification-dropdown-title {
+    margin-bottom: 4px;
+
+    color: #303a4c;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+.notification-dropdown-message {
+    color: #737d8d;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+.notification-dropdown-time {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #a0a7b2;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.notification-dropdown-empty {
+    padding: 28px 18px;
+
+    color: #8b94a4;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.notification-dropdown-footer {
+    padding: 10px;
+
+    background: #fafbfc;
+
+    border-top:
+        1px solid #eceef2;
+}
+
+
+.notification-dropdown-footer a {
+    min-height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e1e4e9;
+
+    border-radius: 8px;
+
+    color: #8d1f2d;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.notification-dropdown-footer a:hover {
+    background: #fff7f8;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:600px) {
+
+    .notification-dropdown {
+        position: fixed;
+
+        top: 70px;
+        left: 15px;
+        right: 15px;
+
+        width: auto;
+
+        max-width: none;
+    }
+}
+
+</style>
+
+
+<div
+    class="notification-header-area"
+    id="notificationHeaderArea"
+>
+
+
+    <!-- =====================================================
+         BELL
+         ===================================================== -->
+
+    <button
+        type="button"
+        class="notification-bell-button"
+        id="notificationBellButton"
+        aria-label="Notifikasi"
+        title="Notifikasi"
+    >
+
+        <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+
+            <path
+                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+            ></path>
+
+            <path
+                d="M13.73 21a2 2 0 0 1-3.46 0"
+            ></path>
+
+        </svg>
+
+
+        <span
+            class="notification-count-badge"
+            id="notificationCountBadge"
+        >
+            0
+        </span>
+
+    </button>
+
+
+    <!-- =====================================================
+         DROPDOWN
+         ===================================================== -->
+
+    <div
+        class="notification-dropdown"
+        id="notificationDropdown"
+    >
+
+
+        <div class="notification-dropdown-header">
+
+            <strong>
+                Notifikasi
+            </strong>
+
+
+            <span
+                id="notificationUnreadText"
+            >
+                0 belum dibaca
+            </span>
+
+        </div>
+
+
+        <div
+            class="notification-dropdown-list"
+            id="notificationDropdownList"
+        >
+
+            <div class="notification-dropdown-empty">
+                Memuatkan notifikasi...
+            </div>
+
+        </div>
+
+
+        <div class="notification-dropdown-footer">
+
+            <a
+                href="<%= request.getContextPath() %>/notifications"
+            >
+                Lihat Semua Notifikasi
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+(function() {
+
+
+    // =========================================================
+    // VARIABLES
+    // =========================================================
+
+    const contextPath =
+        "<%= request.getContextPath() %>";
+
+
+    const area =
+        document.getElementById(
+            "notificationHeaderArea"
+        );
+
+
+    const button =
+        document.getElementById(
+            "notificationBellButton"
+        );
+
+
+    const badge =
+        document.getElementById(
+            "notificationCountBadge"
+        );
+
+
+    const dropdown =
+        document.getElementById(
+            "notificationDropdown"
+        );
+
+
+    const list =
+        document.getElementById(
+            "notificationDropdownList"
+        );
+
+
+    const unreadText =
+        document.getElementById(
+            "notificationUnreadText"
+        );
+
+
+    if (
+        !area
+        ||
+        !button
+        ||
+        !badge
+        ||
+        !dropdown
+        ||
+        !list
+        ||
+        !unreadText
+    ) {
+
+        return;
+    }
+
+
+    // =========================================================
+    // ESCAPE HTML
+    // =========================================================
+
+    function escapeHtml(value) {
+
+
+        if (
+            value === null
+            ||
+            value === undefined
+        ) {
+
+            return "";
+        }
+
+
+        return String(value)
+
+            .replaceAll(
+                "&",
+                "&amp;"
+            )
+
+            .replaceAll(
+                "<",
+                "&lt;"
+            )
+
+            .replaceAll(
+                ">",
+                "&gt;"
+            )
+
+            .replaceAll(
+                '"',
+                "&quot;"
+            )
+
+            .replaceAll(
+                "'",
+                "&#39;"
+            );
+    }
+
+
+    // =========================================================
+    // UPDATE BADGE
+    // =========================================================
+
+    function updateBadge(count) {
+
+
+        count =
+            Number(
+                count || 0
+            );
+
+
+        if (count > 0) {
+
+
+            badge.textContent =
+                count > 99
+                    ? "99+"
+                    : count;
+
+
+            badge.classList.add(
+                "show"
+            );
+
+
+        } else {
+
+
+            badge.textContent =
+                "0";
+
+
+            badge.classList.remove(
+                "show"
+            );
+        }
+
+
+        unreadText.textContent =
+            count
+            +
+            " belum dibaca";
+    }
+
+
+    // =========================================================
+    // RENDER
+    // =========================================================
+
+    function render(data) {
+
+
+        const count =
+            Number(
+                data.count || 0
+            );
+
+
+        updateBadge(
+            count
+        );
+
+
+        const items =
+            Array.isArray(
+                data.items
+            )
+                ? data.items
+                : [];
+
+
+        if (
+            items.length === 0
+        ) {
+
+
+            list.innerHTML =
+                `
+                    <div class="notification-dropdown-empty">
+                        Tiada notifikasi buat masa ini.
+                    </div>
+                `;
+
+
+            return;
+        }
+
+
+        list.innerHTML =
+            items.map(
+                function(item) {
+
+
+                    const readClass =
+                        item.read
+                            ? ""
+                            : " unread";
+
+
+                    return `
+                        <a
+                            class="notification-dropdown-item${readClass}"
+                            href="${contextPath}/notification-read?id=${encodeURIComponent(item.id)}"
+                        >
+
+                            <div class="notification-dropdown-title">
+                                ${escapeHtml(item.title)}
+                            </div>
+
+                            <div class="notification-dropdown-message">
+                                ${escapeHtml(item.message)}
+                            </div>
+
+                            <span class="notification-dropdown-time">
+                                ${escapeHtml(item.createdAt)}
+                            </span>
+
+                        </a>
+                    `;
+                }
+            )
+            .join("");
+    }
+
+
+    // =========================================================
+    // LOAD NOTIFICATIONS
+    // =========================================================
+
+    async function loadNotifications() {
+
+
+        try {
+
+
+            const response =
+                await fetch(
+                    contextPath
+                    +
+                    "/notification-count",
+                    {
+                        method:
+                            "GET",
+
+                        headers: {
+                            "Accept":
+                                "application/json"
+                        },
+
+                        cache:
+                            "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                return null;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            render(
+                data
+            );
+
+
+            return data;
+
+
+        } catch (error) {
+
+
+            console.error(
+                "Notification load error:",
+                error
+            );
+
+
+            return null;
+        }
+    }
+
+
+    // =========================================================
+    // MARK ALL AS READ
+    // =========================================================
+
+    async function markAllNotificationsAsRead() {
+
+
+        try {
+
+
+            const response =
+                await fetch(
+                    contextPath
+                    +
+                    "/notification-read?action=all",
+                    {
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Accept":
+                                "application/json",
+
+                            "X-Requested-With":
+                                "XMLHttpRequest"
+                        },
+
+                        cache:
+                            "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                console.error(
+                    "Tidak dapat menandakan notifikasi sebagai dibaca."
+                );
+
+                return false;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !data
+                ||
+                data.success !== true
+            ) {
+
+                return false;
+            }
+
+
+            // Badge hilang serta-merta.
+            updateBadge(
+                0
+            );
+
+
+            // Buang tanda unread pada item yang sedang dipaparkan.
+            document
+                .querySelectorAll(
+                    ".notification-dropdown-item.unread"
+                )
+                .forEach(
+                    function(item) {
+
+                        item.classList.remove(
+                            "unread"
+                        );
+                    }
+                );
+
+
+            return true;
+
+
+        } catch (error) {
+
+
+            console.error(
+                "Notification read error:",
+                error
+            );
+
+
+            return false;
+        }
+    }
+
+
+    // =========================================================
+    // OPEN / CLOSE DROPDOWN
+    // =========================================================
+
+    button.addEventListener(
+        "click",
+        async function(event) {
+
+
+            event.stopPropagation();
+
+
+            const isCurrentlyOpen =
+                dropdown.classList.contains(
+                    "show"
+                );
+
+
+            // Tutup jika sudah terbuka.
+            if (isCurrentlyOpen) {
+
+                dropdown.classList.remove(
+                    "show"
+                );
+
+                return;
+            }
+
+
+            // Buka dropdown.
+            dropdown.classList.add(
+                "show"
+            );
+
+
+            // Load dahulu supaya notifikasi terbaru dipaparkan.
+            const data =
+                await loadNotifications();
+
+
+            // Jika memang ada notifikasi belum dibaca,
+            // tandakan semuanya sebagai sudah dibaca.
+            if (
+                data
+                &&
+                Number(
+                    data.count || 0
+                ) > 0
+            ) {
+
+                await markAllNotificationsAsRead();
+            }
+        }
+    );
+
+
+    // =========================================================
+    // PREVENT DROPDOWN FROM CLOSING
+    // =========================================================
+
+    dropdown.addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+        }
+    );
+
+
+    // =========================================================
+    // CLICK OUTSIDE
+    // =========================================================
+
+    document.addEventListener(
+        "click",
+        function() {
+
+            dropdown.classList.remove(
+                "show"
+            );
+        }
+    );
+
+
+    // =========================================================
+    // ESC KEY
+    // =========================================================
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                dropdown.classList.remove(
+                    "show"
+                );
+            }
+        }
+    );
+
+
+    // =========================================================
+    // INITIAL LOAD
+    // =========================================================
+
+    loadNotifications();
+
+
+    // =========================================================
+    // AUTO REFRESH
+    // =========================================================
+
+    window.setInterval(
+        function() {
+
+
+            /*
+             * Jangan refresh ketika dropdown sedang terbuka.
+             * Ini mengelakkan paparan berubah ketika pengguna
+             * sedang membaca notifikasi.
+             */
+
+            if (
+                !dropdown.classList.contains(
+                    "show"
+                )
+            ) {
+
+                loadNotifications();
+            }
+
+        },
+        60000
+    );
+
+
+})();
+
+</script>

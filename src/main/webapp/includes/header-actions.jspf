@@ -1,0 +1,598 @@
+<%
+
+    String headerUserName =
+        session.getAttribute("userName") == null
+            ? "Pengguna"
+            : session
+                .getAttribute("userName")
+                .toString();
+
+
+    if (
+        headerUserName == null
+        ||
+        headerUserName.isBlank()
+    ) {
+        headerUserName = "Pengguna";
+    }
+
+
+    String headerInitial =
+        headerUserName
+            .substring(0, 1)
+            .toUpperCase();
+
+%>
+
+
+<div class="pkb-header-actions">
+
+
+    <!-- =====================================================
+         NOTIFICATION
+         ===================================================== -->
+
+    <a
+        href="<%= request.getContextPath() %>/notifications"
+        class="pkb-notification-bell"
+        title="Notifikasi"
+        aria-label="Notifikasi"
+    >
+
+
+        <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+
+            <path
+                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+            ></path>
+
+            <path
+                d="M10 21h4"
+            ></path>
+
+        </svg>
+
+
+        <span
+            class="pkb-notification-count"
+            id="notificationCount"
+            style="display:none;"
+        >
+            0
+        </span>
+
+
+    </a>
+
+
+    <!-- =====================================================
+         USER CHIP
+         ===================================================== -->
+
+    <div class="pkb-user-chip">
+
+
+        <div class="pkb-user-avatar">
+
+            <%= headerInitial %>
+
+        </div>
+
+
+        <span class="pkb-user-name">
+
+            <%= headerUserName
+                    .replace("&", "&amp;")
+                    .replace("<", "&lt;")
+                    .replace(">", "&gt;")
+            %>
+
+        </span>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     PROTECTED HEADER STYLE
+     ========================================================= -->
+
+<style>
+
+    /* ========================================================
+       ACTION WRAPPER
+       ======================================================== */
+
+    html body .pkb-header-actions {
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        gap: 10px !important;
+
+        flex-shrink: 0 !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+
+    /* ========================================================
+       NOTIFICATION BELL
+       ======================================================== */
+
+    html body .pkb-notification-bell {
+
+        position: relative !important;
+
+        width: 42px !important;
+        height: 42px !important;
+
+        min-width: 42px !important;
+        min-height: 42px !important;
+
+        display: inline-flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 0 !important;
+
+        margin: 0 !important;
+
+        border:
+            1px solid #e6e9ef !important;
+
+        border-radius:
+            12px !important;
+
+        background:
+            #ffffff !important;
+
+        color:
+            #697386 !important;
+
+        box-shadow:
+            0 4px 14px
+            rgba(20, 28, 45, 0.05) !important;
+
+        text-decoration:
+            none !important;
+
+        visibility:
+            visible !important;
+
+        opacity:
+            1 !important;
+
+        overflow:
+            visible !important;
+    }
+
+
+    html body .pkb-notification-bell:hover {
+
+        background:
+            #fff7f8 !important;
+
+        border-color:
+            #e8cdd1 !important;
+
+        color:
+            #8d1f2d !important;
+    }
+
+
+    html body .pkb-notification-bell svg {
+
+        width: 19px !important;
+        height: 19px !important;
+
+        display: block !important;
+
+        fill: none !important;
+
+        stroke:
+            currentColor !important;
+
+        stroke-width:
+            1.8 !important;
+
+        stroke-linecap:
+            round !important;
+
+        stroke-linejoin:
+            round !important;
+
+        visibility:
+            visible !important;
+
+        opacity:
+            1 !important;
+    }
+
+
+    html body .pkb-notification-bell svg path {
+
+        display:
+            initial !important;
+
+        fill:
+            none !important;
+
+        stroke:
+            currentColor !important;
+
+        visibility:
+            visible !important;
+
+        opacity:
+            1 !important;
+    }
+
+
+    /* ========================================================
+       NOTIFICATION COUNT
+       ======================================================== */
+
+    html body .pkb-notification-count {
+
+        position: absolute !important;
+
+        top: -6px !important;
+        right: -6px !important;
+
+        min-width: 19px !important;
+        height: 19px !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding:
+            0 5px !important;
+
+        border:
+            2px solid #ffffff !important;
+
+        border-radius:
+            999px !important;
+
+        background:
+            #8d1f2d !important;
+
+        color:
+            #ffffff !important;
+
+        font-size:
+            9px !important;
+
+        font-weight:
+            800 !important;
+
+        line-height:
+            1 !important;
+
+        z-index:
+            10 !important;
+    }
+
+
+    /* ========================================================
+       USER CHIP
+       ======================================================== */
+
+    html body .pkb-user-chip {
+
+        min-height: 42px !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+
+        gap: 8px !important;
+
+        padding:
+            5px
+            11px
+            5px
+            5px !important;
+
+        margin: 0 !important;
+
+        border:
+            1px solid #e6e9ef !important;
+
+        border-radius:
+            12px !important;
+
+        background:
+            #ffffff !important;
+
+        box-shadow:
+            0 4px 14px
+            rgba(20, 28, 45, 0.05) !important;
+
+        color:
+            #172033 !important;
+
+        visibility:
+            visible !important;
+
+        opacity:
+            1 !important;
+    }
+
+
+    /* ========================================================
+       AVATAR
+       ======================================================== */
+
+    html body .pkb-user-avatar {
+
+        width: 32px !important;
+        height: 32px !important;
+
+        min-width: 32px !important;
+        min-height: 32px !important;
+
+        display: grid !important;
+
+        place-items:
+            center !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+        border:
+            1px solid #efdade !important;
+
+        border-radius:
+            9px !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #fff0f2,
+                #fff7e6
+            ) !important;
+
+        color:
+            #8d1f2d !important;
+
+        font-size:
+            12px !important;
+
+        font-weight:
+            800 !important;
+
+        line-height:
+            1 !important;
+
+        visibility:
+            visible !important;
+
+        opacity:
+            1 !important;
+    }
+
+
+    /* ========================================================
+       USER NAME
+       ======================================================== */
+
+    html body .pkb-user-name {
+
+        display:
+            inline-block !important;
+
+        max-width:
+            180px !important;
+
+        overflow:
+            hidden !important;
+
+        color:
+            #303a4c !important;
+
+        font-size:
+            12px !important;
+
+        font-weight:
+            700 !important;
+
+        line-height:
+            1.25 !important;
+
+        text-overflow:
+            ellipsis !important;
+
+        white-space:
+            nowrap !important;
+
+        visibility:
+            visible !important;
+
+        opacity:
+            1 !important;
+    }
+
+
+    /* ========================================================
+       MOBILE
+       ======================================================== */
+
+    @media (max-width: 650px) {
+
+        html body .pkb-header-actions {
+
+            width:
+                100% !important;
+
+            justify-content:
+                flex-start !important;
+        }
+
+
+        html body .pkb-user-name {
+
+            display:
+                none !important;
+        }
+
+    }
+
+</style>
+
+
+<!-- =========================================================
+     NOTIFICATION COUNT SCRIPT
+     ========================================================= -->
+
+<script>
+
+(function () {
+
+
+    const badge =
+        document.getElementById(
+            "notificationCount"
+        );
+
+
+    if (!badge) {
+        return;
+    }
+
+
+    function loadNotificationCount() {
+
+
+        fetch(
+            "<%= request.getContextPath() %>/notification-count",
+            {
+                method: "GET",
+
+                credentials:
+                    "same-origin",
+
+                headers: {
+
+                    "X-Requested-With":
+                        "XMLHttpRequest"
+                }
+            }
+        )
+
+        .then(
+            function (response) {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load notification count"
+                    );
+                }
+
+
+                return response.text();
+            }
+        )
+
+        .then(
+            function (text) {
+
+
+                let count = 0;
+
+
+                try {
+
+
+                    const data =
+                        JSON.parse(text);
+
+
+                    if (
+                        data
+                        &&
+                        typeof data.count
+                        !==
+                        "undefined"
+                    ) {
+
+                        count =
+                            parseInt(
+                                data.count,
+                                10
+                            )
+                            ||
+                            0;
+                    }
+
+
+                } catch (error) {
+
+
+                    count =
+                        parseInt(
+                            text,
+                            10
+                        )
+                        ||
+                        0;
+                }
+
+
+                if (count > 0) {
+
+
+                    badge.textContent =
+                        count > 99
+                            ? "99+"
+                            : String(count);
+
+
+                    badge.style.display =
+                        "flex";
+
+
+                } else {
+
+
+                    badge.style.display =
+                        "none";
+                }
+            }
+        )
+
+        .catch(
+            function () {
+
+                badge.style.display =
+                    "none";
+            }
+        );
+    }
+
+
+    loadNotificationCount();
+
+
+    window.setInterval(
+        loadNotificationCount,
+        30000
+    );
+
+
+})();
+
+</script>

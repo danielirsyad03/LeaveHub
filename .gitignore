@@ -1,0 +1,43 @@
+
+# Java compiled files
+*.class
+
+# Build output
+/build/
+/bin/
+/target/
+/dist/
+
+# Eclipse workspace metadata
+.metadata/
+.settings/org.eclipse.core.resources.prefs
+
+# Temporary files
+*.log
+*.tmp
+*.bak
+
+# Local database files and backups
+*.db
+*.sqlite
+*.zip
+
+# Environment credentials
+.env
+.env.local
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Local configuration
+.env
+.env.local
+config.properties
+
+# Database exports and backups
+*.sql.zip
+*_backup.sql
+
+# Old database script - replace with clean schema
+database/leavehub.sql

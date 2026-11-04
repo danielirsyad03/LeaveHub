@@ -45,13 +45,34 @@
     // =========================================================
     // INVENTORY ITEM
     // =========================================================
-    Map<String, Object> item =
-            (Map<String, Object>) request.getAttribute("item");
+    java.util.Map<String, Object> item = null;
 
-    if (item == null) {
-        response.sendRedirect(request.getContextPath() + "/inventory");
-        return;
+Object itemAttribute = request.getAttribute("item");
+
+if (itemAttribute instanceof java.util.Map<?, ?>) {
+
+    java.util.Map<?, ?> originalMap =
+            (java.util.Map<?, ?>) itemAttribute;
+
+    item = new java.util.HashMap<>();
+
+    for (java.util.Map.Entry<?, ?> entry :
+            originalMap.entrySet()) {
+
+        if (entry.getKey() instanceof String) {
+
+            item.put(
+                    (String) entry.getKey(),
+                    entry.getValue()
+            );
+        }
     }
+}
+
+if (item == null) {
+    response.sendRedirect(request.getContextPath() + "/inventory");
+    return;
+}
 
     String itemCode = safeText(item.get("item_code"));
     String itemName = safeText(item.get("item_name"));

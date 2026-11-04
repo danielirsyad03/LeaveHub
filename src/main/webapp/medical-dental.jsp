@@ -22,30 +22,99 @@
 
 
 
-       List<Map<String,Object>> claims =
+    // ===============================
+    // MEDICAL & DENTAL CLAIMS
+    // ===============================
+    java.util.List<java.util.Map<String, Object>> claims =
+            new java.util.ArrayList<>();
 
-               (List<Map<String,Object>>) request.getAttribute("claims");
+    Object claimsAttribute = request.getAttribute("claims");
 
+    if (claimsAttribute instanceof java.util.List<?>) {
+        for (Object item : (java.util.List<?>) claimsAttribute) {
+            if (item instanceof java.util.Map<?, ?>) {
 
+                java.util.Map<String, Object> claim =
+                        new java.util.HashMap<>();
 
-       List<Map<String,Object>> staffBenefits =
+                for (java.util.Map.Entry<?, ?> entry :
+                        ((java.util.Map<?, ?>) item).entrySet()) {
 
-               (List<Map<String,Object>>) request.getAttribute("staffBenefits");
+                    if (entry.getKey() instanceof String) {
+                        claim.put(
+                                (String) entry.getKey(),
+                                entry.getValue()
+                        );
+                    }
+                }
 
+                claims.add(claim);
+            }
+        }
+    }
 
+    // ===============================
+    // STAFF BENEFITS
+    // ===============================
+    java.util.List<java.util.Map<String, Object>> staffBenefits =
+            new java.util.ArrayList<>();
 
-       List<Map<String,Object>> allocationAudits =
+    Object staffBenefitsAttribute = request.getAttribute("staffBenefits");
 
-               (List<Map<String,Object>>) request.getAttribute("allocationAudits");
+    if (staffBenefitsAttribute instanceof java.util.List<?>) {
+        for (Object item : (java.util.List<?>) staffBenefitsAttribute) {
+            if (item instanceof java.util.Map<?, ?>) {
 
+                java.util.Map<String, Object> staffBenefit =
+                        new java.util.HashMap<>();
 
+                for (java.util.Map.Entry<?, ?> entry :
+                        ((java.util.Map<?, ?>) item).entrySet()) {
 
-       if (claims == null) claims = new ArrayList<>();
+                    if (entry.getKey() instanceof String) {
+                        staffBenefit.put(
+                                (String) entry.getKey(),
+                                entry.getValue()
+                        );
+                    }
+                }
 
-       if (staffBenefits == null) staffBenefits = new ArrayList<>();
+                staffBenefits.add(staffBenefit);
+            }
+        }
+    }
 
-       if (allocationAudits == null) allocationAudits = new ArrayList<>();
+    // ===============================
+    // ALLOCATION AUDITS
+    // ===============================
+    java.util.List<java.util.Map<String, Object>> allocationAudits =
+            new java.util.ArrayList<>();
 
+    Object allocationAuditsAttribute =
+            request.getAttribute("allocationAudits");
+
+    if (allocationAuditsAttribute instanceof java.util.List<?>) {
+        for (Object item : (java.util.List<?>) allocationAuditsAttribute) {
+            if (item instanceof java.util.Map<?, ?>) {
+
+                java.util.Map<String, Object> allocationAudit =
+                        new java.util.HashMap<>();
+
+                for (java.util.Map.Entry<?, ?> entry :
+                        ((java.util.Map<?, ?>) item).entrySet()) {
+
+                    if (entry.getKey() instanceof String) {
+                        allocationAudit.put(
+                                (String) entry.getKey(),
+                                entry.getValue()
+                        );
+                    }
+                }
+
+                allocationAudits.add(allocationAudit);
+            }
+        }
+    }
 
 
        String printGeneratedBy = request.getAttribute("printGeneratedBy") == null
@@ -1065,19 +1134,17 @@
 
 
 
-                           <% for(Map<String,Object> s : staffBenefits) { %>
+                           <% for (Map<String, Object> s : staffBenefits) { %>
 
-                               <option value="<%= s.get("id") %>"*
+    <option value="<%= s.get("id") %>"
+            data-medical="<%= esc.apply(s.get("medicalAllocation")) %>"
+            data-dental="<%= esc.apply(s.get("dentalAllocation")) %>">
 
-                                   data-medical="<%= esc.apply(s.get("medicalAllocation")) %>"
+        <%= esc.apply(s.get("name")) %>
 
-                                   data-dental="<%= esc.apply(s.get("dentalAllocation")) %>"*>
+    </option>
 
-                                   <%= esc.apply(s.get("name")) %>
-
-                               </option>
-
-                           <% } %>
+<% } %>
 
                        </select>
 

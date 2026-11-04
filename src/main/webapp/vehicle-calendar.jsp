@@ -2212,7 +2212,7 @@
                 <div class="vehicle-detail-row">
 
                     <span>
-    Tarikh & Masa Mula
+    Tarikh &amp; Masa Mula
 </span>
 
 <strong id="modalStart">
@@ -2225,7 +2225,7 @@
                 <div class="vehicle-detail-row">
 
                     <span>
-    Tarikh & Masa Pulang
+    Tarikh &amp; Masa Pulang
 </span>
 
 <strong id="modalReturn">

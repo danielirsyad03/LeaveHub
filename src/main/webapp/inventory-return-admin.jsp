@@ -41,12 +41,36 @@
     // DATA FROM SERVLET
     // =========================================================
 
-    List<Map<String, Object>> returns =
-            (List<Map<String, Object>>) request.getAttribute("returns");
+    java.util.List<java.util.Map<String, Object>> returns =
+        new java.util.ArrayList<>();
 
-    if (returns == null) {
-        returns = new ArrayList<>();
+Object returnsAttribute = request.getAttribute("returns");
+
+if (returnsAttribute instanceof java.util.List<?>) {
+
+    for (Object item : (java.util.List<?>) returnsAttribute) {
+
+        if (item instanceof java.util.Map<?, ?>) {
+
+            java.util.Map<String, Object> returnRecord =
+                    new java.util.HashMap<>();
+
+            for (java.util.Map.Entry<?, ?> entry :
+                    ((java.util.Map<?, ?>) item).entrySet()) {
+
+                if (entry.getKey() instanceof String) {
+
+                    returnRecord.put(
+                            (String) entry.getKey(),
+                            entry.getValue()
+                    );
+                }
+            }
+
+            returns.add(returnRecord);
+        }
     }
+}
 
     Integer totalReturns =
             (Integer) request.getAttribute("totalReturns");

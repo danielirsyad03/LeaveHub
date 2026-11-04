@@ -32,26 +32,7 @@
         }
     }
 
-    private String balanceDepartment(String department) {
-        if (department == null || department.isBlank()) {
-            return "—";
-        }
-
-        switch (department.trim().toUpperCase()) {
-            case "PENTADBIRAN_KORPORAT":
-                return "Pentadbiran dan Korporat";
-
-            case "KEWANGAN":
-                return "Kewangan";
-
-            case "PEMBANGUNAN_PERNIAGAAN_OPERASI":
-                return "Pembangunan Perniagaan dan Operasi";
-
-            default:
-                return department;
-        }
-    }
-
+ 
     private String leaveIcon(String leaveName) {
         if (leaveName == null) {
             return "📅";

@@ -569,8 +569,6 @@ public class InventoryRequestServlet extends HttpServlet {
 
             String itemName = "";
 
-            String itemCode = "";
-
             String itemBrand = "";
 
             String itemSize = "";
@@ -625,12 +623,11 @@ public class InventoryRequestServlet extends HttpServlet {
                             );
 
 
-                        itemCode =
-                            cleanForMessage(
-                                rs.getString(
-                                    "item_code"
-                                )
-                            );
+                        cleanForMessage(
+						    rs.getString(
+						        "item_code"
+						    )
+						);
 
 
                         itemBrand =

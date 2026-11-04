@@ -728,8 +728,7 @@ public class DashboardServlet extends HttpServlet {
                 UserInfo user =
                         new UserInfo();
 
-                user.id =
-                        rs.getInt("id");
+                rs.getInt("id");
 
                 user.name =
                         rs.getString("name");
@@ -2527,7 +2526,6 @@ public class DashboardServlet extends HttpServlet {
 
     private static class UserInfo {
 
-        int id;
         String name;
         String position;
         String email;

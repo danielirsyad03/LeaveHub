@@ -12,10 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -63,104 +61,8 @@ public class CompanyEventServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/company-events");
     }
 
-    private void saveAnnouncement(Connection con, HttpServletRequest req, int userId) throws Exception {
-        int id = optionalId(req.getParameter("id"));
-        String title = required(req.getParameter("title"), "Tajuk pengumuman");
-        String content = required(req.getParameter("content"), "Kandungan pengumuman");
-        String category = clean(req.getParameter("category"));
-        String audience = clean(req.getParameter("audience_type"));
-        String department = clean(req.getParameter("target_department"));
-        String status = clean(req.getParameter("status"));
-        String publishText = clean(req.getParameter("published_at"));
-        String expiryText = clean(req.getParameter("expires_at"));
-
-        if (!List.of("UMUM", "PENTING", "HR", "NOTIS").contains(category))
-            throw new IllegalArgumentException("Kategori pengumuman tidak sah.");
-        if (!List.of("ALL", "DEPARTMENT", "SELECTED_STAFF").contains(audience))
-            throw new IllegalArgumentException("Sasaran penerima tidak sah.");
-        if (!List.of("DRAFT", "PUBLISHED").contains(status))
-            throw new IllegalArgumentException("Status pengumuman tidak sah.");
-        if ("DEPARTMENT".equals(audience) && department.isBlank())
-            throw new IllegalArgumentException("Sila pilih jabatan sasaran.");
-
-        Timestamp publishedAt = publishText.isBlank() ? null : Timestamp.valueOf(LocalDateTime.parse(publishText));
-        if (publishedAt == null && "PUBLISHED".equals(status)) publishedAt = new Timestamp(System.currentTimeMillis());
-        Timestamp expiresAt = expiryText.isBlank() ? null : Timestamp.valueOf(LocalDateTime.parse(expiryText));
-        if (expiresAt != null && publishedAt != null && !expiresAt.after(publishedAt))
-            throw new IllegalArgumentException("Tarikh tamat mesti selepas tarikh/waktu terbitan.");
-
-        if (id > 0) {
-            String sql = """
-                UPDATE announcements
-                SET title=?, content=?, category=?, audience_type=?, target_department=?,
-                    status=?, published_at=?, expires_at=?
-                WHERE id=?
-                """;
-            try (PreparedStatement ps = con.prepareStatement(sql)) {
-                bindAnnouncement(ps, title, content, category, audience, department, status, publishedAt, expiresAt);
-                ps.setInt(9, id);
-                if (ps.executeUpdate() == 0) throw new IllegalArgumentException("Pengumuman tidak dijumpai.");
-            }
-        } else {
-            String sql = """
-                INSERT INTO announcements
-                    (title, content, category, audience_type, target_department,
-                     status, published_at, expires_at, created_by)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """;
-            try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-                bindAnnouncement(ps, title, content, category, audience, department, status, publishedAt, expiresAt);
-                ps.setInt(9, userId);
-                ps.executeUpdate();
-                try (ResultSet keys = ps.getGeneratedKeys()) {
-                    if (keys.next()) id = keys.getInt(1);
-                }
-            }
-        }
-
-        try (PreparedStatement ps = con.prepareStatement("DELETE FROM announcement_recipients WHERE announcement_id=?")) {
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        }
-        if ("SELECTED_STAFF".equals(audience)) {
-            String[] selected = req.getParameterValues("staff_ids");
-            if (selected == null || selected.length == 0)
-                throw new IllegalArgumentException("Pilih sekurang-kurangnya seorang staf.");
-            try (PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO announcement_recipients (announcement_id, staff_id) VALUES (?, ?)")) {
-                for (String value : selected) {
-                    int staffId = positiveId(value);
-                    ps.setInt(1, id);
-                    ps.setInt(2, staffId);
-                    ps.addBatch();
-                }
-                ps.executeBatch();
-            }
-        }
-    }
-
-    private void bindAnnouncement(PreparedStatement ps, String title, String content, String category,
-            String audience, String department, String status, Timestamp publishedAt, Timestamp expiresAt)
-            throws SQLException {
-        ps.setString(1, title);
-        ps.setString(2, content);
-        ps.setString(3, category);
-        ps.setString(4, audience);
-        ps.setString(5, department.isBlank() ? null : department);
-        ps.setString(6, status);
-        if (publishedAt == null) ps.setNull(7, java.sql.Types.TIMESTAMP); else ps.setTimestamp(7, publishedAt);
-        if (expiresAt == null) ps.setNull(8, java.sql.Types.TIMESTAMP); else ps.setTimestamp(8, expiresAt);
-    }
-
-    private void deleteAnnouncement(Connection con, int id) throws SQLException {
-        try (PreparedStatement ps = con.prepareStatement("DELETE FROM announcement_recipients WHERE announcement_id=?")) {
-            ps.setInt(1, id); ps.executeUpdate();
-        }
-        try (PreparedStatement ps = con.prepareStatement("DELETE FROM announcements WHERE id=?")) {
-            ps.setInt(1, id);
-            if (ps.executeUpdate() == 0) throw new SQLException("Pengumuman tidak dijumpai.");
-        }
-    }
+    
+      
 
     private void saveEvent(Connection con, HttpServletRequest req, int userId) throws Exception {
         int id = optionalId(req.getParameter("event_id"));
@@ -221,30 +123,7 @@ public class CompanyEventServlet extends HttpServlet {
         }
     }
 
-    private List<Map<String, Object>> loadAnnouncements(Connection con) throws SQLException {
-        List<Map<String, Object>> rows = new ArrayList<>();
-        String sql = """
-            SELECT a.id, a.title, a.content, a.category, a.audience_type, a.target_department,
-                   a.status, a.published_at, a.expires_at, a.created_at, u.name AS creator_name
-            FROM announcements a
-            LEFT JOIN users u ON u.id=a.created_by
-            ORDER BY a.created_at DESC, a.id DESC
-            """;
-        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Map<String, Object> row = new HashMap<>();
-                row.put("id", rs.getInt("id")); row.put("title", rs.getString("title"));
-                row.put("content", rs.getString("content")); row.put("category", rs.getString("category"));
-                row.put("audienceType", rs.getString("audience_type"));
-                row.put("targetDepartment", rs.getString("target_department"));
-                row.put("status", rs.getString("status")); row.put("publishedAt", rs.getTimestamp("published_at"));
-                row.put("expiresAt", rs.getTimestamp("expires_at")); row.put("createdAt", rs.getTimestamp("created_at"));
-                row.put("creatorName", rs.getString("creator_name")); rows.add(row);
-            }
-        }
-        return rows;
-    }
-
+    
     private List<Map<String, Object>> loadEvents(Connection con) throws SQLException {
         List<Map<String, Object>> rows = new ArrayList<>();
         String sql = """
@@ -265,19 +144,7 @@ public class CompanyEventServlet extends HttpServlet {
         return rows;
     }
 
-    private List<Map<String, Object>> loadStaff(Connection con) throws SQLException {
-        List<Map<String, Object>> rows = new ArrayList<>();
-        String sql = "SELECT id, name, department FROM users ORDER BY department, name";
-        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Map<String, Object> row = new HashMap<>();
-                row.put("id", rs.getInt("id")); row.put("name", rs.getString("name"));
-                row.put("department", rs.getString("department")); rows.add(row);
-            }
-        }
-        return rows;
-    }
-
+    
     private boolean isHr(HttpSession session) {
         Object role = session.getAttribute("userRole");
         if (role == null) role = session.getAttribute("role");

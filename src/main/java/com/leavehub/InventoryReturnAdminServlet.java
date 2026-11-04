@@ -1744,7 +1744,6 @@ public class InventoryReturnAdminServlet extends HttpServlet {
             """;
 
 
-            int requestId;
             int staffUserId;
             int returnQuantity;
 
@@ -1783,10 +1782,9 @@ public class InventoryReturnAdminServlet extends HttpServlet {
                     }
 
 
-                    requestId =
-                            rs.getInt(
-                                "request_id"
-                            );
+                    rs.getInt(
+					    "request_id"
+					);
 
 
                     staffUserId =

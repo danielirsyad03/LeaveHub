@@ -24,17 +24,96 @@ private String departmentLabel(String department) {
 
 <%
 
-    List<Map<String,Object>> announcements = (List<Map<String,Object>>) request.getAttribute("announcements");
+//===============================
+//ANNOUNCEMENTS
+//===============================
+java.util.List<java.util.Map<String, Object>> announcements =
+     new java.util.ArrayList<>();
 
-    List<Map<String,Object>> events = (List<Map<String,Object>>) request.getAttribute("events");
+Object announcementsAttribute = request.getAttribute("announcements");
 
-    List<Map<String,Object>> staff = (List<Map<String,Object>>) request.getAttribute("staff");
+if (announcementsAttribute instanceof java.util.List<?>) {
+ for (Object item : (java.util.List<?>) announcementsAttribute) {
+     if (item instanceof java.util.Map<?, ?>) {
+         java.util.Map<String, Object> announcement =
+                 new java.util.HashMap<>();
 
-    if (announcements == null) announcements = new java.util.ArrayList<>();
+         for (java.util.Map.Entry<?, ?> entry :
+                 ((java.util.Map<?, ?>) item).entrySet()) {
 
-    if (events == null) events = new java.util.ArrayList<>();
+             if (entry.getKey() instanceof String) {
+                 announcement.put(
+                         (String) entry.getKey(),
+                         entry.getValue()
+                 );
+             }
+         }
 
-    if (staff == null) staff = new java.util.ArrayList<>();
+         announcements.add(announcement);
+     }
+ }
+}
+
+//===============================
+//EVENTS
+//===============================
+java.util.List<java.util.Map<String, Object>> events =
+     new java.util.ArrayList<>();
+
+Object eventsAttribute = request.getAttribute("events");
+
+if (eventsAttribute instanceof java.util.List<?>) {
+ for (Object item : (java.util.List<?>) eventsAttribute) {
+     if (item instanceof java.util.Map<?, ?>) {
+         java.util.Map<String, Object> event =
+                 new java.util.HashMap<>();
+
+         for (java.util.Map.Entry<?, ?> entry :
+                 ((java.util.Map<?, ?>) item).entrySet()) {
+
+             if (entry.getKey() instanceof String) {
+                 event.put(
+                         (String) entry.getKey(),
+                         entry.getValue()
+                 );
+             }
+         }
+
+         events.add(event);
+     }
+ }
+}
+
+//===============================
+//STAFF
+//===============================
+java.util.List<java.util.Map<String, Object>> staff =
+     new java.util.ArrayList<>();
+
+Object staffAttribute = request.getAttribute("staff");
+
+if (staffAttribute instanceof java.util.List<?>) {
+ for (Object item : (java.util.List<?>) staffAttribute) {
+     if (item instanceof java.util.Map<?, ?>) {
+         java.util.Map<String, Object> staffMember =
+                 new java.util.HashMap<>();
+
+         for (java.util.Map.Entry<?, ?> entry :
+                 ((java.util.Map<?, ?>) item).entrySet()) {
+
+             if (entry.getKey() instanceof String) {
+                 staffMember.put(
+                         (String) entry.getKey(),
+                         entry.getValue()
+                 );
+             }
+         }
+
+         staff.add(staffMember);
+     }
+ }
+}
+
 
     String success = (String) session.getAttribute("announcementSuccess");
 
@@ -263,13 +342,13 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#b65a6c;box-sh
 
 <div class="field"><label>Sasaran penerima</label><select name="audience_type" id="audience" onchange="toggleAudience()"><option value="ALL">Semua staf</option><option value="DEPARTMENT">Jabatan tertentu</option><option value="SELECTED_STAFF">Staf tertentu</option></select></div>
 
-<div class="field" id="departmentField" hidden><label>Jabatan</label><select name="target_department"><option value="">-- Pilih jabatan --</option>
+<div class="field" id="departmentField" hidden="hidden"><label>Jabatan</label><select name="target_department"><option value="">-- Pilih jabatan --</option>
 
 <% java.util.Set<String> departments = new java.util.TreeSet<>(); for(Map<String,Object> s:staff){ if(s.get("department")!=null && !s.get("department").toString().isBlank()) departments.add(s.get("department").toString()); } for(String dep:departments){ %><option value="<%=esc(dep)%>"><%=esc(departmentLabel(dep))%></option><% } %>
 
 </select></div>
 
-<div class="field" id="staffField" hidden><label>Pilih staf (boleh pilih lebih daripada seorang)</label><div class="checklist">
+<div class="field" id="staffField" hidden="hidden"><label>Pilih staf (boleh pilih lebih daripada seorang)</label><div class="checklist">
 
 <% for(Map<String,Object> s:staff){ %><label class="checkitem"><input type="checkbox" name="staff_ids" value="<%=s.get("id")%>"><span><%=esc(String.valueOf(s.get("name")))%> <span class="muted">— <%=esc(departmentLabel(s.get("department")==null?null:String.valueOf(s.get("department"))))%></span></span></label><% } %>
 
@@ -315,7 +394,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#b65a6c;box-sh
 
 <% } %>
 
-<tr id="noFilteredAnnouncementsRow" hidden><td colspan="5">Tiada pengumuman bagi status ini.</td></tr>
+<tr id="noFilteredAnnouncementsRow" hidden="hidden"><td colspan="5">Tiada pengumuman bagi status ini.</td></tr>
 
 </tbody></table></div>
 

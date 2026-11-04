@@ -1132,24 +1132,6 @@ public final class LeaveCarryForwardUtil {
             );
 
 
-        balance.userId =
-            rs.getInt(
-                "user_id"
-            );
-
-
-        balance.leaveTypeId =
-            rs.getInt(
-                "leave_type_id"
-            );
-
-
-        balance.leaveYear =
-            rs.getInt(
-                "leave_year"
-            );
-
-
         balance.entitlement =
             rs.getInt(
                 "entitlement"
@@ -1483,12 +1465,6 @@ public final class LeaveCarryForwardUtil {
     private static final class BalanceInfo {
 
         int balanceId;
-
-        int userId;
-
-        int leaveTypeId;
-
-        int leaveYear;
 
         int entitlement;
 

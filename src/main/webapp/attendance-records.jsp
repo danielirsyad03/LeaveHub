@@ -118,15 +118,59 @@
     String selectedDateDisplay =
             selectedDate.format(displayFormatter);
 
-    List<Map<String, Object>> records =
-            (List<Map<String, Object>>) request.getAttribute("records");
+ // ===============================
+ // ATTENDANCE RECORDS
+ // ===============================
+ java.util.List<java.util.Map<String, Object>> records =
+         new java.util.ArrayList<>();
 
-    if (records == null) {
-        records = new java.util.ArrayList<>();
-    }
+ Object recordsAttribute = request.getAttribute("records");
 
-    Map<String, Integer> summary =
-            (Map<String, Integer>) request.getAttribute("summary");
+ if (recordsAttribute instanceof java.util.List<?>) {
+     for (Object item : (java.util.List<?>) recordsAttribute) {
+         if (item instanceof java.util.Map<?, ?>) {
+
+             java.util.Map<String, Object> record =
+                     new java.util.HashMap<>();
+
+             for (java.util.Map.Entry<?, ?> entry :
+                     ((java.util.Map<?, ?>) item).entrySet()) {
+
+                 if (entry.getKey() instanceof String) {
+                     record.put(
+                             (String) entry.getKey(),
+                             entry.getValue()
+                     );
+                 }
+             }
+
+             records.add(record);
+         }
+     }
+ }
+
+ // ===============================
+ // ATTENDANCE SUMMARY
+ // ===============================
+ java.util.Map<String, Integer> summary =
+         new java.util.HashMap<>();
+
+ Object summaryAttribute = request.getAttribute("summary");
+
+ if (summaryAttribute instanceof java.util.Map<?, ?>) {
+     for (java.util.Map.Entry<?, ?> entry :
+             ((java.util.Map<?, ?>) summaryAttribute).entrySet()) {
+
+         if (entry.getKey() instanceof String &&
+                 entry.getValue() instanceof Integer) {
+
+             summary.put(
+                     (String) entry.getKey(),
+                     (Integer) entry.getValue()
+             );
+         }
+     }
+ }
 
     int total =
             summary != null && summary.get("total") != null

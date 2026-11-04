@@ -1671,11 +1671,14 @@ main.main-content.dashboard-main {
     font-size: 12px;
 }
 
-.quick-card span {
+.quick-card-content {
     display: block;
+    min-width: 0;
+}
 
+.quick-card-content > span {
+    display: block;
     color: var(--dash-muted);
-
     font-size: 10px;
 }
 
@@ -2461,9 +2464,9 @@ main.main-content.dashboard-main {
                         <div class="panel-title">
                             <div class="panel-title-icon">🗓</div>
                             <div>
-                                <h3>Aktiviti & Program Akan Datang</h3>
-                                <p>Maklumat aktiviti dan program syarikat</p>
-                            </div>
+    <h3>Aktiviti &amp; Program Akan Datang</h3>
+    <p>Maklumat aktiviti dan program syarikat</p>
+</div>
                         </div>
                         <% if (isHR) { %>
                             <a class="panel-link" href="<%= request.getContextPath() %>/company-events">Pengurusan →</a>
@@ -3695,11 +3698,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/apply"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             📅
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Permohonan Cuti
@@ -3709,7 +3712,7 @@ main.main-content.dashboard-main {
                                 Mohon cuti baharu
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3719,11 +3722,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/vehicle-apply"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             🚘
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Permohonan Kenderaan
@@ -3733,7 +3736,7 @@ main.main-content.dashboard-main {
                                 Tempah kenderaan syarikat
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3743,11 +3746,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/inventory"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             📦
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Inventori
@@ -3757,7 +3760,7 @@ main.main-content.dashboard-main {
                                 Semak dan mohon inventori
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3767,11 +3770,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/attendance"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             ✓
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Kehadiran
@@ -3781,7 +3784,7 @@ main.main-content.dashboard-main {
                                 Check In dan Check Out
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3791,11 +3794,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/calendar"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             🗓
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Kalendar Cuti
@@ -3805,7 +3808,7 @@ main.main-content.dashboard-main {
                                 Lihat jadual cuti staf
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3818,11 +3821,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/staff"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             👥
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Pengurusan Staf
@@ -3832,7 +3835,7 @@ main.main-content.dashboard-main {
                                 Urus akaun pengguna
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3842,11 +3845,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/inventory-admin"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             ⚙
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Pengurusan Inventori
@@ -3856,7 +3859,7 @@ main.main-content.dashboard-main {
                                 Urus stok syarikat
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3866,11 +3869,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/vehicle-management"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             🚙
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Pengurusan Kenderaan
@@ -3880,7 +3883,7 @@ main.main-content.dashboard-main {
                                 Urus kenderaan syarikat
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3895,11 +3898,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/admin"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             ✓
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Sokongan Cuti
@@ -3909,7 +3912,7 @@ main.main-content.dashboard-main {
                                 Semak permohonan staf
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 
@@ -3923,11 +3926,11 @@ main.main-content.dashboard-main {
                         href="<%= request.getContextPath() %>/admin"
                     >
 
-                        <div class="quick-icon">
+                        <span class="quick-icon">
                             ✓
-                        </div>
+                        </span>
 
-                        <div>
+                        <span class="quick-card-content">
 
                             <strong>
                                 Kelulusan Cuti
@@ -3937,7 +3940,7 @@ main.main-content.dashboard-main {
                                 Buat keputusan permohonan
                             </span>
 
-                        </div>
+                        </span>
 
                     </a>
 

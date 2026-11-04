@@ -1362,77 +1362,7 @@ public class LeaveServlet extends HttpServlet {
             endDate
         );
     }
-    // =========================================================
-    // PARSE PUBLIC HOLIDAY DATE
-    // =========================================================
-    private LocalDate parseHolidayDate(
-            Object value) {
-        if (value == null) {
-            return null;
-        }
-        if (value instanceof LocalDate) {
-            return (LocalDate) value;
-        }
-        if (value instanceof java.sql.Date) {
-            return ((java.sql.Date) value)
-                .toLocalDate();
-        }
-        String text =
-            value.toString().trim();
-        if (text.isEmpty()) {
-            return null;
-        }
-        try {
-            // yyyy-MM-dd
-            if (
-                text.matches(
-                    "\\d{4}-\\d{2}-\\d{2}"
-                )
-            ) {
-                return LocalDate.parse(
-                    text
-                );
-            }
-            // yyyy-MM-dd HH:mm:ss...
-            if (
-                text.length() >= 10
-                &&
-                text.substring(0, 10)
-                    .matches(
-                        "\\d{4}-\\d{2}-\\d{2}"
-                    )
-            ) {
-                return LocalDate.parse(
-                    text.substring(
-                        0,
-                        10
-                    )
-                );
-            }
-            // dd/MM/yyyy
-            if (
-                text.matches(
-                    "\\d{2}/\\d{2}/\\d{4}"
-                )
-            ) {
-                String[] parts =
-                    text.split("/");
-                return LocalDate.of(
-                    Integer.parseInt(
-                        parts[2]
-                    ),
-                    Integer.parseInt(
-                        parts[1]
-                    ),
-                    Integer.parseInt(
-                        parts[0]
-                    )
-                );
-            }
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
+    
     // =========================================================
     // SHARED SNAPSHOT
     // =========================================================

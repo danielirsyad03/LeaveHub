@@ -36,14 +36,7 @@ public class LeaveBalanceServlet extends HttpServlet {
     private static final String EMERGENCY =
         "Cuti Kecemasan";
 
-    private static final String NO_RECORD =
-        "Cuti Tanpa Rekod";
-
-    private static final String UNPAID =
-        "Cuti Tanpa Gaji";
-
-    private static final String OTHER =
-        "Lain-lain";
+    
 
 
     // =========================================================
@@ -840,10 +833,9 @@ public class LeaveBalanceServlet extends HttpServlet {
                     new UserInfo();
 
 
-                user.id =
-                    rs.getInt(
-                        "id"
-                    );
+                rs.getInt(
+				    "id"
+				);
 
 
                 user.name =
@@ -852,10 +844,9 @@ public class LeaveBalanceServlet extends HttpServlet {
                     );
 
 
-                user.role =
-                    rs.getString(
-                        "role"
-                    );
+                rs.getString(
+				    "role"
+				);
 
 
                 return user;
@@ -1021,10 +1012,9 @@ public class LeaveBalanceServlet extends HttpServlet {
                     new BalanceInfo();
 
 
-                balance.balanceId =
-                    rs.getInt(
-                        "balance_id"
-                    );
+                rs.getInt(
+				    "balance_id"
+				);
 
 
                 balance.entitlement =
@@ -1039,10 +1029,9 @@ public class LeaveBalanceServlet extends HttpServlet {
                     );
 
 
-                balance.remainingDays =
-                    rs.getInt(
-                        "remaining_days"
-                    );
+                rs.getInt(
+				    "remaining_days"
+				);
 
                 balance.carryForwardDays =
                     rs.getInt(
@@ -1374,11 +1363,7 @@ public class LeaveBalanceServlet extends HttpServlet {
 
     private static class UserInfo {
 
-        int id;
-
         String name;
-
-        String role;
     }
 
 
@@ -1400,16 +1385,13 @@ public class LeaveBalanceServlet extends HttpServlet {
 
     private static class BalanceInfo {
 
-        int balanceId;
-
         int entitlement;
 
         int usedDays;
 
-        int remainingDays;
-
         int carryForwardDays;
 
         int carryForwardUsed;
+
     }
 }

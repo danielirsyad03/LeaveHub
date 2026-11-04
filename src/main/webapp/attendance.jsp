@@ -13,13 +13,10 @@
      */
 
     java.util.Map<String, Object> attendance =
-
-            (java.util.Map<String, Object>) request.getAttribute("attendance");
+            toStringObjectMap(request.getAttribute("attendance"));
 
     if (attendance == null) {
-
         attendance = new java.util.HashMap<>();
-
     }
 
     Object statusObj =
@@ -43,39 +40,70 @@
             attendance.get("checkOutDistance");
 
     String attendanceStatus =
+
             statusObj != null ? String.valueOf(statusObj) : "BELUM_HADIR";
 
     java.util.Map<String, Object> approvedLeave =
-            (java.util.Map<String, Object>) request.getAttribute("approvedLeave");
+            toStringObjectMap(request.getAttribute("approvedLeave"));
+
     boolean hasApprovedLeave = approvedLeave != null;
+
     String approvedLeaveType = hasApprovedLeave && approvedLeave.get("leaveType") != null
+
             ? String.valueOf(approvedLeave.get("leaveType")) : "Cuti diluluskan";
+
     String lateReason = attendance.get("lateReason") == null
+
             ? "" : String.valueOf(attendance.get("lateReason"));
+
     String earlyCheckoutReason = attendance.get("earlyCheckoutReason") == null
+
             ? "" : String.valueOf(attendance.get("earlyCheckoutReason"));
+
     java.time.LocalDate todayForStatus = java.time.LocalDate.now();
+
     java.time.LocalTime checkInTimeForStatus = null;
+
     java.time.LocalTime checkOutTimeForStatus = null;
+
     try {
+
         if (checkInObj instanceof java.sql.Timestamp) {
+
             checkInTimeForStatus = ((java.sql.Timestamp) checkInObj).toLocalDateTime().toLocalTime();
+
         }
+
         if (checkOutObj instanceof java.sql.Timestamp) {
+
             checkOutTimeForStatus = ((java.sql.Timestamp) checkOutObj).toLocalDateTime().toLocalTime();
+
         }
+
     } catch (Exception ignored) { }
+
     java.time.LocalTime endTimeForStatus = null;
+
     java.time.DayOfWeek dayForStatus = todayForStatus.getDayOfWeek();
+
     if (dayForStatus == java.time.DayOfWeek.SUNDAY || dayForStatus == java.time.DayOfWeek.MONDAY
+
             || dayForStatus == java.time.DayOfWeek.TUESDAY || dayForStatus == java.time.DayOfWeek.WEDNESDAY) {
+
         endTimeForStatus = java.time.LocalTime.of(16, 45);
+
     } else if (dayForStatus == java.time.DayOfWeek.THURSDAY) {
+
         endTimeForStatus = java.time.LocalTime.of(16, 30);
+
     }
+
     boolean lateCheckInForStatus = checkInTimeForStatus != null
+
             && checkInTimeForStatus.isAfter(java.time.LocalTime.of(8, 0));
+
     boolean earlyCheckOutForStatus = checkOutTimeForStatus != null && endTimeForStatus != null
+
             && checkOutTimeForStatus.isBefore(endTimeForStatus);
 
     String checkIn =
@@ -136,6 +164,24 @@
 
      */
 
+    private java.util.Map<String, Object> toStringObjectMap(Object value) {
+        if (!(value instanceof java.util.Map<?, ?>)) {
+            return null;
+        }
+
+        java.util.Map<?, ?> source = (java.util.Map<?, ?>) value;
+        java.util.Map<String, Object> result = new java.util.HashMap<>();
+
+        for (java.util.Map.Entry<?, ?> entry : source.entrySet()) {
+            Object key = entry.getKey();
+            if (key instanceof String) {
+                result.put((String) key, entry.getValue());
+            }
+        }
+
+        return result;
+    }
+
     public String esc(String value) {
 
         if (value == null) {
@@ -189,28 +235,49 @@
             "○";
 
     if (earlyCheckOutForStatus) {
+
         statusTitle = "Check Out Awal";
+
         statusDescription = "Check Out direkodkan sebelum waktu tamat kerja. "
+
                 + (earlyCheckoutReason.isBlank() ? "Sebab belum direkodkan." : "Sebab: " + earlyCheckoutReason);
+
         statusClass = "status-pending";
+
         statusIcon = "!";
+
     } else if (lateCheckInForStatus && !lateReason.isBlank()) {
+
         statusTitle = "Lewat Bersebab";
+
         statusDescription = "Check In selepas 8:00 pagi. Sebab: " + lateReason;
+
         statusClass = "status-pending";
+
         statusIcon = "!";
+
     } else if (lateCheckInForStatus) {
+
         statusTitle = "Lewat";
+
         statusDescription = "Check In direkodkan selepas 8:00 pagi.";
+
         statusClass = "status-pending";
+
         statusIcon = "!";
+
     } else if (hasApprovedLeave
+
             && !"HADIR".equalsIgnoreCase(attendanceStatus)
+
             && !"SELESAI".equalsIgnoreCase(attendanceStatus)) {
 
         statusTitle = "Cuti Diluluskan";
+
         statusDescription = "Cuti " + approvedLeaveType + " telah diluluskan untuk hari ini.";
+
         statusClass = "status-complete";
+
         statusIcon = "✓";
 
     } else if ("HADIR".equalsIgnoreCase(attendanceStatus)) {
@@ -1342,42 +1409,71 @@
            ========================================================= */
 
         .late-reason-field {
+
             width: 100%;
+
             margin-bottom: 15px;
+
         }
 
         .late-reason-field label {
+
             display: block;
+
             margin-bottom: 7px;
+
             color: #344054;
+
             font-size: 13px;
+
             font-weight: 600;
+
         }
 
         .late-reason-field label span,
+
         .late-reason-field small {
+
             color: #8a96a8;
+
             font-weight: 400;
+
         }
 
         .late-reason-field textarea {
+
             display: block;
+
             width: 100%;
+
             min-height: 78px;
+
             padding: 12px;
+
             border: 1px solid #dfe4ec;
+
             border-radius: 8px;
+
             background: #fff;
+
             color: #344054;
+
             font: inherit;
+
             font-size: 13px;
+
             resize: vertical;
+
         }
 
         .late-reason-field small {
+
             display: block;
+
             margin-top: 5px;
+
             font-size: 11px;
+
         }
 
         @media (max-width: 700px) {
@@ -1764,90 +1860,140 @@
 
         }
 
-        /* TYPOGRAPHY: samakan dengan saiz teks page Permohonan Cuti */
+        /\ TYPOGRAPHY: samakan dengan saiz teks page Permohonan Cuti \/
+
         .attendance-main .page-title-area h1 {
+
             font-size: 28px !important;
+
         }
 
         .attendance-main .page-title-area p {
+
             font-size: 13px !important;
+
         }
 
         .attendance-main .header-text h2 {
+
             font-size: 16px !important;
+
             line-height: 1.4 !important;
+
             font-weight: 600 !important;
+
         }
 
         .attendance-main .header-text p {
+
             font-size: 12px !important;
+
             line-height: 1.5 !important;
+
         }
 
         .attendance-main .status-badge {
+
             font-size: 12px !important;
+
         }
 
         .attendance-main .welcome-text {
+
             font-size: 13px !important;
+
             line-height: 1.6 !important;
+
         }
 
         .attendance-main .status-content h3 {
+
             font-size: 15px !important;
+
             line-height: 1.4 !important;
+
             font-weight: 600 !important;
+
         }
 
         .attendance-main .status-content p {
+
             font-size: 12px !important;
+
             line-height: 1.5 !important;
+
         }
 
         .attendance-main .time-label {
+
             font-size: 11px !important;
+
         }
 
         .attendance-main .time-value {
+
             font-size: 18px !important;
+
             line-height: 1.4 !important;
+
             overflow-wrap: anywhere;
+
         }
 
         .attendance-main .time-distance {
+
             font-size: 11px !important;
+
             line-height: 1.5 !important;
+
         }
 
         .attendance-main .location-content strong {
+
             font-size: 12px !important;
+
             line-height: 1.5 !important;
+
         }
 
         .attendance-main .location-content span {
+
             font-size: 11px !important;
+
             line-height: 1.5 !important;
+
         }
 
         .attendance-main .attendance-button {
+
             font-size: 13px !important;
+
         }
 
         .attendance-main .info-title {
+
             font-size: 14px !important;
+
         }
 
         .attendance-main .info-list {
+
             font-size: 12px !important;
+
         }
 
         .attendance-main .late-reason-field label,
+
         .attendance-main .late-reason-field textarea {
+
             font-size: 12px !important;
+
         }
 
         .attendance-main .late-reason-field small {
+
             font-size: 11px !important;
+
         }
 
     </style>
@@ -2133,13 +2279,21 @@
                 </div>
 
                 <% if (!lateReason.isBlank()) { %>
+
                     <div class="location-notice" style="margin-top:-5px;">
+
                         <div class="location-symbol">📝</div>
+
                         <div class="location-content">
+
                             <strong>Penjelasan Sebab Lewat</strong>
+
                             <span><%= esc(lateReason) %></span>
+
                         </div>
+
                     </div>
+
                 <% } %>
 
                 <!-- =================================================
@@ -2189,6 +2343,7 @@
                     <%
 
                         if ("BELUM_HADIR".equalsIgnoreCase(attendanceStatus)
+
                                 && !hasApprovedLeave) {
 
                     %>
@@ -2236,17 +2391,29 @@
                             >
 
                             <div class="late-reason-field">
+
                                 <label for="lateReason">
+
                                     Penjelasan Sebab Lewat <span>(Pilihan)</span>
+
                                 </label>
+
                                 <textarea
+
                                     id="lateReason"
+
                                     name="lateReason"
+
                                     rows="3"
+
                                     maxlength="1000"
+
                                     placeholder="Nyatakan sebab lewat jika berkaitan..."
+
                                 ></textarea>
+
                                 <small>Ruangan ini tidak wajib diisi.</small>
+
                             </div>
 
                             <button
@@ -2465,6 +2632,10 @@
 
         </div>
 
+        </div> <!-- attendance-container -->
+
+    </div> <!-- attendance-page -->
+
     </main>
 
 </div>
@@ -2482,34 +2653,63 @@
      */
 
     function confirmCheckOutFlow() {
+
         var now = new Date();
+
         var day = now.getDay(); // 0 Ahad, 4 Khamis
+
         var endHour = (day === 4) ? 16 : 16;
+
         var endMinute = (day === 4) ? 30 : 45;
+
         var isWorkday = day >= 0 && day <= 4;
+
         var early = isWorkday && (now.getHours() < endHour ||
+
             (now.getHours() === endHour && now.getMinutes() < endMinute));
+
         var reasonField = document.getElementById("earlyCheckoutReason");
+
         if (early) {
+
             if (!confirm("Anda akan Check Out sebelum waktu tamat bekerja (" +
+
                     (day === 4 ? "4:30 petang" : "4:45 petang") + "). Adakah anda pasti mahu meneruskan?")) {
+
                 return;
+
             }
+
             var reason = prompt("Sila masukkan sebab Check Out awal. Sebab ini wajib diisi:");
+
             if (reason === null) return;
+
             reason = reason.trim();
+
             if (!reason) {
+
                 alert("Sebab Check Out awal wajib diisi.");
+
                 return;
+
             }
+
             if (!confirm("Pengesahan kedua: Check Out awal dengan sebab berikut?\n\n" + reason + "\n\nTekan OK untuk meneruskan.")) {
+
                 return;
+
             }
+
             reasonField.value = reason.substring(0, 1000);
+
         } else if (reasonField) {
+
             reasonField.value = "";
+
         }
+
         getLocationAndSubmit("checkOut");
+
     }
 
     function getLocationAndSubmit(type) {

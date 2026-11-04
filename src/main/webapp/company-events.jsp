@@ -116,9 +116,34 @@ private String eventCategoryLabel(String category) {
 
 <%
 
- List<Map<String,Object>> events = (List<Map<String,Object>>) request.getAttribute("events");
+java.util.List<java.util.Map<String, Object>> events =
+new java.util.ArrayList<>();
 
- if (events == null) events = new java.util.ArrayList<>();
+Object eventsAttribute = request.getAttribute("events");
+
+if (eventsAttribute instanceof java.util.List<?>) {
+for (Object item : (java.util.List<?>) eventsAttribute) {
+
+if (item instanceof java.util.Map<?, ?>) {
+
+    java.util.Map<String, Object> event =
+            new java.util.HashMap<>();
+
+    for (java.util.Map.Entry<?, ?> entry :
+            ((java.util.Map<?, ?>) item).entrySet()) {
+
+        if (entry.getKey() instanceof String) {
+            event.put(
+                    (String) entry.getKey(),
+                    entry.getValue()
+            );
+        }
+    }
+
+    events.add(event);
+}
+}
+}
 
  String success = (String) session.getAttribute("eventSuccess");
 
@@ -305,7 +330,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#b65a6c;box-sh
 
     </div>
 
-    <div id="event-empty-filter" class="empty-filter"* hidden>Tiada aktiviti bagi status ini.</div>
+    <div id="event-empty-filter" class="empty-filter" hidden="hidden">
+    Tiada aktiviti bagi status ini.
+</div>
 
   </div>
 

@@ -17,11 +17,24 @@
     // REQUEST DATA
     // =========================================================
 
-    List<Map<String, Object>> logs =
-        (List<Map<String, Object>>) request.getAttribute("logs");
+    @SuppressWarnings("unchecked")
+List<Map<String, Object>> logs =
+    (List<Map<String, Object>>) request.getAttribute("logs");
 
-    List<String> actions =
-        (List<String>) request.getAttribute("actions");
+    java.util.List<String> actions =
+            new java.util.ArrayList<>();
+
+    Object actionsAttribute = request.getAttribute("actions");
+
+    if (actionsAttribute instanceof java.util.List<?>) {
+
+        for (Object item : (java.util.List<?>) actionsAttribute) {
+
+            if (item instanceof String) {
+                actions.add((String) item);
+            }
+        }
+    }
 
     String search =
         request.getAttribute("search") == null
@@ -1147,8 +1160,8 @@
                     <tr>
 
                         <th>
-                            Tarikh & Masa
-                        </th>
+    Tarikh &amp; Masa
+</th>
 
                         <th>
                             Pengguna

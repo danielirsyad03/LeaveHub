@@ -1194,8 +1194,8 @@
                                 </span>
 
                                 <h3>
-                                    Maklumat Kenderaan & Penggunaan
-                                </h3>
+    Maklumat Kenderaan &amp; Penggunaan
+</h3>
 
                             </div>
 
@@ -1438,8 +1438,8 @@
                                 </span>
 
                                 <h3>
-                                    Destinasi & Tujuan
-                                </h3>
+    Destinasi &amp; Tujuan
+</h3>
 
                             </div>
 

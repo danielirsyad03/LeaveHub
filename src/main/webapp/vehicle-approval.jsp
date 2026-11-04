@@ -225,9 +225,9 @@ for(String[] c:cards){
  boolean active=c[0].equals(selectedStatus);
 %>
 <a href="<%=href%>" class="summary-card <%=active?"active":""%>">
- <div class="summary-label"><%=c[1]%></div>
- <div class="summary-value"><%=c[2]%></div>
- <div class="summary-description"><%=c[3]%></div>
+    <span class="summary-label"><%=c[1]%></span>
+    <span class="summary-value"><%=c[2]%></span>
+    <span class="summary-description"><%=c[3]%></span>
 </a>
 <% } %>
 </div>
@@ -287,7 +287,10 @@ for(String[] f:filters){
    <div class="info-grid">
     <div><div class="info-label">Pemohon</div><div class="info-value strong"><%=esc.apply(a.get("applicant_name"))%></div></div>
     <div><div class="info-label">Pemandu</div><div class="info-value"><%=esc.apply(a.get("driver_name"))%></div></div>
-    <div><div class="info-label">Tarikh & Masa Mula</div><div class="info-value"><%=use%>, <%=st%></div></div>
+    <div>
+    <div class="info-label">Tarikh &amp; Masa Mula</div>
+    <div class="info-value"><%=use%>, <%=st%></div>
+</div>
     <div><div class="info-label">Jangkaan Pulang</div><div class="info-value"><%=ret%>, <%=rt%></div></div>
    </div>
    <div class="detail-grid">

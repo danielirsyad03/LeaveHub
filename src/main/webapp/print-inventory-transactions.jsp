@@ -32,12 +32,37 @@
     // =========================================================
     // TRANSACTION LIST
     // =========================================================
-    List<Map<String, Object>> transactions =
-            (List<Map<String, Object>>) request.getAttribute("transactions");
+    java.util.List<java.util.Map<String, Object>> transactions =
+        new java.util.ArrayList<>();
 
-    if (transactions == null) {
-        transactions = new ArrayList<>();
+Object transactionsAttribute =
+        request.getAttribute("transactions");
+
+if (transactionsAttribute instanceof java.util.List<?>) {
+
+    for (Object item : (java.util.List<?>) transactionsAttribute) {
+
+        if (item instanceof java.util.Map<?, ?>) {
+
+            java.util.Map<String, Object> transaction =
+                    new java.util.HashMap<>();
+
+            for (java.util.Map.Entry<?, ?> entry :
+                    ((java.util.Map<?, ?>) item).entrySet()) {
+
+                if (entry.getKey() instanceof String) {
+
+                    transaction.put(
+                            (String) entry.getKey(),
+                            entry.getValue()
+                    );
+                }
+            }
+
+            transactions.add(transaction);
+        }
     }
+}
 
     // =========================================================
     // DATE FORMAT

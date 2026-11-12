@@ -472,7 +472,7 @@
 
     <link
         rel="stylesheet"
-        href="<%= request.getContextPath() %>/css/style.css?v=20260930-dashboard-modern"
+        href="<%= request.getContextPath() %>/css/style.css?v=20261112-phone"
     >
 
 <style>
@@ -1723,14 +1723,27 @@ main.main-content.dashboard-main {
 @media (max-width: 650px) {
 
     main.main-content.dashboard-main {
+        position: relative;
+    }
+
+    main.main-content.dashboard-main {
         padding:
-            76px
+            70px
             12px
             30px !important;
     }
 
+    .dashboard-topbar {
+        position: absolute;
+        top: 14px;
+        right: 12px;
+        z-index: 1201;
+        width: max-content;
+        margin: 0;
+    }
+
     .dashboard-hero {
-        min-height: 350px;
+        min-height: 260px;
 
         border-radius: 18px;
 
@@ -1738,17 +1751,201 @@ main.main-content.dashboard-main {
     }
 
     .hero-content {
-        padding: 27px 23px 32px;
+        padding: 20px 17px 23px;
     }
 
     .stat-grid,
     .quick-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .stat-card {
+        min-height: 86px;
+        gap: 9px;
+        padding: 11px;
+        border-radius: 14px;
+    }
+
+    .stat-icon {
+        flex: 0 0 36px;
+        width: 36px;
+        height: 36px;
+        border-radius: 11px;
+        font-size: 17px;
+    }
+
+    .stat-data {
+        min-width: 0;
+    }
+
+    .stat-number {
+        font-size: 20px;
+    }
+
+    .stat-label,
+    .stat-note {
+        overflow-wrap: anywhere;
+    }
+
+    .quick-card {
+        min-height: 66px;
+        gap: 7px;
+        padding: 8px;
+        border-radius: 11px;
+    }
+
+    .quick-icon {
+        flex: 0 0 28px;
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .quick-card-content {
+        min-width: 0;
+    }
+
+    .quick-card strong {
+        display: -webkit-box;
+        margin-bottom: 0;
+        overflow: hidden;
+        font-size: 10.5px;
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+    .quick-card-content > span {
+        display: none !important;
+    }
+
+    .hero-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .hero-action {
+        min-width: 0;
+        min-height: 38px;
+        justify-content: center;
+        padding: 7px 6px;
+        text-align: center;
+        white-space: normal;
     }
 
     .section-heading {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    /* Turn dashboard data tables into labeled phone cards so key details
+       are readable without horizontal scrolling. */
+    .dashboard-table {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        overflow: visible;
+        border-collapse: separate;
+    }
+
+    .dashboard-table thead {
+        display: none;
+    }
+
+    .dashboard-table tbody {
+        display: block;
+    }
+
+    .dashboard-table tbody tr {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        padding: 12px;
+        border-bottom: 1px solid #edf0f4;
+    }
+
+    .dashboard-table td {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 3px;
+        padding: 7px 8px;
+        border: 1px solid #eef1f4;
+        border-radius: 8px;
+        background: #fcfcfd;
+        font-size: 11px;
+        text-align: left;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .dashboard-table td::before {
+        color: #8490a3;
+        font-size: 9px;
+        font-weight: 750;
+        line-height: 1.3;
+        text-transform: uppercase;
+    }
+
+    .dashboard-table td.empty-row {
+        grid-column: 1 / -1;
+        border: 0;
+        background: transparent;
+        text-align: center;
+    }
+
+    .dashboard-table td.empty-row::before {
+        display: none;
+    }
+
+    .dashboard-table td:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
+    .dashboard-data-card {
+        overflow: hidden;
+    }
+
+    .dashboard-staff-leave-table td:nth-child(1)::before { content: "Nama"; }
+    .dashboard-staff-leave-table td:nth-child(2)::before { content: "Jawatan"; }
+    .dashboard-staff-leave-table td:nth-child(3)::before { content: "Jabatan"; }
+    .dashboard-staff-leave-table td:nth-child(4)::before { content: "Jenis cuti"; }
+    .dashboard-staff-leave-table td:nth-child(5)::before { content: "Tarikh"; }
+    .dashboard-staff-leave-table td:nth-child(6)::before { content: "Jumlah"; }
+    .dashboard-staff-leave-table td:nth-child(7)::before { content: "Status"; }
+
+    .dashboard-vehicle-admin-table td:nth-child(1)::before { content: "Pemohon"; }
+    .dashboard-vehicle-admin-table td:nth-child(2)::before { content: "Kenderaan"; }
+    .dashboard-vehicle-admin-table td:nth-child(3)::before { content: "No. permohonan"; }
+    .dashboard-vehicle-admin-table td:nth-child(4)::before { content: "Tarikh"; }
+    .dashboard-vehicle-admin-table td:nth-child(5)::before { content: "Masa"; }
+    .dashboard-vehicle-admin-table td:nth-child(6)::before { content: "Pemandu"; }
+    .dashboard-vehicle-admin-table td:nth-child(7)::before { content: "Destinasi"; }
+    .dashboard-vehicle-admin-table td:nth-child(8)::before { content: "Status"; }
+
+    .dashboard-vehicle-staff-table td:nth-child(1)::before { content: "Kenderaan"; }
+    .dashboard-vehicle-staff-table td:nth-child(2)::before { content: "No. permohonan"; }
+    .dashboard-vehicle-staff-table td:nth-child(3)::before { content: "Tarikh"; }
+    .dashboard-vehicle-staff-table td:nth-child(4)::before { content: "Masa"; }
+    .dashboard-vehicle-staff-table td:nth-child(5)::before { content: "Pemandu"; }
+    .dashboard-vehicle-staff-table td:nth-child(6)::before { content: "Destinasi"; }
+    .dashboard-vehicle-staff-table td:nth-child(7)::before { content: "Status"; }
+
+    .dashboard-my-leave-table td:nth-child(1)::before { content: "No. permohonan"; }
+    .dashboard-my-leave-table td:nth-child(2)::before { content: "Jenis cuti"; }
+    .dashboard-my-leave-table td:nth-child(3)::before { content: "Tarikh"; }
+    .dashboard-my-leave-table td:nth-child(4)::before { content: "Jumlah"; }
+    .dashboard-my-leave-table td:nth-child(5)::before { content: "Status"; }
+}
+
+@media (max-width: 360px) {
+    .stat-grid,
+    .quick-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1790,10 +1987,11 @@ main.main-content.dashboard-main {
   .hero-content h1 { font-size:26px; }
 }
 @media (max-width:650px) {
-  .dashboard-hero { min-height:275px; border-radius:16px; }
-  .hero-content { padding:22px 20px 26px; }
+  .dashboard-hero { min-height:260px; border-radius:16px; }
+  .hero-content { padding:20px 17px 23px; }
   .hero-content h1 { font-size:23px; line-height:1.2; }
-  .hero-action { min-height:34px; padding:6px 10px; font-size:10.5px; }
+  .hero-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .hero-action { min-width:0; min-height:38px; padding:7px 6px; font-size:10.5px; text-align:center; white-space:normal; }
 }
 
 /* PENGUMUMAN & EVENT */
@@ -3043,9 +3241,9 @@ main.main-content.dashboard-main {
                 </div>
 
 
-                <div class="table-card">
+                <div class="table-card dashboard-data-card">
 
-                    <table class="dashboard-table">
+                    <table class="dashboard-table dashboard-staff-leave-table">
 
                         <thead>
 
@@ -3205,9 +3403,9 @@ main.main-content.dashboard-main {
                 </div>
 
 
-                <div class="table-card">
+                <div class="table-card dashboard-data-card">
 
-                    <table class="dashboard-table">
+                    <table class="dashboard-table dashboard-staff-leave-table">
 
                         <thead>
 
@@ -3368,9 +3566,9 @@ main.main-content.dashboard-main {
                 </div>
 
 
-                <div class="table-card">
+                <div class="table-card dashboard-data-card">
 
-                    <table class="dashboard-table">
+                    <table class="dashboard-table <%= (isHR || isManagement) ? "dashboard-vehicle-admin-table" : "dashboard-vehicle-staff-table" %>">
 
                         <thead>
 
@@ -3553,9 +3751,9 @@ main.main-content.dashboard-main {
                 </div>
 
 
-                <div class="table-card">
+                <div class="table-card dashboard-data-card">
 
-                    <table class="dashboard-table">
+                    <table class="dashboard-table dashboard-my-leave-table">
 
                         <thead>
 

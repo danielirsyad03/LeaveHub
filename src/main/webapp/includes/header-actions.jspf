@@ -435,10 +435,22 @@
         html body .pkb-header-actions {
 
             width:
-                100% !important;
+                max-content !important;
+
+            min-width:
+                max-content !important;
+
+            flex-direction:
+                row !important;
+
+            flex-wrap:
+                nowrap !important;
 
             justify-content:
-                flex-start !important;
+                flex-end !important;
+
+            gap:
+                8px !important;
         }
 
 

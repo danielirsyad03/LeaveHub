@@ -3141,6 +3141,8 @@ textarea::placeholder {
             74px
             13px
             28px;
+
+        min-width: 0;
     }
 
 
@@ -3228,6 +3230,65 @@ textarea::placeholder {
 
     .balance-actions .btn {
         width: 100%;
+    }
+
+    /* Keep phone form controls comfortable to tap and prevent iOS zoom. */
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+        font-size: 16px;
+    }
+
+    .dashboard-table-card {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Keep wide data tables inside the viewport and scroll them within
+       their own region instead of making the whole page drift sideways. */
+    .table-wrap,
+    .table-wrapper,
+    .table-card,
+    .dashboard-table-card,
+    [class$="-table-wrap"],
+    [class$="-table-wrapper"] {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .page-header,
+    .page-title,
+    .approval-header,
+    .applications-title,
+    .request-page-title,
+    .inventory-page-title,
+    .staff-page-title {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .topbar-actions,
+    .page-header-actions,
+    .header-actions,
+    .form-actions {
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    .btn,
+    button {
+        min-height: 42px;
     }
 }
 

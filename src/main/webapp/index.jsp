@@ -264,15 +264,56 @@ body.login-page {
 }
 
 @media (max-width: 520px) {
-    body.login-page { padding: 14px 10px; }
-
-    .login-card {
-        padding: 26px 21px 24px;
-        border-radius: 15px;
+    body.login-page {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 10px;
+        align-items: flex-start;
     }
 
-    .system-title { font-size: 23px; }
-    .login-logo { width: 132px; }
+    .login-card {
+        width: 100%;
+        max-width: 360px;
+        margin: auto;
+        padding: 17px 18px 15px;
+        border-radius: 14px;
+    }
+
+    .login-logo { width: 102px; }
+
+    .system-title {
+        margin: 10px 0 4px;
+        font-size: 19px;
+        line-height: 1.15;
+    }
+
+    .welcome-text { margin-bottom: 12px; font-size: 12px; }
+    .form-group { margin-bottom: 9px; }
+
+    .form-group label {
+        margin-bottom: 4px;
+        font-size: 11.5px;
+    }
+
+    .form-group input {
+        height: 39px;
+        font-size: 14px;
+    }
+
+    .form-group input::placeholder { font-size: 13px; }
+    .password-toggle { font-size: 11px; }
+    .login-button { height: 39px; font-size: 12px; }
+    .login-divider { margin: 11px 0 8px; }
+    .register-text { margin-bottom: 5px; font-size: 11px; }
+    .register-btn { height: 39px; font-size: 12px; }
+    .login-footer { margin-top: 10px; font-size: 10px; }
+}
+
+@media (max-width: 360px) {
+    body.login-page { padding: 8px; }
+    .login-card { padding: 15px 14px 14px; }
+    .login-logo { width: 94px; }
+    .system-title { font-size: 18px; }
 }
 </style>
 

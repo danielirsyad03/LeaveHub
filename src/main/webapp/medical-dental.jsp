@@ -588,6 +588,87 @@
 
 </style>
 
+<style>
+@media (max-width: 760px) {
+    main.md-main {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+        padding: 76px 14px 28px !important;
+        box-sizing: border-box !important;
+    }
+
+    .md-page {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+    }
+
+    .md-header {
+        position: relative;
+        display: block;
+        min-height: 46px;
+        margin-bottom: 18px;
+        padding-right: 145px;
+    }
+
+    .md-header > div:last-child {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 7px;
+        width: max-content;
+    }
+
+    .md-header-actions { margin: 0; }
+    .md-header h1 { font-size: 19px; line-height: 1.22; }
+    .md-header p { font-size: 11px; line-height: 1.4; }
+    .md-year { padding: 6px 8px; border-radius: 9px; font-size: 9px; }
+
+    .md-grid { grid-template-columns: 1fr; gap: 11px; margin-bottom: 18px; }
+    .md-card,
+    .md-panel { padding: 15px; border-radius: 14px; }
+
+    .md-card-top { gap: 10px; }
+    .md-icon { width: 38px; height: 38px; border-radius: 10px; font-size: 18px; }
+    .md-icon svg { width: 20px; height: 20px; }
+    .md-card h2 { font-size: 15px; line-height: 1.3; }
+    .md-muted { font-size: 11px; line-height: 1.4; }
+    .md-balance { margin: 12px 0 4px; font-size: 24px; }
+    .md-track { height: 6px; margin: 10px 0 11px; }
+
+    .md-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px 10px;
+        font-size: 10px;
+        line-height: 1.4;
+    }
+
+    .md-stats span { min-width: 0; }
+    .md-panel { margin-bottom: 14px; }
+    .md-panel-head { gap: 10px; margin-bottom: 12px; }
+    .md-panel h2 { font-size: 16px; }
+    .md-panel-head p { font-size: 11px; line-height: 1.4; }
+    .md-form-grid { gap: 10px; }
+    .md-field { gap: 5px; }
+    .md-field input,
+    .md-field select,
+    .md-field textarea { padding: 9px 10px; font-size: 13px; }
+    .md-field textarea { min-height: 72px; }
+}
+
+@media (max-width: 380px) {
+    main.md-main { padding-left: 11px !important; padding-right: 11px !important; }
+    .md-header { padding-right: 132px; }
+    .md-card,
+    .md-panel { padding: 13px; }
+}
+</style>
 </head>
 
 
@@ -600,7 +681,7 @@
 
 
 
-<main class="main-content">
+<main class="main-content md-main">
 
 <div class="md-page">
 

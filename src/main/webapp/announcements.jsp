@@ -296,7 +296,49 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#b65a6c;box-sh
 
 @media(max-width:900px){.main-content{margin-left:0;width:100%;padding:0!important}.page{width:100%;padding:72px 16px 28px}.top{align-items:flex-start;flex-direction:column}.top-right{align-items:flex-start;flex-direction:row}.top-user{order:0}}
 
-@media(max-width:600px){.two{grid-template-columns:1fr}.top-right{flex-wrap:wrap}.card{padding:20px 16px}}
+@media(max-width:600px){
+ .main-content{margin-left:0;width:100%;max-width:100%;min-width:0;padding:0!important}
+ .page{width:100%;max-width:100%;padding:72px 13px 28px}
+ .top{position:relative;display:block;min-height:48px;margin-bottom:16px}
+ .top>div:first-child{width:calc(100% - 106px);max-width:calc(100% - 106px)}
+ .top h1{font-size:23px;line-height:1.2}
+ .top .sub{font-size:12px;line-height:1.4}
+ .top-right{position:absolute;top:0;right:0;width:98px;display:flex;justify-content:flex-end;gap:7px;flex-wrap:nowrap}
+ .pkb-header-actions{display:flex;justify-content:flex-end;gap:7px}
+ .pkb-user-name{display:none}
+ .two{grid-template-columns:1fr}
+ .card{padding:16px 13px;margin-bottom:14px;border-radius:13px}
+ h2{font-size:16px;margin-bottom:12px}
+ .field{margin-bottom:10px}
+ textarea{min-height:84px}
+ .status-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:14px}
+ .status-card{padding:12px 9px 12px 13px;border-radius:12px}
+ .status-label{font-size:9px;margin-bottom:5px}
+ .status-number{font-size:21px}
+ .table-wrap{overflow:visible;border:0}
+ table,tbody{display:block;width:100%;min-width:0}
+ thead{display:none}
+ tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:5px 9px;margin-bottom:6px;padding:8px 10px;border:1px solid #e2e6ed;border-left:3px solid #801b31;border-radius:10px;background:#fff}
+ tbody tr[hidden]{display:none!important}
+ tbody td{display:flex;min-width:0;flex-direction:column;gap:2px;margin:0;padding:0!important;border:0!important;font-size:10px;line-height:1.25;overflow-wrap:anywhere}
+ tbody td:before{margin-bottom:1px;color:#788092;font-size:7.5px;font-weight:700;line-height:1.1;text-transform:uppercase}
+ tbody td:nth-child(1):before{content:"Pengumuman"}
+ tbody td:nth-child(2):before{content:"Penerima"}
+ tbody td:nth-child(3):before{content:"Status"}
+ tbody td:nth-child(4):before{content:"Jadual"}
+ tbody td:nth-child(5):before{content:"Tindakan"}
+ tbody td:nth-child(1){grid-column:1/-1}
+ tbody td:nth-child(2){grid-column:1}
+ tbody td:nth-child(3){grid-column:2}
+ tbody td:nth-child(4){grid-column:1}
+ tbody td:nth-child(5){grid-column:2;align-self:center}
+ tbody td[colspan]{display:block;grid-column:1/-1;padding:10px!important;text-align:center}
+ tbody td[colspan]::before{content:none!important;display:none}
+ .titlecell{min-width:0;font-size:11px}
+ .muted{margin-top:2px;font-size:9px;line-height:1.3}
+ .pill{padding:3px 7px;font-size:9px}
+ tbody td .btn{padding:5px 9px;font-size:9px}
+}
 
 </style>
 
@@ -312,7 +354,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#b65a6c;box-sh
 
 <div class="page">
 
-<div class="top"><div><h1>Pengurusan Pengumuman</h1><p class="sub">Urus pengumuman dan makluman rasmi kepada staf.</p></div><div class="top-right"><div class="top-user"><div class="user-chip"><span class="user-avatar"><%=esc(currentUserInitial)%></span><b><%=esc(currentUserName)%></b></div></div></div></div>
+<div class="top"><div><h1>Pengurusan Pengumuman</h1><p class="sub">Urus pengumuman dan makluman rasmi kepada staf.</p></div><div class="top-right"><%@ include file="includes/header-actions.jspf" %></div></div>
 
 <% if(success!=null){ %><div class="notice ok"><%=esc(success)%></div><% } %>
 

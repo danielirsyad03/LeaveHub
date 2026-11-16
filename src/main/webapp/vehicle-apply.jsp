@@ -870,7 +870,114 @@
 
         }
 
-    </style>
+    
+        /* =====================================================
+           COMPACT MOBILE LAYOUT
+           ===================================================== */
+        @media (max-width: 650px) {
+            html, body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            .app-layout {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                overflow-x: hidden;
+            }
+            main.main-content {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                margin-left: 0;
+                padding: 74px 13px 28px;
+                overflow-x: hidden;
+                box-sizing: border-box;
+            }
+            .vehicle-apply-page,
+            .application-card {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                margin-left: 0;
+                margin-right: 0;
+                box-sizing: border-box;
+            }
+            .vehicle-page-header {
+                position: relative;
+                display: block;
+                min-height: 44px;
+                margin-bottom: 14px;
+            }
+            .vehicle-page-title {
+                min-width: 0;
+                padding-right: 104px;
+            }
+            .vehicle-page-title h1 {
+                max-width: 100%;
+                font-size: 21px;
+                line-height: 1.25;
+                white-space: normal;
+                overflow-wrap: anywhere;
+            }
+            .vehicle-page-title p { font-size: 12px; line-height: 1.4; }
+            .vehicle-header-actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 3;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 7px;
+                width: max-content;
+            }
+            .notification-button { width: 40px; height: 40px; }
+            .vehicle-user-chip { min-width: 0; min-height: 40px; padding: 5px; }
+            .vehicle-user-name { display: none; }
+
+            .application-card { border-radius: 13px; }
+            .application-card-header {
+                align-items: center;
+                gap: 10px;
+                padding: 13px 14px;
+            }
+            .header-icon { width: 36px; height: 36px; flex: 0 0 36px; border-radius: 9px; }
+            .header-icon svg { width: 18px; height: 18px; }
+            .application-card-header h2 { font-size: 15px; }
+            .application-card-header p { font-size: 11px; line-height: 1.4; }
+            .application-body { min-width: 0; padding: 16px 14px; }
+            .form-section { min-width: 0; margin-bottom: 20px; }
+            .section-heading { gap: 9px; margin-bottom: 12px; padding-bottom: 9px; }
+            .section-number { width: 27px; height: 27px; }
+            .section-heading h3 { font-size: 14px; }
+            .form-grid { grid-template-columns: minmax(0, 1fr); gap: 13px; }
+            .form-group,
+            .form-group.full { grid-column: 1 / -1; min-width: 0; }
+            .form-label { margin-bottom: 5px; font-size: 12px; }
+            .form-control { width: 100%; min-width: 0; min-height: 42px; padding: 9px 11px; font-size: 13px; }
+            .application-footer {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 8px;
+                padding: 13px 14px;
+            }
+            .form-btn { width: 100%; min-height: 40px; }
+            .form-message,
+            .no-vehicle-warning { max-width: 100%; overflow-wrap: anywhere; }
+        }
+
+        @media (max-width: 360px) {
+            main.main-content { padding-right: 10px; padding-left: 10px; }
+            .vehicle-page-title { padding-right: 96px; }
+            .vehicle-header-actions { gap: 5px; }
+            .notification-button { width: 36px; height: 36px; }
+            .vehicle-user-chip { min-height: 36px; }
+            .application-body { padding: 14px 12px; }
+        }</style>
 
 </head>
 
@@ -1554,7 +1661,7 @@
                             type="reset"
                             class="form-btn secondary"
                         >
-                            Reset
+                            Kosongkan Borang
                         </button>
 
 

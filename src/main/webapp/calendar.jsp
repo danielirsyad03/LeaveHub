@@ -1576,6 +1576,37 @@
            ===================================================== */
 
         @media (max-width: 700px) {
+            .calendar-page-header {
+                position: relative;
+                display: block;
+                min-height: 44px;
+                margin-bottom: 16px;
+            }
+
+            .calendar-page-title { padding-right: 100px; }
+
+            .calendar-header-actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 2;
+            }
+
+            .calendar-page .calendar-summary {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 9px;
+                margin-bottom: 14px;
+            }
+
+            .calendar-summary-card {
+                min-height: 66px;
+                padding: 10px 12px;
+                border-radius: 11px;
+            }
+
+            .calendar-summary-card span { font-size: 8.5px; line-height: 1.3; }
+            .calendar-summary-card strong { margin-top: 4px; font-size: 19px; }
+            .calendar-summary-card small { margin-top: 4px; font-size: 8px; line-height: 1.3; }
 
             .calendar-page-header {
                 flex-direction: column;
@@ -1683,23 +1714,8 @@
                 </div>
 
 
-                <div class="user-chip">
-
-                    <div class="avatar">
-
-                        <%= htmlEscape(
-                            name.substring(
-                                0,
-                                1
-                            ).toUpperCase()
-                        ) %>
-
-                    </div>
-
-                    <b>
-                        <%= htmlEscape(name) %>
-                    </b>
-
+                <div class="calendar-header-actions">
+                    <%@ include file="includes/header-actions.jspf" %>
                 </div>
 
             </div>

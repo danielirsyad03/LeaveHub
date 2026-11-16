@@ -1687,6 +1687,8 @@ main.main-content.dashboard-main {
    RESPONSIVE
    ========================================================= */
 
+.dashboard-table td.mobile-list-name { display: none; }
+
 @media (max-width: 1200px) {
 
     main.main-content.dashboard-main {
@@ -1940,6 +1942,33 @@ main.main-content.dashboard-main {
     .dashboard-my-leave-table td:nth-child(3)::before { content: "Tarikh"; }
     .dashboard-my-leave-table td:nth-child(4)::before { content: "Jumlah"; }
     .dashboard-my-leave-table td:nth-child(5)::before { content: "Status"; }
+    /* Keep dashboard list rows short on phones; full details stay on their list pages. */
+    .dashboard-section:has(.dashboard-staff-leave-table) .dashboard-table tbody tr:not(:has(.empty-row)),
+    .dashboard-section:has(.dashboard-vehicle-admin-table) .dashboard-table tbody tr:not(:has(.empty-row)),
+    .dashboard-section:has(.dashboard-vehicle-staff-table) .dashboard-table tbody tr:not(:has(.empty-row)),
+    .dashboard-section:has(.dashboard-my-leave-table) .dashboard-table tbody tr:not(:has(.empty-row)) {
+        display: grid; grid-template-columns: minmax(0, 1fr); align-items: center;
+        min-height: 48px; padding: 10px 14px; border-bottom: 1px solid #edf0f4;
+    }
+    .dashboard-section:has(.dashboard-staff-leave-table) .dashboard-table tbody tr:not(:has(.empty-row)) td,
+    .dashboard-section:has(.dashboard-vehicle-admin-table) .dashboard-table tbody tr:not(:has(.empty-row)) td,
+    .dashboard-section:has(.dashboard-vehicle-staff-table) .dashboard-table tbody tr:not(:has(.empty-row)) td,
+    .dashboard-section:has(.dashboard-my-leave-table) .dashboard-table tbody tr:not(:has(.empty-row)) td { display: none; }
+    .dashboard-section:has(.dashboard-staff-leave-table) .dashboard-table tbody tr:not(:has(.empty-row)) td:first-child,
+    .dashboard-section:has(.dashboard-vehicle-admin-table) .dashboard-table tbody tr:not(:has(.empty-row)) td.mobile-list-name,
+    .dashboard-section:has(.dashboard-vehicle-staff-table) .dashboard-table tbody tr:not(:has(.empty-row)) td.mobile-list-name,
+    .dashboard-section:has(.dashboard-my-leave-table) .dashboard-table tbody tr:not(:has(.empty-row)) td.mobile-list-name {
+        display: block; min-width: 0; padding: 0; border: 0; background: transparent;
+        color: #172033; font-size: 14px; line-height: 1.4; white-space: normal; overflow-wrap: anywhere;
+    }
+    .dashboard-section:has(.dashboard-staff-leave-table) .dashboard-table tbody tr:not(:has(.empty-row)) td:first-child strong,
+    .dashboard-table td.mobile-list-name strong { font-weight: 650; }
+    .dashboard-section:has(.dashboard-staff-leave-table) .dashboard-table tbody tr:not(:has(.empty-row)) td:first-child::before,
+    .dashboard-table td.mobile-list-name::before { display: none; }
+    .dashboard-table td.empty-row {
+        display: block !important; grid-column: 1 / -1; padding: 24px 12px;
+        border: 0; background: transparent; text-align: center;
+    }
 }
 
 @media (max-width: 360px) {
@@ -3574,6 +3603,7 @@ main.main-content.dashboard-main {
 
                             <tr>
 
+                                
                                 <% if (isHR || isManagement) { %>
                                     <th>Pemohon</th>
                                 <% } %>
@@ -3624,6 +3654,9 @@ main.main-content.dashboard-main {
                         %>
 
                             <tr>
+
+                                
+                                <td class="mobile-list-name"><strong><%= esc((isHR || isManagement) ? vehicle.get("applicantName") : dashboardName) %></strong></td>
 
                                 <% if (isHR || isManagement) { %>
 
@@ -3821,6 +3854,8 @@ main.main-content.dashboard-main {
                         %>
 
                             <tr>
+
+                                <td class="mobile-list-name"><strong><%= esc(dashboardName) %></strong></td>
 
                                 <td>
                                     <strong>

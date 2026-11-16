@@ -704,6 +704,195 @@ if (transactionsAttribute instanceof java.util.List<?>) {
             margin: 10mm;
         }
 
+        /* Compact on-screen preview for phones; print rules remain separate. */
+        @media screen and (max-width: 600px) {
+            .screen-toolbar {
+                margin: 10px;
+                padding: 12px;
+                gap: 10px;
+                border-radius: 12px;
+            }
+
+            .toolbar-text h2 {
+                font-size: 17px;
+                line-height: 1.2;
+            }
+
+            .toolbar-text p {
+                font-size: 11px;
+                line-height: 1.35;
+            }
+
+            .toolbar-actions { gap: 8px; }
+
+            .btn {
+                min-height: 38px;
+                padding: 0 10px;
+                border-radius: 8px;
+                font-size: 11px;
+            }
+
+            .print-page { margin: 0 10px 12px; }
+
+            .paper {
+                padding: 16px 13px;
+                border-radius: 12px;
+            }
+
+            .company-header {
+                gap: 12px;
+                padding: 0 2px 12px;
+                border-bottom-width: 2px;
+            }
+
+            .company-logo { width: 92px; }
+
+            .company-info h2 {
+                margin-bottom: 4px;
+                font-size: 17px;
+                line-height: 1.15;
+            }
+
+            .company-info p { font-size: 10px; }
+
+            .document-title { padding: 17px 0 13px; }
+
+            .document-title h1 {
+                margin-bottom: 5px;
+                font-size: 20px;
+                line-height: 1.15;
+            }
+
+            .document-title p { font-size: 11px; }
+
+            .meta-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .meta-box {
+                min-height: 58px;
+                padding: 9px 10px;
+                border-radius: 8px;
+            }
+
+            .meta-box:last-child { grid-column: 1 / -1; }
+
+            .meta-label {
+                margin-bottom: 4px;
+                font-size: 9px;
+            }
+
+            .meta-value {
+                font-size: 12px;
+                overflow-wrap: anywhere;
+            }
+
+            .table-wrapper {
+                overflow: visible;
+                border: 0;
+            }
+
+            table,
+            tbody {
+                display: block;
+                width: 100%;
+                min-width: 0;
+            }
+
+            thead { display: none; }
+
+            tbody tr {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-auto-rows: auto;
+                align-content: start;
+                align-items: start;
+                gap: 4px 8px;
+                margin-bottom: 6px;
+                padding: 7px 8px;
+                border: 1px solid #dfe4ea;
+                border-left: 3px solid #99182c;
+                border-radius: 10px;
+                background: #fff;
+            }
+
+            td {
+                display: flex;
+                min-width: 0;
+                min-height: 0;
+                margin: 0;
+                height: auto !important;
+                align-self: start;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1px;
+                padding: 0 !important;
+                border: 0 !important;
+                font-size: 10px;
+                line-height: 1.2 !important;
+                overflow-wrap: anywhere;
+            }
+
+            td::before {
+                color: #7a879b;
+                font-size: 8px;
+                font-weight: 700;
+                line-height: 1.1;
+                text-transform: uppercase;
+            }
+
+            td:nth-child(1)::before { content: "Tarikh / Masa"; }
+            td:nth-child(2)::before { content: "Barang"; }
+            td:nth-child(3)::before { content: "Jenis"; }
+            td:nth-child(4)::before { content: "Kuantiti"; }
+            td:nth-child(5)::before { content: "Perubahan Stok"; }
+            td:nth-child(6)::before { content: "Penerima / Staf"; }
+            td:nth-child(7)::before { content: "Dilakukan Oleh"; }
+            td:nth-child(8)::before { content: "Rujukan"; }
+            td:nth-child(9)::before { content: "Catatan"; }
+
+            td:nth-child(2) { grid-column: span 2; }
+            td:nth-child(9) { grid-column: 1 / -1; }
+
+            .date-time,
+            .item-meta {
+                margin-top: 1px;
+                font-size: 9px;
+                line-height: 1.2;
+            }
+
+            .date-main,
+            .item-name { font-size: 10px; }
+
+            .date-main,
+            .date-time,
+            .item-name,
+            .item-meta { line-height: 1.15; }
+
+            .stock-change {
+                flex-wrap: wrap;
+                gap: 3px;
+                white-space: normal;
+            }
+
+            .type-badge { padding: 4px 7px; font-size: 9px; }
+
+            .empty-row {
+                display: block;
+                grid-column: 1 / -1;
+                padding: 14px !important;
+                text-align: center;
+            }
+
+            .document-footer {
+                gap: 8px;
+                padding-top: 10px;
+                font-size: 10px;
+            }
+        }
+
         @media print {
 
             html,

@@ -1199,6 +1199,39 @@
 
 
         @media (max-width: 700px) {
+            .topbar {
+                position: relative;
+                display: block;
+                min-height: 44px;
+            }
+
+            .leave-page-intro {
+                min-width: 0;
+                padding-right: 100px;
+            }
+
+            .leave-header-actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 2;
+            }
+
+
+            html body .leave-page-wrap .pkb-header-actions { gap: 6px !important; }
+
+            .form-section.applicant-info-section { padding: 18px 16px; }
+            .applicant-info-section .form-section-header { gap: 9px; margin-bottom: 12px; }
+            .applicant-info-section .section-icon {
+                width: 34px; height: 34px; min-width: 34px; font-size: 15px;
+            }
+            .applicant-info-section .form-section-title h3 { font-size: 15px; }
+            .applicant-info-section .form-section-title p { font-size: 12px; }
+            .applicant-info-section .staff-info {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 9px;
+            }
+            .applicant-info-section .staff-info-item { padding: 11px 12px; }
 
             .leave-page-intro h1 {
                 font-size: 23px;
@@ -1267,22 +1300,9 @@
                 </div>
 
 
-                <div class="user-chip">
+                <div class="leave-header-actions">
 
-                    <div class="avatar">
-
-                        <%= htmlEscape(
-                            name.substring(
-                                0,
-                                1
-                            ).toUpperCase()
-                        ) %>
-
-                    </div>
-
-                    <b>
-                        <%= htmlEscape(name) %>
-                    </b>
+                    <%@ include file="includes/header-actions.jspf" %>
 
                 </div>
 
@@ -1407,7 +1427,7 @@
                          MAKLUMAT PEMOHON
                          ========================================= -->
 
-                    <section class="form-section">
+                    <section class="form-section applicant-info-section">
 
                         <div class="form-section-header">
 

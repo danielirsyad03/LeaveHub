@@ -1996,6 +1996,53 @@
 
         }
 
+        @media (max-width: 650px) {
+            .attendance-main {
+                padding: 74px 13px 30px !important;
+            }
+
+            .attendance-main .top-bar {
+                position: relative;
+                display: block;
+                min-height: 48px;
+                margin: 0 0 18px;
+                padding-right: 0;
+            }
+
+            .attendance-main .page-title-area {
+                width: calc(100% - 106px);
+                max-width: calc(100% - 106px);
+            }
+
+            .attendance-main .page-title-area h1 {
+                width: 100%;
+                font-size: 23px !important;
+                line-height: 1.2;
+            }
+
+            .attendance-main .page-title-area p {
+                width: 100%;
+                margin-top: 5px;
+                font-size: 12px !important;
+                line-height: 1.4;
+            }
+
+            .pkb-attendance-header-actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 98px;
+            }
+
+            .pkb-header-actions {
+                display: flex;
+                justify-content: flex-end;
+                gap: 7px;
+            }
+
+            .pkb-user-name { display: none; }
+        }
+
     </style>
 
 </head>

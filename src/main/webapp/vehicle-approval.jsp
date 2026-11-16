@@ -162,12 +162,35 @@ int totalCancelled = counts == null ? 0 : counts.getOrDefault("CANCELLED",0);
 .info-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:650px){
-.page-top,.list-header{flex-direction:column}
-.summary-grid,.info-grid,.detail-grid,.period-compare,.form-grid{grid-template-columns:1fr}
-.application-summary,.change-summary{grid-template-columns:1fr}
+.app-layout{width:100%;min-width:0}
+.main-content{width:auto;max-width:100%;min-width:0;margin-left:0;padding:74px 13px 28px}
+.vehicle-approval-page{width:100%;max-width:100%;min-width:0}
+.page-top{position:relative;display:block;min-height:48px;margin-bottom:18px}
+.page-header{width:100%;padding-right:98px}
+.page-header h1{font-size:23px;line-height:1.2}
+.page-header p{font-size:13px;line-height:1.45}
+.header-actions{position:absolute;top:0;right:0;gap:8px}
+.user-name{display:none}
+.main-tabs{display:flex;width:100%;gap:4px;margin-bottom:14px;padding:4px}
+.main-tab{flex:1;justify-content:center;padding:9px 6px;font-size:10px;white-space:normal;text-align:center}
+.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.summary-card{min-height:78px;padding:11px 12px}
+.summary-label{margin-bottom:5px;font-size:9px}
+.summary-value{font-size:20px;line-height:1.1}
+.summary-description{margin-top:3px;font-size:9.5px;line-height:1.3}
+.list-header{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:14px}
 .search-box{width:100%}
-.approval-actions{flex-direction:column}
-.btn-action{width:100%}
+.filter-row{padding:9px 12px}
+.application-summary,.change-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px;padding:13px}
+.application-summary>div:first-child,.change-summary>div:first-child{grid-column:1/-1;padding-bottom:8px;border-bottom:1px solid #edf0f3}
+.application-summary>div:last-child,.change-summary>div:last-child{justify-self:end;align-self:center}
+.summary-field-label,.info-label{font-size:8px}
+.summary-field-value,.info-value{font-size:11px}
+.application-details,.change-details{padding:0 12px 12px}
+.details-inner{padding:12px}
+.info-grid,.detail-grid,.period-compare,.form-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.approval-actions{flex-direction:row;justify-content:stretch}
+.btn-action{width:auto;flex:1}
 }
 </style>
 </head>

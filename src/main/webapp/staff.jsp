@@ -343,6 +343,60 @@ html,body{max-width:100%;overflow-x:hidden}
   .staff-modal-footer{flex-direction:column-reverse}
   .staff-modal-footer .staff-btn{width:100%}
 }
+
+/* Compact responsive layout consistent with the other LeaveHub pages. */
+@media(max-width:650px){
+  main{width:100%!important;max-width:100vw!important;min-width:0!important;margin-left:0!important;padding:74px 13px 28px!important;overflow-x:hidden!important}
+  .staff-management-page{width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:hidden!important}
+  .staff-page-header{position:relative!important;display:block!important;min-height:42px!important;margin:0 0 14px!important;padding:0!important}
+  .staff-page-title{width:100%!important;min-width:0!important;padding-right:100px!important}
+  .staff-page-title h1{margin:0 0 5px!important;font-size:23px!important;line-height:1.2!important}
+  .staff-page-title p{margin:0!important;font-size:12px!important;line-height:1.4!important}
+  .staff-page-header-actions{position:absolute!important;top:0!important;right:0!important;z-index:10!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;min-width:0!important;margin:0!important}
+  .staff-page-header-actions .pkb-header-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important}
+  .staff-page-header-actions .pkb-user-name{display:none!important}
+  .staff-page-header-actions .pkb-notification-bell,.staff-page-header-actions .pkb-user-chip{width:42px!important;min-width:42px!important;height:42px!important;min-height:42px!important;padding:5px!important;justify-content:center!important}
+  .staff-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin:0 0 14px!important}
+  .staff-summary-card{min-width:0!important;min-height:76px!important;padding:11px 12px!important;border-radius:14px!important}
+  .staff-summary-card span{font-size:9px!important;line-height:1.25!important}
+  .staff-summary-card strong{margin-top:5px!important;font-size:21px!important}
+  .staff-summary-card small{margin-top:4px!important;font-size:9px!important;line-height:1.25!important}
+  .staff-shell{width:100%!important;min-width:0!important;border-radius:14px!important}
+  .staff-shell-header{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;padding:14px!important}
+  .staff-shell-title h2{font-size:16px!important}
+  .staff-shell-title p{font-size:11px!important;line-height:1.4!important}
+  .staff-header-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;width:100%!important}
+  .staff-header-actions .staff-btn{min-width:0!important;min-height:38px!important;padding:7px 8px!important;white-space:normal!important;text-align:center!important;font-size:10px!important}
+  .staff-toolbar{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;padding:11px 13px!important}
+  .staff-count{font-size:11px!important}
+  .staff-search{width:100%!important;max-width:none!important}
+  .staff-search input{height:40px!important;font-size:12px!important}
+  .staff-table-wrap{width:100%!important;max-width:100%!important;overflow-x:hidden!important;padding:8px!important;background:#f5f7fa!important}
+  .staff-table{display:block!important;width:100%!important;min-width:0!important;table-layout:auto!important}
+  .staff-table thead{display:none!important}
+  .staff-table tbody{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;width:100%!important}
+  .staff-table tbody tr.staff-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:center!important;gap:6px 9px!important;width:100%!important;min-width:0!important;padding:11px!important;border:1px solid #dce2ea!important;border-left:4px solid #a11f31!important;border-radius:12px!important;background:#fff!important;box-shadow:0 2px 7px rgba(23,32,51,.06)!important}
+  .staff-table tbody tr.staff-row td{display:block!important;width:auto!important;min-width:0!important;padding:0!important;border:0!important;font-size:10px!important;line-height:1.3!important;overflow-wrap:anywhere!important}
+  .staff-table tbody tr.staff-row td:nth-child(1){grid-column:1!important;grid-row:1!important}
+  .staff-table tbody tr.staff-row td:nth-child(2){grid-column:1!important;grid-row:2!important}
+  .staff-table tbody tr.staff-row td:nth-child(3){grid-column:2!important;grid-row:1!important;justify-self:start!important}
+  .staff-table tbody tr.staff-row td:nth-child(4){grid-column:2!important;grid-row:2!important}
+  .staff-table tbody tr.staff-row td:nth-child(5){grid-column:1!important;grid-row:3!important;color:#68758a!important;font-size:9px!important}
+  .staff-table tbody tr.staff-row td:nth-child(5)::before{content:"Ketua Unit: ";font-weight:700;color:#8792a4}
+  .staff-table tbody tr.staff-row td:nth-child(6){grid-column:2!important;grid-row:3!important}
+  .staff-table tbody tr.staff-row td:nth-child(7){grid-column:1/-1!important;grid-row:4!important;padding-top:7px!important;border-top:1px solid #edf0f4!important}
+  .staff-name strong{font-size:11px!important;line-height:1.25!important;overflow-wrap:anywhere}
+  .staff-email{margin-top:2px!important;font-size:9px!important;overflow-wrap:anywhere}
+  .position-text{font-size:10px!important;line-height:1.3!important}
+  .staff-role-badge,.department-badge{max-width:100%!important;font-size:9px!important;line-height:1.2!important}
+  .staff-table .staff-btn{min-height:31px!important;padding:6px 7px!important;font-size:9px!important;white-space:normal!important}
+  .staff-table .staff-btn.gold{width:100%!important}
+  .staff-actions{display:flex!important;flex-wrap:nowrap!important;gap:6px!important;width:100%!important}
+  .staff-actions>*{flex:1 1 0!important;min-width:0!important}
+  .staff-actions form{display:flex!important}
+  .staff-actions form button{width:100%!important}
+  .staff-empty{display:block!important;padding:26px 12px!important;border:0!important}
+}
 </style>
 </head>
 
@@ -372,18 +426,8 @@ html,body{max-width:100%;overflow-x:hidden}
 
                 </div>
 
-                <div class="user-chip">
-
-                    <div class="avatar">
-                        <%= htmlEscape(
-                            name.substring(0, 1).toUpperCase()
-                        ) %>
-                    </div>
-
-                    <b>
-                        <%= htmlEscape(name) %>
-                    </b>
-
+                <div class="staff-page-header-actions">
+                    <%@ include file="includes/header-actions.jspf" %>
                 </div>
 
             </div>

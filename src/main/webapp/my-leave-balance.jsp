@@ -1773,6 +1773,137 @@ main .leave-types-section {
 }
 </style>
 
+<style>
+@media (max-width: 650px) {
+    .leave-balance-header {
+        position: relative;
+        display: block;
+        min-height: 44px;
+        margin-bottom: 18px;
+    }
+
+    .leave-balance-title {
+        min-width: 0;
+        padding-right: 100px;
+    }
+
+    .leave-balance-header > .pkb-header-actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+    }
+
+    .leave-grid { grid-template-columns: 1fr; gap: 12px; }
+
+    .leave-card,
+    .leave-card.no-quota-card {
+        min-height: 0;
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .leave-card-top {
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 11px;
+    }
+
+    .leave-name-wrap { min-width: 0; gap: 9px; }
+
+    .leave-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        font-size: 14px;
+    }
+
+    .leave-name {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+    }
+
+    .document-badge { padding: 4px 7px; font-size: 8px !important; }
+    .leave-balance-number { gap: 5px; margin-bottom: 8px; }
+    .leave-balance-number strong { font-size: 26px !important; }
+    .leave-balance-number span { font-size: 10px; }
+    .leave-progress { margin-bottom: 10px; }
+
+    .leave-stats { gap: 7px; }
+    .leave-stat { padding: 8px 9px; border-radius: 9px; }
+    .leave-stat span { margin-bottom: 2px; font-size: 9px; }
+    .leave-stat strong { font-size: 11px; }
+
+    .no-quota-body { padding-top: 0; }
+    .available-pill { margin-bottom: 8px; padding: 6px 9px; font-size: 10px; }
+    .no-quota-body p { font-size: 10px; line-height: 1.45; }
+    .not-configured { padding: 10px 11px; font-size: 10px; }
+}
+</style>
+<style>
+@media (max-width: 650px) {
+    .carry-panel { padding: 15px 13px; }
+    .carry-header { gap: 9px; margin-bottom: 11px; }
+    .carry-header-icon { width: 32px; height: 32px; border-radius: 9px; font-size: 14px; }
+    .carry-header h3 { font-size: 14px !important; }
+    .carry-header p { font-size: 10px; line-height: 1.35; }
+    .carry-panel .carry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px; }
+    .carry-item { min-width: 0; padding: 9px 10px; border-radius: 9px; }
+    .carry-item span { margin-bottom: 3px; font-size: 9px; line-height: 1.3; }
+    .carry-item strong { font-size: 12px; }
+    .carry-message { margin-top: 9px; padding: 9px 10px; font-size: 10px; }
+}
+
+@media (max-width: 360px) {
+    .carry-panel .carry-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+<style>
+@media (max-width: 650px) {
+    .shared-leave-card {
+        grid-template-columns: 1fr;
+        margin-bottom: 20px;
+        border-radius: 15px;
+    }
+
+    .shared-main { padding: 17px 15px; }
+
+    .shared-top {
+        align-items: flex-start;
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .shared-title { min-width: 0; gap: 9px; }
+    .shared-title h3 { font-size: 14px !important; line-height: 1.3; }
+    .shared-title p { font-size: 10px; line-height: 1.35; }
+    .shared-icon { width: 36px; height: 36px; border-radius: 10px; font-size: 16px; }
+    .shared-badge { flex-shrink: 0; padding: 5px 8px; font-size: 8px !important; }
+    .shared-number { gap: 6px; margin-bottom: 4px; }
+    .shared-number strong { font-size: 36px !important; }
+    .shared-number span { font-size: 11px; }
+    .shared-caption { margin-bottom: 11px; font-size: 10px; line-height: 1.4; }
+    .main-progress { height: 6px; margin-bottom: 13px; }
+
+    .shared-main .shared-stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px;
+    }
+
+    .shared-stat { min-width: 0; padding: 9px 10px; border-radius: 9px; }
+    .shared-stat:last-child { grid-column: 1 / -1; }
+    .shared-stat span { font-size: 9px; line-height: 1.3; }
+    .shared-stat strong { font-size: 12px; }
+}
+
+@media (max-width: 360px) {
+    .shared-main { padding: 15px 12px; }
+    .shared-top { flex-wrap: wrap; }
+    .shared-main .shared-stat-grid { grid-template-columns: 1fr !important; }
+    .shared-stat:last-child { grid-column: auto; }
+}
+</style>
 </head>
 
 <body>

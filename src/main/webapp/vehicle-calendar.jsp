@@ -1411,7 +1411,124 @@
             }
         }
 
-    </style>
+    
+        /* =====================================================
+           MOBILE STYLE MATCHING KALENDAR CUTI
+           ===================================================== */
+
+        @media (max-width: 700px) {
+            main {
+                width: 100%; max-width: 100%; min-width: 0; margin-left: 0;
+                padding: 74px 13px 28px; box-sizing: border-box; overflow-x: hidden;
+            }
+            .vehicle-calendar-page { width: 100%; max-width: 100%; min-width: 0; }
+            .vehicle-page-header {
+                position: relative; display: block; min-height: 44px; margin-bottom: 16px;
+            }
+            .vehicle-page-title { min-width: 0; padding-right: 100px; }
+            .vehicle-page-title h1 { font-size: 21px; line-height: 1.25; }
+            .vehicle-page-title p { font-size: 12px; line-height: 1.4; }
+            .vehicle-header-actions {
+                position: absolute; top: 0; right: 0; z-index: 3;
+                width: max-content; display: flex; align-items: center;
+                justify-content: flex-end; gap: 7px;
+            }
+            .vehicle-calendar-page .user-chip { min-height: 40px; padding: 5px; }
+            .vehicle-calendar-page .user-chip .avatar { width: 30px; height: 30px; }
+            .vehicle-calendar-page .user-chip b { display: none; }
+
+            .vehicle-calendar-page .vehicle-summary {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 9px; margin-bottom: 14px;
+            }
+            .vehicle-summary-card { min-width: 0; min-height: 66px; padding: 10px 12px; border-radius: 11px; }
+            .vehicle-summary-card span { font-size: 8.5px; line-height: 1.3; }
+            .vehicle-summary-card strong { margin-top: 4px; font-size: 19px; }
+            .vehicle-summary-card small { margin-top: 4px; font-size: 8px; line-height: 1.3; }
+
+            .vehicle-role-info {
+                align-items: flex-start; flex-direction: column; gap: 10px;
+                margin-bottom: 14px; padding: 11px 12px;
+            }
+            .vehicle-role-left { gap: 9px; }
+            .vehicle-role-icon { width: 34px; height: 34px; min-width: 34px; font-size: 15px; }
+            .vehicle-role-info strong { font-size: 12px; }
+            .vehicle-role-info p { font-size: 10px; }
+            .btn-apply { width: 100%; min-height: 38px; }
+
+            .calendar-toolbar { gap: 8px; }
+            .calendar-legend { flex-wrap: wrap; gap: 6px; }
+            .cal-day { min-height: 80px; padding: 3px; }
+            .cal-head { padding: 7px 1px; font-size: 6.5px; letter-spacing: 0; }
+            .calendar-date { width: 19px; height: 19px; font-size: 7px; }
+            .vehicle-event { padding: 3px 3px 3px 5px; border-radius: 4px; }
+            .vehicle-plate { font-size: 6.5px; line-height: 1.2; overflow-wrap: anywhere; }
+            .vehicle-time, .vehicle-person, .off-day-label { display: none; }
+            .vehicle-detail-grid { grid-template-columns: 1fr; }
+            .vehicle-detail-row.full { grid-column: auto; }
+        }
+
+        @media (max-width: 360px) {
+            main { padding-right: 10px; padding-left: 10px; }
+            .vehicle-page-title { padding-right: 94px; }
+            .vehicle-header-actions { gap: 5px; }
+            .vehicle-calendar-page .user-chip { min-height: 36px; }
+            .vehicle-calendar-page .user-chip .avatar { width: 28px; height: 28px; }
+            .vehicle-calendar-page .vehicle-summary { gap: 7px; }
+            .vehicle-summary-card { padding: 9px 10px; }
+            .cal-day { min-height: 72px; }
+        }
+        /* Header spacing fix for narrow mobile screens */
+        @media (max-width: 700px) {
+            .vehicle-page-header {
+                display: grid !important;
+                grid-template-columns: minmax(0, 1fr) auto !important;
+                align-items: start !important;
+                justify-content: initial !important;
+                gap: 8px !important;
+                min-height: 0 !important;
+            }
+            .vehicle-page-title {
+                grid-column: 1;
+                grid-row: 1;
+                min-width: 0 !important;
+                padding-right: 0 !important;
+            }
+            .vehicle-page-title h1 {
+                max-width: 100%;
+                font-size: 21px;
+                line-height: 1.25;
+                overflow-wrap: anywhere;
+            }
+            .vehicle-page-title p {
+                max-width: 100%;
+                font-size: 12px;
+                line-height: 1.4;
+                overflow-wrap: anywhere;
+            }
+            .vehicle-header-actions {
+                position: static !important;
+                grid-column: 2;
+                grid-row: 1;
+                align-self: start;
+                width: auto !important;
+                max-width: none !important;
+                margin: 0 !important;
+                gap: 6px !important;
+            }
+            .vehicle-calendar-page .user-chip {
+                min-width: 0;
+                min-height: 40px;
+                padding: 5px;
+            }
+            .vehicle-calendar-page .user-chip b {
+                display: none !important;
+            }
+        }
+        @media (max-width: 360px) {
+            .vehicle-page-header { gap: 6px !important; }
+            .vehicle-page-title h1 { font-size: 19px; }
+        }</style>
 
 </head>
 

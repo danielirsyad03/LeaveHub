@@ -1334,6 +1334,131 @@ if (returnsAttribute instanceof java.util.List<?>) {
     font-size: 16px !important;
     font-weight: 400 !important;
 }
+
+/* Compact mobile layout aligned with the other LeaveHub pages. */
+@media (max-width: 650px) {
+    main {
+        width: 100% !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+        padding: 74px 13px 28px !important;
+        overflow-x: hidden !important;
+    }
+
+    .page-header {
+        position: relative !important;
+        display: block !important;
+        min-height: 42px !important;
+        margin: 0 0 14px !important;
+    }
+
+    .page-header > div:first-child {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding-right: 100px !important;
+    }
+
+    .page-title {
+        margin: 0 0 5px !important;
+        font-size: 23px !important;
+        line-height: 1.2 !important;
+    }
+
+    .page-subtitle {
+        margin: 0 !important;
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+    }
+
+    .page-header > .pkb-header-actions {
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        z-index: 10 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 6px !important;
+        margin: 0 !important;
+    }
+
+    .page-header .pkb-user-name { display: none !important; }
+    .page-header .pkb-notification-bell,
+    .page-header .pkb-user-chip {
+        width: 42px !important;
+        min-width: 42px !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        padding: 5px !important;
+        justify-content: center !important;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 0 0 14px !important;
+    }
+
+    .stat-card {
+        min-width: 0 !important;
+        min-height: 76px !important;
+        padding: 11px 12px !important;
+        border-radius: 14px !important;
+    }
+
+    .stat-label { font-size: 9px !important; line-height: 1.25 !important; }
+    .stat-number { margin-top: 5px !important; font-size: 21px !important; line-height: 1.1 !important; }
+    .stat-desc { margin-top: 4px !important; font-size: 9px !important; line-height: 1.25 !important; }
+
+    .content-card { width: 100% !important; min-width: 0 !important; border-radius: 14px !important; }
+    .content-header { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 8px !important; padding: 13px !important; }
+    .content-title { font-size: 15px !important; }
+    .content-subtitle { font-size: 10px !important; line-height: 1.35 !important; }
+    .search-box { width: 100% !important; min-width: 0 !important; height: 38px !important; }
+
+    .filter-row { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 7px !important; padding: 9px 11px !important; }
+    .filter-tabs { display: flex !important; flex-wrap: nowrap !important; gap: 6px !important; overflow-x: auto !important; scrollbar-width: none; }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    .filter-btn { flex: 0 0 auto !important; min-height: 29px !important; padding: 5px 9px !important; font-size: 9px !important; }
+
+    .return-list { display: grid !important; grid-template-columns: minmax(0,1fr) !important; gap: 8px !important; padding: 8px !important; background: #f5f7fa !important; }
+    .return-item {
+        display: grid !important;
+        grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto !important;
+        align-items: center !important;
+        gap: 5px 8px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 9px !important;
+        border: 1px solid #dce2ea !important;
+        border-left: 4px solid #a11f31 !important;
+        border-radius: 11px !important;
+        background: #fff !important;
+        box-shadow: 0 2px 7px rgba(23,32,51,.06) !important;
+    }
+
+    .return-item > div { min-width: 0 !important; }
+    .return-item > div:nth-child(1) { grid-column: 1 / 3 !important; grid-row: 1 !important; }
+    .return-item > div:nth-child(2) { grid-column: 1 / -1 !important; grid-row: 2 !important; padding-bottom: 5px !important; border-bottom: 1px solid #edf0f4 !important; }
+    .return-item > div:nth-child(3) { grid-column: 1 !important; grid-row: 3 !important; }
+    .return-item > div:nth-child(4) { grid-column: 2 !important; grid-row: 3 !important; }
+    .return-item > div:nth-child(5) { grid-column: 3 !important; grid-row: 1 !important; justify-self: end !important; }
+    .return-item > div:nth-child(6) { grid-column: 1 / -1 !important; grid-row: 4 !important; padding-top: 6px !important; border-top: 1px solid #edf0f4 !important; }
+    .column-title { display: block !important; margin: 0 0 2px !important; color: #8b96a7 !important; font-size: 8px !important; line-height: 1.15 !important; }
+    .return-item > div:nth-child(1) .column-title,
+    .return-item > div:nth-child(2) .column-title,
+    .return-item > div:nth-child(5) .column-title,
+    .return-item > div:nth-child(6) .column-title { display: none !important; }
+    .item-name,.staff-name { font-size: 10px !important; line-height: 1.25 !important; }
+    .item-code,.staff-email,.date-time,.processed-text { margin-top: 2px !important; font-size: 8px !important; line-height: 1.25 !important; }
+    .qty-box { min-height: 25px !important; padding: 4px 7px !important; font-size: 9px !important; }
+    .qty-box strong { font-size: 11px !important; }
+    .date-main { font-size: 9px !important; line-height: 1.2 !important; }
+    .status { max-width: 74px !important; padding: 4px 6px !important; font-size: 8px !important; white-space: normal !important; text-align: center !important; }
+    .action-buttons { display: flex !important; flex-wrap: nowrap !important; gap: 6px !important; }
+    .action-buttons .btn { flex: 1 1 0 !important; min-width: 0 !important; min-height: 29px !important; padding: 5px 7px !important; font-size: 9px !important; }
+}
     </style>
 
 </head>

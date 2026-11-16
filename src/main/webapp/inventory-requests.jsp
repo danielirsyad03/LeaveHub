@@ -1632,7 +1632,170 @@
 
         }
 
-    </style>
+    
+        /* =========================================================
+   MOBILE LAYOUT MATCHING THE LEAVE APPLICATIONS PAGE
+   ========================================================= */
+@media (max-width: 480px) {
+    .inventory-requests-header {
+        position: relative;
+        display: block;
+        min-height: 44px;
+        margin-bottom: 14px;
+    }
+    .inventory-requests-title {
+        min-width: 0;
+        padding-right: 104px;
+    }
+    .inventory-header-actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        width: max-content;
+        gap: 7px;
+    }
+    .inventory-notification-button { width: 40px; height: 40px; }
+    .inventory-user-chip { min-width: 0; flex: 0 0 auto; padding: 5px; }
+    .inventory-user-avatar { width: 30px; height: 30px; flex: 0 0 30px; }
+    .inventory-user-info { display: none; }
+    .inventory-requests-title h1 { font-size: 21px; line-height: 1.25; }
+    .inventory-requests-title p { font-size: 12px; line-height: 1.4; }
+
+    .request-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        margin-bottom: 14px;
+    }
+    .request-summary-card {
+        min-width: 0;
+        min-height: 68px;
+        padding: 11px 12px;
+        border-radius: 11px;
+    }
+    .request-summary-card span { font-size: 9px; line-height: 1.35; }
+    .request-summary-card strong { margin-top: 5px; font-size: 20px; line-height: 1.1; }
+    .request-summary-card small { display: none; }
+
+    .requests-shell { overflow: hidden; border-radius: 12px; }
+    .requests-shell-header { padding: 13px 14px; }
+    .requests-shell-title h2 { font-size: 16px; }
+    .requests-shell-title p { font-size: 11px; line-height: 1.4; }
+    .requests-search { width: 100%; }
+    .requests-search input { min-height: 38px; font-size: 12px; }
+    .requests-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 14px;
+    }
+    .new-inventory-request { width: 100%; min-height: 38px; font-size: 11px; }
+    .requests-count { font-size: 11px; }
+
+    .requests-table-wrapper {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .requests-table-wrapper::-webkit-scrollbar { display: none; }
+    .requests-table {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        table-layout: auto;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    .requests-table thead { display: none; }
+    .requests-table tbody { display: block; width: 100%; }
+    .requests-table tbody tr.request-data-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px 8px;
+        width: auto;
+        min-width: 0;
+        height: auto;
+        min-height: 0;
+        margin: 0 10px 8px;
+        padding: 11px 12px;
+        border: 1px solid #e7eaf0;
+        border-radius: 11px;
+        background: #fff;
+        box-shadow: 0 3px 10px rgba(27, 36, 53, .035);
+        box-sizing: border-box;
+    }
+    .requests-table tbody tr.request-data-row td {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        width: auto;
+        min-width: 0;
+        height: auto;
+        padding: 7px 8px;
+        border: 1px solid #eef0f4;
+        border-radius: 8px;
+        background: #fcfcfd;
+        font-size: 11px;
+        line-height: 1.4;
+        text-align: left;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        box-sizing: border-box;
+    }
+    .requests-table tbody tr.request-data-row td::before {
+        color: #8790a0;
+        font-size: 9px;
+        font-weight: 700;
+        line-height: 1.3;
+        text-transform: uppercase;
+    }
+    .requests-table tbody tr.request-data-row td:nth-child(1) { order: 1; grid-column: 1 / -1; }
+    .requests-table tbody tr.request-data-row td:nth-child(2) { order: 2; }
+    .requests-table tbody tr.request-data-row td:nth-child(3) { order: 3; }
+    .requests-table tbody tr.request-data-row td:nth-child(4) { order: 4; }
+    .requests-table tbody tr.request-data-row td:nth-child(5) { order: 5; }
+    .requests-table tbody tr.request-data-row td:nth-child(6) { order: 6; }
+    .requests-table tbody tr.request-data-row td:nth-child(7) { order: 7; }
+    .requests-table tbody tr.request-data-row td:nth-child(8) { order: 8; grid-column: 1 / -1; }
+    .requests-table tbody tr.request-data-row td:nth-child(1)::before { content: "Barang"; }
+    .requests-table tbody tr.request-data-row td:nth-child(2)::before { content: "Kategori"; }
+    .requests-table tbody tr.request-data-row td:nth-child(3)::before { content: "Kuantiti"; }
+    .requests-table tbody tr.request-data-row td:nth-child(4)::before { content: "Tujuan"; }
+    .requests-table tbody tr.request-data-row td:nth-child(5)::before { content: "Tarikh Permohonan"; }
+    .requests-table tbody tr.request-data-row td:nth-child(6)::before { content: "Status"; }
+    .requests-table tbody tr.request-data-row td:nth-child(7)::before { content: "Catatan"; }
+    .requests-table tbody tr.request-data-row td:nth-child(8)::before { content: "Pemulangan"; }
+    .request-item-name { min-width: 0; }
+    .request-item-name strong { font-size: 12px; line-height: 1.35; overflow-wrap: anywhere; }
+    .request-item-name small,
+    .request-date,
+    .request-purpose,
+    .request-remarks { font-size: 10px; line-height: 1.35; }
+    .request-status { max-width: 100%; padding: 4px 7px; font-size: 9px; white-space: normal; }
+    .return-panel { width: 100%; min-width: 0; }
+    .requests-table tbody tr:not(.request-data-row) td[colspan] {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 360px) {
+    .inventory-requests-title { padding-right: 96px; }
+    .inventory-header-actions { gap: 5px; }
+    .inventory-notification-button { width: 36px; height: 36px; }
+    .inventory-user-avatar { width: 28px; height: 28px; flex-basis: 28px; }
+    .request-summary { gap: 7px; }
+    .request-summary-card { padding: 9px 10px; }
+    .requests-table tbody tr.request-data-row { margin-right: 7px; margin-left: 7px; padding: 9px; }
+}
+</style>
 </head>
 
 

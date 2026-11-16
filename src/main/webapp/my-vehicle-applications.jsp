@@ -277,7 +277,140 @@ html, body { width:100%; max-width:100%; margin:0; overflow-x:hidden; }
     .form-group.full { grid-column:auto; }
     .top-action-row .btn-new { width:100%; }
 }
-</style>
+
+.notification-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #e4e7ec;
+    border-radius: 11px;
+    background: #fff;
+    color: #667085;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(27, 36, 53, .05);
+    transition: .15s ease;
+}
+.notification-btn:hover {
+    background: #fff8f8;
+    border-color: #e4c7cb;
+    color: #8d1f2d;
+}
+.notification-btn svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+/* =========================================================
+   MOBILE STYLE MATCHING THE OTHER APPLICATION PAGES
+   ========================================================= */
+@media (max-width: 650px) {
+    html, body { width:100%; max-width:100%; margin:0; overflow-x:hidden; }
+    .app-layout { display:block; width:100%; max-width:100%; min-width:0; overflow-x:hidden; }
+    main.main-content {
+        display:block; width:100%; max-width:100%; min-width:0;
+        margin-left:0; padding:74px 13px 28px; overflow-x:hidden;
+        box-sizing:border-box;
+    }
+    .vehicle-page, .list-card, .application-item {
+        width:100%; max-width:100%; min-width:0; box-sizing:border-box;
+    }
+    .vehicle-page-header {
+        position:relative; display:block; min-height:44px; margin-bottom:14px;
+    }
+    .vehicle-page-title { min-width:0; padding-right:104px; }
+    .vehicle-page-title h1 {
+        max-width:100%; font-size:21px; line-height:1.25;
+        white-space:normal; overflow-wrap:anywhere;
+    }
+    .vehicle-page-title p { font-size:12px; line-height:1.4; }
+    .vehicle-header-actions {
+        position:absolute; top:0; right:0; z-index:3;
+        display:flex; align-items:center; justify-content:flex-end;
+        width:max-content; gap:7px;
+    }
+    .notification-btn { width:40px; height:40px; }
+    .vehicle-user-chip { min-width:0; min-height:40px; padding:5px; }
+    .vehicle-user-avatar { width:30px; height:30px; }
+    .vehicle-user-name { display:none; }
+
+    .top-action-row { margin-bottom:12px; }
+    .top-action-row .btn-new { width:100%; min-height:40px; }
+    .message { margin-bottom:12px; padding:10px 12px; font-size:11px; }
+    .summary-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:9px; margin-bottom:14px;
+    }
+    .summary-card {
+        min-width:0; min-height:68px; gap:8px;
+        padding:10px 11px; border-radius:11px;
+    }
+    .summary-icon { width:32px; height:32px; flex:0 0 32px; font-size:14px; }
+    .summary-label { margin-bottom:3px; font-size:9px; line-height:1.3; }
+    .summary-value { font-size:20px; line-height:1.1; }
+
+    .list-card { border-radius:12px; overflow:hidden; }
+    .list-card-header { padding:13px 14px 0; }
+    .list-card-header h2 { font-size:16px; }
+    .list-card-header p { font-size:11px; line-height:1.4; }
+    .tabs {
+        display:flex; flex-wrap:wrap; gap:3px 6px;
+        margin-top:12px; overflow:visible;
+    }
+    .tab { min-height:34px; padding:8px 7px; gap:5px; font-size:10px; }
+    .tab-count { min-width:18px; padding:2px 5px; font-size:9px; }
+
+    .application-list { padding:10px; }
+    .application-item { margin-bottom:9px; border-radius:11px; }
+    .application-top {
+        flex-direction:row; align-items:center; justify-content:space-between;
+        gap:8px; padding:10px 11px;
+    }
+    .application-no-label, .info-label { margin-bottom:3px; font-size:8px; line-height:1.3; }
+    .application-no { font-size:11px; line-height:1.35; overflow-wrap:anywhere; }
+    .status-badge { max-width:48%; padding:5px 7px; font-size:9px; white-space:normal; }
+    .application-body { padding:10px; }
+    .info-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+    .info-grid > div {
+        min-width:0; padding:7px 8px;
+        border:1px solid #eef0f4; border-radius:8px; background:#fcfcfd;
+    }
+    .info-value { font-size:10px; line-height:1.35; overflow-wrap:anywhere; }
+    .info-value.strong { font-size:10px; }
+    .detail-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; margin-top:10px; padding-top:10px; }
+    .detail-box { min-width:0; padding:8px; border-radius:8px; overflow-wrap:anywhere; }
+    .remark-box, .change-box { margin-top:8px; padding:8px 9px; font-size:10px; line-height:1.4; }
+    .application-footer {
+        align-items:stretch; flex-direction:column; gap:7px; padding:9px 10px;
+    }
+    .created-at { font-size:9px; }
+    .action-group { display:flex; flex-wrap:wrap; gap:6px; }
+    .action-btn { flex:1 1 100px; min-width:0; min-height:32px; padding:6px 8px; font-size:9px; }
+
+    .modal-overlay { align-items:flex-end; padding:10px; }
+    .modal-card { width:100%; max-height:90vh; border-radius:13px; }
+    .modal-header, .modal-body, .modal-footer { padding:13px 14px; }
+    .form-grid { grid-template-columns:minmax(0,1fr); gap:11px; }
+    .form-group.full { grid-column:1 / -1; }
+    .modal-footer { flex-wrap:wrap; }
+}
+@media (max-width: 360px) {
+    main.main-content { padding-right:10px; padding-left:10px; }
+    .vehicle-page-title { padding-right:96px; }
+    .vehicle-header-actions { gap:5px; }
+    .summary-grid { gap:7px; }
+    .summary-card { gap:6px; padding:9px; }
+    .summary-icon { width:29px; height:29px; flex-basis:29px; }
+    .application-list { padding:8px; }
+    .info-grid, .detail-grid { gap:6px; }
+}</style>
 </head>
 
 <body>
@@ -294,6 +427,15 @@ html, body { width:100%; max-width:100%; margin:0; overflow-x:hidden; }
                 </div>
 
                 <div class="vehicle-header-actions">
+                    <a href="<%= request.getContextPath() %>/notifications"
+                       class="notification-btn"
+                       title="Notifikasi"
+                       aria-label="Notifikasi">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </a>
                     <div class="vehicle-user-chip">
                         <div class="vehicle-user-avatar"><%= esc.apply(userInitial) %></div>
                         <div class="vehicle-user-name"><%= esc.apply(userName) %></div>

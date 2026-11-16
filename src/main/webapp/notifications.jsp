@@ -891,6 +891,108 @@
         }
     }
 
+    @media (max-width: 650px) {
+        main {
+            width: auto;
+            max-width: 100%;
+            min-width: 0;
+            margin-left: 0;
+            padding: 74px 13px 28px;
+        }
+
+        .notification-page {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        .notification-page-header {
+            position: relative;
+            display: block;
+            min-height: 48px;
+            padding-right: 0;
+            margin-bottom: 16px;
+        }
+
+        .notification-page-title {
+            width: calc(100% - 106px);
+            max-width: calc(100% - 106px);
+        }
+
+        .notification-page-title h1 {
+            font-size: 23px;
+            line-height: 1.2;
+        }
+
+        .notification-page-title p {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .notification-page-header > .pkb-header-actions {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 98px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 7px;
+        }
+
+        .pkb-user-name { display: none; }
+
+        .notification-toolbar {
+            gap: 9px;
+            margin-bottom: 12px;
+        }
+
+        .notification-filters {
+            gap: 7px;
+        }
+
+        .notification-filter {
+            min-height: 38px;
+            padding: 0 12px;
+            font-size: 10px;
+        }
+
+        .notification-actions,
+        .notification-action-form { width: 100%; }
+
+        .notification-action-button {
+            min-height: 38px;
+            padding: 0 11px;
+            font-size: 10px;
+        }
+
+        .notification-list { gap: 8px; }
+
+        .notification-item {
+            gap: 10px;
+            padding: 11px;
+            border-radius: 11px;
+        }
+
+        .notification-icon {
+            width: 34px;
+            height: 34px;
+            flex-basis: 34px;
+            border-radius: 9px;
+        }
+
+        .notification-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .notification-title { font-size: 11.5px; line-height: 1.3; }
+        .notification-message { margin-top: 3px; font-size: 10px; line-height: 1.4; }
+        .notification-time { margin-top: 4px; font-size: 8.5px; }
+        .notification-item-actions { gap: 11px; margin-top: 6px; }
+        .notification-open,
+        .notification-delete { font-size: 9px; }
+    }
+
 </style>
 
 

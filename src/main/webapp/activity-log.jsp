@@ -927,6 +927,108 @@ List<Map<String, Object>> logs =
             }
         }
 
+        @media (max-width: 700px) {
+            main {
+                width: auto;
+                max-width: 100%;
+                min-width: 0;
+                margin-left: 0;
+                padding: 74px 13px 28px;
+            }
+
+            .activity-header {
+                position: relative;
+                display: block;
+                min-height: 48px;
+                padding-right: 98px;
+                margin-bottom: 18px;
+            }
+
+            .activity-header > div:first-child { width: 100%; }
+            .activity-header h1 { font-size: 23px; line-height: 1.2; }
+            .activity-header p { font-size: 13px; line-height: 1.45; }
+
+            .pkb-header-actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .pkb-user-name { display: none; }
+            .activity-card-header { gap: 10px; padding: 14px; }
+            .activity-filter { gap: 8px; padding: 12px; }
+
+            .activity-table-wrap {
+                overflow: visible;
+                padding: 0 10px;
+            }
+
+            .activity-table,
+            .activity-table tbody {
+                display: block;
+                width: 100%;
+                min-width: 0;
+            }
+
+            .activity-table thead { display: none; }
+
+            .activity-table tbody tr {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px 12px;
+                margin-bottom: 10px;
+                padding: 13px;
+                border: 1px solid #e1e6ed;
+                border-left: 4px solid #a9102c;
+                border-radius: 12px;
+                background: #fff;
+                box-shadow: 0 4px 12px rgba(31,41,61,.045);
+            }
+
+            .activity-table tbody td {
+                display: flex;
+                min-width: 0;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+                padding: 0;
+                border: 0 !important;
+                font-size: 11px;
+                overflow-wrap: anywhere;
+            }
+
+            .activity-table tbody td::before {
+                color: #8794a8;
+                font-size: 9px;
+                font-weight: 700;
+                letter-spacing: .04em;
+                text-transform: uppercase;
+            }
+
+            .activity-table tbody td:nth-child(1)::before { content: "Tarikh & Masa"; }
+            .activity-table tbody td:nth-child(2)::before { content: "Pengguna"; }
+            .activity-table tbody td:nth-child(3)::before { content: "Peranan"; }
+            .activity-table tbody td:nth-child(4)::before { content: "Aktiviti"; }
+            .activity-table tbody td:nth-child(5)::before { content: "Keterangan"; }
+            .activity-table tbody td:nth-child(6)::before { content: "IP"; }
+
+            .activity-table tbody td:nth-child(5),
+            .activity-table tbody td.activity-empty {
+                grid-column: 1 / -1;
+            }
+
+            .activity-table tbody td.activity-empty {
+                display: block;
+                padding: 18px 8px !important;
+                text-align: center;
+            }
+
+            .activity-pagination { padding: 12px; }
+        }
+
     </style>
 
 </head>
@@ -955,21 +1057,7 @@ List<Map<String, Object>> logs =
 
             </div>
 
-            <div class="user-chip">
-
-                <div class="avatar">
-
-                    <%= escapeHtml.apply(
-                        activityName.substring(0, 1).toUpperCase()
-                    ) %>
-
-                </div>
-
-                <b>
-                    <%= escapeHtml.apply(activityName) %>
-                </b>
-
-            </div>
+            <%@ include file="includes/header-actions.jspf" %>
 
         </div>
 

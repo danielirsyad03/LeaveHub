@@ -1076,7 +1076,56 @@
 
 @media (max-width: 700px) {
 
-    .vehicle-page-header,
+    .app-layout {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .main-content {
+        width: auto;
+        max-width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        padding: 74px 13px 28px;
+    }
+
+    .vehicle-page {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .vehicle-page-header {
+        position: relative;
+        display: block;
+        min-height: 48px;
+        padding-right: 96px;
+        margin-bottom: 18px;
+    }
+
+    .vehicle-page-header h1 {
+        font-size: 23px;
+        line-height: 1.2;
+    }
+
+    .vehicle-page-header p {
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .header-actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .user-name {
+        display: none;
+    }
+
     .vehicle-card-header,
     .vehicle-toolbar {
         flex-direction: column;
@@ -1085,7 +1134,42 @@
     }
 
     .vehicle-summary {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .summary-card {
+        min-height: 88px;
+        gap: 9px;
+        padding: 11px 10px;
+        align-items: flex-start;
+    }
+
+    .summary-icon {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+    }
+
+    .summary-icon svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .summary-info span {
+        font-size: 9px;
+        line-height: 1.25;
+    }
+
+    .summary-info strong {
+        font-size: 20px;
+        line-height: 1.1;
+    }
+
+    .summary-info small {
+        font-size: 9.5px;
+        line-height: 1.3;
     }
 
     .search-box {
@@ -1138,6 +1222,10 @@
                         Urus senarai kenderaan syarikat untuk kegunaan permohonan staf.
                     </p>
 
+                </div>
+
+                <div class="header-actions">
+                    <%@ include file="includes/header-actions.jspf" %>
                 </div>
 
             </div>

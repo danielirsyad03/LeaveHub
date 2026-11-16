@@ -1744,6 +1744,325 @@
 .approval-page .application-row > div {
     line-height: 1.3 !important;
 }
+
+/* Mobile layout aligned with the compact LeaveHub page style. */
+@media (max-width: 650px) {
+    .approval-page,
+    .approval-page * {
+        box-sizing: border-box;
+    }
+
+    .approval-page {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: clip;
+    }
+
+    .approval-header {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        align-items: start !important;
+        gap: 8px !important;
+        margin-bottom: 14px !important;
+    }
+
+    .approval-header > div:first-child {
+        min-width: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .approval-header h1 {
+        margin: 0 0 5px !important;
+        font-size: 23px !important;
+        line-height: 1.2 !important;
+        overflow-wrap: anywhere;
+    }
+
+    .approval-header p {
+        margin: 0 !important;
+        font-size: 13px !important;
+        line-height: 1.45 !important;
+    }
+
+    .approval-page .pkb-header-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 6px !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+    }
+
+    .approval-page .pkb-user-name {
+        display: none !important;
+    }
+
+    .approval-page .pkb-notification-bell,
+    .approval-page .pkb-user-chip {
+        width: 42px !important;
+        min-width: 42px !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        padding: 5px !important;
+        justify-content: center !important;
+    }
+
+    .approval-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 14px 0 16px !important;
+    }
+
+    .approval-stat {
+        min-width: 0 !important;
+        min-height: 78px !important;
+        padding: 11px 12px !important;
+        border-radius: 14px !important;
+    }
+
+    .approval-stat span {
+        margin-bottom: 6px !important;
+        font-size: 9px !important;
+        line-height: 1.25 !important;
+    }
+
+    .approval-stat strong {
+        font-size: 21px !important;
+    }
+
+    .approval-stat small {
+        margin-top: 5px !important;
+        font-size: 10px !important;
+        line-height: 1.3 !important;
+    }
+
+    .approval-role-card {
+        margin: 0 0 14px !important;
+        padding: 12px !important;
+    }
+
+    .application-panel,
+    .application-panel-header,
+    .application-tools,
+    .application-filter-bar {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .application-panel-header {
+        gap: 11px !important;
+        padding: 16px !important;
+    }
+
+    .application-tools {
+        gap: 8px !important;
+    }
+
+    .application-search,
+    .application-tools .btn-print {
+        min-width: 0 !important;
+        min-height: 42px !important;
+    }
+
+    .application-filter-bar {
+        overflow-x: auto !important;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+    }
+
+    .application-filter-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .approval-page .application-row {
+        position: relative !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+        gap: 10px 12px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        padding: 13px 42px 13px 14px !important;
+        border-radius: 14px !important;
+        text-align: left !important;
+    }
+
+    .approval-page .application-list {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+        background: #f5f7fa !important;
+    }
+
+    .approval-page .application-row,
+    .approval-page .application-row:last-child {
+        border: 1px solid #dce2ea !important;
+        border-left: 4px solid #a11f31 !important;
+        border-radius: 14px !important;
+        background: #ffffff !important;
+        box-shadow: 0 2px 7px rgba(23, 32, 51, .06) !important;
+    }
+
+    .approval-page .application-row.pending-row {
+        border-left-color: #d19118 !important;
+        background: #fffefa !important;
+    }
+
+    .approval-page .application-row:hover {
+        border-color: #c8d0dc !important;
+        background: #fffafa !important;
+        box-shadow: 0 4px 12px rgba(23, 32, 51, .1) !important;
+    }
+
+    .approval-page .application-row > .application-staff {
+        grid-column: 1 / -1 !important;
+        padding: 0 0 8px !important;
+        border-bottom: 1px solid #edf0f4 !important;
+    }
+
+    .approval-page .application-row > div:not(.application-staff):not(.row-chevron) {
+        min-width: 0 !important;
+        padding: 0 !important;
+    }
+
+    .approval-page .application-row .row-label {
+        display: block !important;
+        margin-bottom: 3px !important;
+        font-size: 9px !important;
+        line-height: 1.2 !important;
+    }
+
+    .approval-page .application-row .row-value,
+    .approval-page .application-row .row-days,
+    .approval-page .application-row .row-date-range {
+        min-width: 0 !important;
+        font-size: 11px !important;
+        line-height: 1.3 !important;
+        overflow-wrap: anywhere;
+    }
+
+    .approval-page .application-row .row-date-range {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 2px 4px !important;
+    }
+
+    .approval-page .application-row .row-chevron {
+        position: absolute !important;
+        top: 50% !important;
+        right: 10px !important;
+        transform: translateY(-50%) !important;
+    }
+}
+
+/* Keep each application as a compact, easy-to-scan mobile row. */
+@media (max-width: 650px) {
+    .approval-page .application-list {
+        gap: 7px !important;
+        padding: 8px !important;
+    }
+
+    .approval-page .application-row,
+    .approval-page .application-row:last-child {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) auto !important;
+        align-items: center !important;
+        gap: 3px 8px !important;
+        min-height: 68px !important;
+        padding: 9px 10px !important;
+        border-radius: 11px !important;
+    }
+
+    .approval-page .application-row > .application-staff {
+        grid-column: 1 !important;
+        grid-row: 1 / 4 !important;
+        align-self: center !important;
+        padding: 0 6px 0 0 !important;
+        border: 0 !important;
+        overflow: hidden !important;
+    }
+
+    .approval-page .application-row .application-staff strong {
+        display: -webkit-box !important;
+        margin: 0 0 2px !important;
+        overflow: hidden !important;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+    }
+
+    .approval-page .application-row .application-staff small {
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        font-size: 9px !important;
+        line-height: 1.2 !important;
+    }
+
+    .approval-page .application-row > div:nth-child(2),
+    .approval-page .application-row > div:nth-child(3),
+    .approval-page .application-row > div:nth-child(4) {
+        grid-column: 2 !important;
+        min-width: 0 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        line-height: 1.2 !important;
+    }
+
+    .approval-page .application-row > div:nth-child(2) { grid-row: 1 !important; }
+    .approval-page .application-row > div:nth-child(3) { grid-row: 2 !important; }
+    .approval-page .application-row > div:nth-child(4) { grid-row: 3 !important; }
+
+    .approval-page .application-row .row-label {
+        display: inline !important;
+        margin: 0 3px 0 0 !important;
+        font-size: 8px !important;
+        line-height: 1.2 !important;
+    }
+
+    .approval-page .application-row .row-value,
+    .approval-page .application-row .row-days,
+    .approval-page .application-row .row-date-range {
+        display: inline !important;
+        font-size: 9px !important;
+        line-height: 1.2 !important;
+    }
+
+    .approval-page .application-row .row-date-range {
+        white-space: nowrap !important;
+    }
+
+    .approval-page .application-row .row-date-separator {
+        margin: 0 2px !important;
+        font-size: 8px !important;
+    }
+
+    .approval-page .application-row > div:nth-child(5) {
+        grid-column: 3 !important;
+        grid-row: 1 / 4 !important;
+        align-self: center !important;
+        max-width: 68px !important;
+    }
+
+    .approval-page .application-row > div:nth-child(5) .row-label,
+    .approval-page .application-row .row-chevron {
+        display: none !important;
+    }
+
+    .approval-page .application-row .status-pill {
+        max-width: 68px !important;
+        min-height: 22px !important;
+        padding: 5px 7px !important;
+        white-space: normal !important;
+        text-align: center !important;
+        font-size: 8px !important;
+        line-height: 1.1 !important;
+    }
+}
 </style>
 
 </head><body>

@@ -1782,6 +1782,180 @@
         }
 
 
+        /* Compact phone layout used across the other LeaveHub pages. */
+        @media (max-width: 600px) {
+            .topbar {
+                position: relative;
+                display: block;
+                min-height: 48px;
+                padding-right: 0;
+                margin-bottom: 18px;
+            }
+
+            .topbar > div:first-child {
+                width: calc(100% - 108px);
+                max-width: calc(100% - 108px);
+            }
+
+            .topbar h1 {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 0 6px;
+                font-size: 22px;
+                line-height: 1.2;
+            }
+
+            .topbar p {
+                width: 100%;
+                font-size: 13px;
+                line-height: 1.45;
+            }
+
+            .pkb-header-actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 8px;
+                width: 100px;
+            }
+
+            .pkb-user-name {
+                display: none;
+            }
+
+            .transaction-summary-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                margin-bottom: 14px;
+            }
+
+            .transaction-summary-card {
+                min-height: 90px;
+                padding: 12px 10px;
+                gap: 9px;
+                align-items: flex-start;
+            }
+
+            .transaction-summary-icon {
+                width: 34px;
+                height: 34px;
+                flex: 0 0 34px;
+            }
+
+            .transaction-summary-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .transaction-summary-label {
+                font-size: 10px;
+                line-height: 1.25;
+            }
+
+            .transaction-summary-info strong {
+                font-size: 21px;
+                line-height: 1.1;
+            }
+
+            .transaction-summary-info small {
+                font-size: 10px;
+                line-height: 1.3;
+            }
+
+            .transaction-card-header {
+                gap: 10px;
+            }
+
+            .transaction-print-btn {
+                width: 100%;
+            }
+
+            .transaction-table-wrapper {
+                overflow: visible;
+                border: 0;
+                background: transparent;
+            }
+
+            .transaction-table,
+            .transaction-table tbody {
+                display: block;
+                width: 100%;
+            }
+
+            .transaction-table thead {
+                display: none;
+            }
+
+            .transaction-table tbody tr {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px 12px;
+                margin-bottom: 10px;
+                padding: 14px;
+                border: 1px solid #e0e5ed;
+                border-left: 4px solid #a51e32;
+                border-radius: 14px;
+                background: #fff;
+                box-shadow: 0 5px 14px rgba(15, 35, 65, .05);
+            }
+
+            .transaction-table tbody tr:hover {
+                background: #fff;
+            }
+
+            .transaction-table td {
+                display: flex;
+                min-width: 0;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+                padding: 0;
+                border: 0 !important;
+                font-size: 12px;
+                overflow-wrap: anywhere;
+            }
+
+            .transaction-table td::before {
+                color: #8794a8;
+                font-size: 9px;
+                font-weight: 700;
+                letter-spacing: .04em;
+                text-transform: uppercase;
+            }
+
+            .transaction-table td:nth-child(1)::before { content: "Tarikh / Masa"; }
+            .transaction-table td:nth-child(2)::before { content: "Barang"; }
+            .transaction-table td:nth-child(3)::before { content: "Jenis"; }
+            .transaction-table td:nth-child(4)::before { content: "Kuantiti"; }
+            .transaction-table td:nth-child(5)::before { content: "Perubahan Stok"; }
+            .transaction-table td:nth-child(6)::before { content: "Penerima / Staf"; }
+            .transaction-table td:nth-child(7)::before { content: "Dilakukan Oleh"; }
+            .transaction-table td:nth-child(8)::before { content: "Rujukan"; }
+            .transaction-table td:nth-child(9)::before { content: "Catatan"; }
+
+            .transaction-table td:nth-child(2),
+            .transaction-table td:nth-child(9) {
+                grid-column: 1 / -1;
+            }
+
+            .transaction-table td > strong,
+            .transaction-table td small {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+            }
+
+            .transaction-table .transaction-empty {
+                display: block;
+                grid-column: 1 / -1;
+                padding: 20px 8px !important;
+                text-align: center !important;
+            }
+        }
+
+
 
     </style>
 
@@ -1873,27 +2047,7 @@
 
 
 
-            <div class="user-chip">
-
-
-
-                <div class="avatar">
-
-                    <%= userInitial %>
-
-                </div>
-
-
-
-                <b>
-
-                    <%= userName %>
-
-                </b>
-
-
-
-            </div>
+            <%@ include file="includes/header-actions.jspf" %>
 
 
 

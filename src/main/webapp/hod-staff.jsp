@@ -884,6 +884,130 @@
 
         }
 
+        @media (max-width: 650px) {
+            main {
+                width: auto;
+                max-width: 100%;
+                min-width: 0;
+                margin-left: 0;
+                padding: 74px 13px 28px;
+            }
+
+            .hod-staff-page { width: 100%; max-width: 100%; min-width: 0; }
+
+            .hod-staff-header {
+                position: relative;
+                display: block;
+                min-height: 48px;
+                margin-bottom: 16px;
+            }
+
+            .hod-staff-title {
+                width: calc(100% - 104px);
+                max-width: calc(100% - 104px);
+            }
+
+            .hod-staff-title h1 { font-size: 22px; line-height: 1.2; }
+            .hod-staff-title p { font-size: 12px; line-height: 1.4; }
+
+            .hod-header-actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+                gap: 7px;
+            }
+
+            .staff-summary-card {
+                max-width: none;
+                min-height: 0;
+                margin-bottom: 12px;
+                padding: 12px 14px;
+                border-radius: 12px;
+            }
+
+            .staff-summary-card strong { margin-top: 4px; font-size: 22px; }
+            .staff-summary-card small { margin-top: 3px; font-size: 10px; }
+            .staff-list-card { border-radius: 13px; }
+            .staff-list-header { padding: 14px; }
+            .staff-list-header h2 { font-size: 16px; }
+            .staff-list-header p { font-size: 11px; }
+            .staff-table-wrap { overflow: visible; }
+            .staff-table,
+            .staff-table tbody { display: block; width: 100%; min-width: 0; }
+            .staff-table thead { display: none; }
+
+            .staff-table tbody tr.staff-row {
+                display: grid;
+                position: relative;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                grid-template-rows: auto auto auto;
+                gap: 8px 12px;
+                margin: 7px 0;
+                padding: 11px 12px;
+                border: 1px solid #e2e6ed;
+                border-left: 3px solid #8d1f2d;
+                border-radius: 9px;
+                background: #fff;
+            }
+
+            .staff-table tbody td {
+                display: flex;
+                min-width: 0;
+                flex-direction: column;
+                gap: 2px;
+                padding: 0 !important;
+                border: 0 !important;
+                font-size: 10px;
+                line-height: 1.25;
+                overflow-wrap: anywhere;
+            }
+
+            .staff-table tbody td::before {
+                color: #8792a4;
+                font-size: 8px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            .staff-table tbody td:nth-child(1) {
+                position: absolute;
+                top: 9px;
+                right: 10px;
+                align-items: center;
+                justify-content: center;
+                min-width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background: #f8eef0;
+                color: #8d1f2d;
+                font-size: 10px;
+                font-weight: 700;
+            }
+
+            .staff-table tbody td:nth-child(1)::before { content: none; }
+            .staff-table tbody td:nth-child(2) { grid-area: 1 / 1 / 2 / 3; justify-content: center; padding-right: 28px !important; min-height: 24px; }
+            .staff-table tbody td:nth-child(2)::before { content: "Nama"; }
+            .staff-table tbody td:nth-child(3) { grid-area: 2 / 1; }
+            .staff-table tbody td:nth-child(3)::before { content: "Jawatan"; }
+            .staff-table tbody td:nth-child(5) { grid-area: 2 / 2; }
+            .staff-table tbody td:nth-child(5)::before { content: "Jabatan"; }
+            .staff-table tbody td:nth-child(4) { grid-area: 3 / 1 / 4 / 3; }
+            .staff-table tbody td:nth-child(4)::before { content: "E-mel"; }
+
+            .staff-table tbody td.empty-state {
+                display: block;
+                grid-column: 1 / -1;
+                padding: 14px !important;
+                text-align: center;
+            }
+
+            .staff-table tbody td.empty-state::before { content: none !important; }
+            .staff-table strong { font-size: 11px; }
+            .department-chip { display: inline-block; width: fit-content; max-width: 100%; padding: 3px 7px; font-size: 9px; white-space: normal; }
+        }
+
     </style>
 
 </head>

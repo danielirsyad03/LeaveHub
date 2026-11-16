@@ -1697,6 +1697,68 @@
     line-height: 1.2 !important;
     letter-spacing: -0.3px !important;
 }
+
+/* Shared compact mobile page header and cards. */
+@media (max-width: 650px) {
+    main {
+        width: 100% !important; max-width: 100vw !important; min-width: 0 !important;
+        margin-left: 0 !important; padding: 74px 13px 28px !important; overflow-x: hidden !important;
+    }
+    .holiday-page {
+        width: 100% !important; max-width: 100% !important; min-width: 0 !important;
+        margin: 0 !important; padding: 0 0 20px !important; overflow-x: hidden !important;
+    }
+    .holiday-page-header { position: relative !important; display: block !important; min-height: 42px !important; margin: 0 0 14px !important; }
+    .holiday-page-title { width: 100% !important; min-width: 0 !important; padding-right: 100px !important; }
+    .holiday-page-title h1 { margin: 0 0 5px !important; font-size: 23px !important; line-height: 1.2 !important; }
+    .holiday-page-title p { margin: 0 !important; font-size: 12px !important; line-height: 1.4 !important; }
+    .holiday-page-header-actions {
+        position: absolute !important; top: 0 !important; right: 0 !important; z-index: 10 !important;
+        display: flex !important; align-items: center !important; justify-content: flex-end !important; margin: 0 !important;
+    }
+    .holiday-page-header-actions .pkb-header-actions { display: flex !important; align-items: center !important; justify-content: flex-end !important; gap: 6px !important; }
+    .holiday-page-header-actions .pkb-user-name { display: none !important; }
+    .holiday-page-header-actions .pkb-notification-bell,
+    .holiday-page-header-actions .pkb-user-chip {
+        width: 42px !important; min-width: 42px !important; height: 42px !important; min-height: 42px !important;
+        padding: 5px !important; justify-content: center !important;
+    }
+    .holiday-summary { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 9px !important; margin: 0 0 14px !important; }
+    .holiday-summary-card { min-width: 0 !important; min-height: 76px !important; padding: 11px 12px !important; border-radius: 14px !important; }
+    .holiday-summary-card span { font-size: 9px !important; line-height: 1.25 !important; }
+    .holiday-summary-card strong { margin-top: 5px !important; font-size: 21px !important; }
+    .holiday-summary-card small { margin-top: 4px !important; font-size: 9px !important; line-height: 1.25 !important; }
+    .holiday-layout { grid-template-columns: minmax(0, 1fr) !important; gap: 12px !important; width: 100% !important; min-width: 0 !important; }
+    .holiday-card { width: 100% !important; min-width: 0 !important; border-radius: 14px !important; }
+    .holiday-card-header { padding: 14px !important; }
+    .holiday-card-header h2 { font-size: 15px !important; }
+    .holiday-card-header p { font-size: 10px !important; }
+    .holiday-card-body { min-width: 0 !important; padding: 13px !important; }
+    .holiday-date-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 9px !important; }
+    .holiday-list-toolbar { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 8px !important; padding: 12px !important; }
+    .holiday-search { width: 100% !important; max-width: none !important; min-width: 0 !important; }
+    .holiday-table-wrap { width: 100% !important; max-width: 100% !important; padding: 8px !important; overflow-x: hidden !important; background: #f5f7fa !important; }
+    .holiday-table { display: block !important; width: 100% !important; min-width: 0 !important; }
+    .holiday-table thead { display: none !important; }
+    .holiday-table tbody { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 8px !important; width: 100% !important; }
+    .holiday-table tbody .holiday-row {
+        display: grid !important; grid-template-columns: minmax(0, 1fr) auto !important; align-items: center !important;
+        gap: 7px 10px !important; width: 100% !important; min-width: 0 !important; padding: 11px !important;
+        border: 1px solid #dce2ea !important; border-left: 4px solid #a11f31 !important; border-radius: 12px !important;
+        background: #fff !important; box-shadow: 0 2px 7px rgba(23, 32, 51, .06) !important;
+    }
+    .holiday-table tbody .holiday-row td { display: block !important; width: auto !important; min-width: 0 !important; padding: 0 !important; border: 0 !important; font-size: 10px !important; line-height: 1.3 !important; }
+    .holiday-table tbody .holiday-row td:nth-child(1) { grid-column: 1 / -1 !important; grid-row: 1 !important; }
+    .holiday-table tbody .holiday-row td:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; }
+    .holiday-table tbody .holiday-row td:nth-child(3) { grid-column: 2 !important; grid-row: 2 !important; justify-self: end !important; }
+    .holiday-table tbody .holiday-row td:nth-child(4) { grid-column: 1 / -1 !important; grid-row: 3 !important; padding-top: 7px !important; border-top: 1px solid #edf0f4 !important; }
+    .holiday-name { font-size: 11px !important; line-height: 1.3 !important; }
+    .holiday-desc { margin-top: 2px !important; font-size: 9px !important; line-height: 1.3 !important; }
+    .holiday-actions { display: flex !important; flex-wrap: nowrap !important; gap: 6px !important; }
+    .holiday-actions > * { flex: 1 1 0 !important; min-width: 0 !important; }
+    .holiday-actions form { display: flex !important; }
+    .holiday-actions .holiday-btn { width: 100% !important; min-height: 31px !important; padding: 6px 8px !important; font-size: 9px !important; }
+}
     </style>
 
 </head>
@@ -1738,23 +1800,8 @@
                 </div>
 
 
-                <div class="user-chip">
-
-                    <div class="avatar">
-
-                        <%= htmlEscape(
-                            name.substring(
-                                0,
-                                1
-                            ).toUpperCase()
-                        ) %>
-
-                    </div>
-
-                    <b>
-                        <%= htmlEscape(name) %>
-                    </b>
-
+                <div class="holiday-page-header-actions">
+                    <%@ include file="includes/header-actions.jspf" %>
                 </div>
 
 

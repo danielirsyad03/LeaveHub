@@ -1403,29 +1403,121 @@
 
 
         @media (max-width: 480px) {
+    .applications-header {
+        position: relative;
+        display: block;
+        min-height: 44px;
+    }
 
-            .application-summary-strip {
-                grid-template-columns: 1fr;
-            }
+    .applications-title {
+        min-width: 0;
+        padding-right: 104px;
+    }
 
+    .header-actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        width: max-content;
+        gap: 7px;
+    }
 
-            .header-actions {
-                width: 100%;
-            }
+    .header-user {
+        min-width: 0;
+        flex: 0 0 auto;
+        padding: 5px;
+    }
 
+    .header-user-name { display: none; }
 
-            .header-user {
+    .applications-title h1 { font-size: 21px; }
+    .applications-title p { font-size: 12px; }
 
-                min-width: 0;
+    .application-summary-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        margin-bottom: 14px;
+    }
 
-                flex: 1;
-            }
+    .summary-mini-card {
+        min-height: 68px;
+        padding: 11px 12px;
+        border-radius: 11px;
+    }
 
+    .summary-mini-card span { font-size: 9px; line-height: 1.35; }
+    .summary-mini-card strong { margin-top: 5px; font-size: 20px; }
 
-            .header-user-name {
-                max-width: none;
-            }
-        }
+    .history-shell { border-radius: 12px; }
+    .history-shell-header { padding: 13px 14px; }
+    .history-shell-title h2 { font-size: 16px; }
+    .history-shell-title p { font-size: 11px; }
+
+    .applications-table tr:not(:has(.empty-state)) {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px 8px;
+        padding: 11px 12px;
+    }
+
+    .applications-table tr:not(:has(.empty-state)) td {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        width: auto !important;
+        min-width: 0;
+        padding: 7px 8px;
+        border: 1px solid #eef0f4;
+        border-radius: 8px;
+        background: #fcfcfd;
+        font-size: 11px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    .applications-table tr:not(:has(.empty-state)) td::before {
+        color: #8790a0;
+        font-size: 9px;
+        font-weight: 700;
+        line-height: 1.3;
+        text-transform: uppercase;
+    }
+
+    .applications-table tr:not(:has(.empty-state)) td:nth-child(1),
+    .applications-table tr:not(:has(.empty-state)) td:nth-child(3),
+    .applications-table tr:not(:has(.empty-state)) td:nth-child(5),
+    .applications-table tr:not(:has(.empty-state)) td:nth-child(6),
+    .applications-table tr:not(:has(.empty-state)) td:nth-child(7) {
+        grid-column: 1 / -1;
+    }
+
+    .applications-table td:nth-child(1)::before { content: "No. Permohonan"; }
+    .applications-table td:nth-child(2)::before { content: "Jenis Cuti"; }
+    .applications-table td:nth-child(3)::before { content: "Tarikh"; }
+    .applications-table td:nth-child(4)::before { content: "Jumlah"; }
+    .applications-table td:nth-child(5)::before { content: "Alasan"; }
+    .applications-table td:nth-child(6)::before { content: "Status / Keputusan"; }
+    .applications-table td:nth-child(7)::before { content: "Tindakan"; }
+
+    .applications-table td.empty-state {
+        display: block !important;
+        grid-column: 1 / -1;
+        padding: 20px 14px;
+    }
+
+    .application-actions {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .application-actions .btn,
+    .application-actions form {
+        flex: 1 1 120px;
+        min-width: 0;
+    }
+}
 
     </style>
 

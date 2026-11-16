@@ -2185,6 +2185,444 @@
 
     </style>
 
+<style>
+@media (max-width: 760px) {
+    .inventory-page-header {
+        position: relative;
+        display: block;
+        min-height: 44px;
+        margin-bottom: 17px;
+    }
+
+    .inventory-page-title { min-width: 0; padding-right: 100px; }
+
+    .inventory-header-actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+    }
+
+    .inventory-page-title h1 { font-size: 21px; }
+    .inventory-page-title p { font-size: 11px; line-height: 1.4; }
+
+    .inventory-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        margin-bottom: 14px;
+    }
+
+    .inventory-summary-card {
+        min-height: 70px;
+        gap: 9px;
+        padding: 10px 11px;
+        border-radius: 11px;
+    }
+
+    .summary-icon { width: 34px; height: 34px; flex-basis: 34px; border-radius: 9px; }
+    .summary-icon svg { width: 16px; height: 16px; }
+    .summary-content span { margin-bottom: 2px; font-size: 9px; line-height: 1.3; }
+    .summary-content strong { font-size: 19px; }
+    .summary-content small { margin-top: 3px; font-size: 9px; line-height: 1.3; }
+
+    .inventory-card-header { padding: 13px 14px; }
+    .inventory-toolbar { padding: 10px 14px; }
+    .inventory-search input,
+    .filter-select,
+    .reset-filter-btn { min-height: 40px; font-size: 12px; }
+
+    .inventory-table-wrapper { overflow: visible; }
+    .inventory-table,
+    .inventory-table tbody { display: block; width: 100%; min-width: 0; }
+    .inventory-table thead { display: none; }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px 8px;
+        margin: 0 0 9px;
+        padding: 10px;
+        border: 1px solid #e8ebf0;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 3px 10px rgba(27,36,53,.035);
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        width: auto !important;
+        min-width: 0;
+        padding: 7px 8px !important;
+        border: 1px solid #eef0f4;
+        border-radius: 8px;
+        background: #fbfcfd;
+        font-size: 10px !important;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td::before {
+        color: #8790a0;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 1.3;
+        text-transform: uppercase;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(1),
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(3),
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(6) {
+        display: none !important;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(2) {
+        grid-column: 1 / -1;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(2)::before { content: "Barang"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(4)::before { content: "Variasi"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(5)::before { content: "Stok"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(7)::before { content: "Status"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(8)::before { content: "Tindakan"; }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(7) {
+        display: flex !important;
+    }
+
+    .item-info strong { font-size: 12px; line-height: 1.35; }
+    .item-brand,
+    .item-code { font-size: 9px; }
+    .item-variation { display: grid; gap: 3px; }
+    .variation-line { display: flex; flex-wrap: wrap; gap: 4px; }
+    .variation-label,
+    .variation-value { font-size: 9px; }
+    .stock-main strong { font-size: 13px; }
+    .stock-main span,
+    .stock-total { font-size: 9px; }
+    .inventory-status { padding: 4px 7px; font-size: 9px; }
+
+    .inventory-actions { display: flex; flex-wrap: wrap; gap: 5px; }
+    .btn-view,
+    .btn-request,
+    .btn-disabled {
+        flex: 1 1 58px;
+        min-height: 30px;
+        padding: 5px 7px;
+        font-size: 9px;
+    }
+
+    .inventory-table td[colspan] {
+        display: block !important;
+        width: 100% !important;
+        padding: 22px 12px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .inventory-page-title { padding-right: 94px; }
+    .inventory-summary-card { gap: 7px; padding: 9px; }
+    .summary-icon { width: 30px; height: 30px; flex-basis: 30px; }
+    .summary-content span { font-size: 8px; }
+    .inventory-table tbody tr:not(:has(td[colspan])) { padding: 8px; gap: 6px; }
+}
+</style>
+<style>
+@media (max-width: 760px) {
+    .inventory-table tbody tr:not(:has(td[colspan])) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto auto;
+        align-items: center;
+        gap: 7px;
+        min-height: 48px;
+        margin: 0 0 7px;
+        padding: 8px 9px;
+        border: 1px solid #e8ebf0;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: auto !important;
+        min-width: 0;
+        padding: 0 !important;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        font-size: 9px !important;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td::before { display: none !important; }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(1),
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(3),
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(4),
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(6) {
+        display: none !important;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(2) { display: block; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(5),
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(7),
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(8) { display: flex !important; }
+
+    .item-info { min-width: 0; }
+    .item-info strong {
+        display: block;
+        max-width: 100%;
+        overflow: hidden;
+        font-size: 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .item-brand,
+    .item-code,
+    .item-info small,
+    .stock-total { display: none !important; }
+
+    .stock-cell,
+    .stock-main { display: flex; align-items: baseline; gap: 3px; white-space: nowrap; }
+    .stock-main strong { font-size: 10px; }
+    .stock-main span { font-size: 8px; }
+
+    .inventory-status {
+        max-width: 64px;
+        padding: 4px 6px;
+        font-size: 8px;
+        white-space: nowrap;
+    }
+
+    .inventory-actions {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 4px;
+        width: auto;
+        white-space: nowrap;
+    }
+
+    .inventory-actions .btn-view,
+    .inventory-actions .btn-request,
+    .inventory-actions .btn-disabled {
+        flex: 0 0 auto;
+        width: auto !important;
+        min-height: 27px;
+        padding: 4px 6px;
+        font-size: 8px;
+        white-space: nowrap;
+    }
+}
+</style>
+<style>
+@media (max-width: 760px) {
+    /* Keep the familiar inventory table, compact enough for phone scrolling. */
+    .inventory-table-wrapper {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .inventory-table {
+        display: table !important;
+        width: 900px !important;
+        min-width: 900px !important;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    .inventory-table thead { display: table-header-group !important; }
+    .inventory-table tbody { display: table-row-group !important; }
+    .inventory-table tr { display: table-row !important; }
+
+    .inventory-table th,
+    .inventory-table td {
+        display: table-cell !important;
+        min-width: 0;
+        padding: 8px 7px !important;
+        border: 1px solid #edf0f4;
+        border-radius: 0;
+        background: #fff;
+        font-size: 10px !important;
+        line-height: 1.3;
+        vertical-align: middle;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .inventory-table thead th {
+        padding: 8px 7px !important;
+        background: #f8fafc;
+        font-size: 8px !important;
+        white-space: nowrap;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .inventory-table th:nth-child(1), .inventory-table td:nth-child(1) { width: 90px !important; }
+    .inventory-table th:nth-child(2), .inventory-table td:nth-child(2) { width: 170px !important; }
+    .inventory-table th:nth-child(3), .inventory-table td:nth-child(3) { width: 100px !important; }
+    .inventory-table th:nth-child(4), .inventory-table td:nth-child(4) { width: 125px !important; }
+    .inventory-table th:nth-child(5), .inventory-table td:nth-child(5) { width: 75px !important; }
+    .inventory-table th:nth-child(6), .inventory-table td:nth-child(6) { width: 95px !important; }
+    .inventory-table th:nth-child(7), .inventory-table td:nth-child(7) { width: 100px !important; }
+    .inventory-table th:nth-child(8), .inventory-table td:nth-child(8) { width: 145px !important; }
+
+    .item-info strong { font-size: 10px; }
+    .item-brand,
+    .item-code,
+    .item-info small,
+    .stock-total { display: block !important; }
+
+    .item-brand,
+    .item-code,
+    .variation-label,
+    .variation-value,
+    .stock-main span,
+    .stock-total { font-size: 9px !important; }
+
+    .variation-line { display: flex; flex-wrap: wrap; gap: 3px; }
+    .stock-main { display: flex; align-items: baseline; gap: 3px; }
+    .inventory-status { display: inline-block !important; max-width: none; font-size: 9px !important; white-space: nowrap; }
+    .inventory-actions { display: flex; flex-wrap: nowrap; gap: 5px; width: auto; }
+
+    .inventory-actions .btn-view,
+    .inventory-actions .btn-request,
+    .inventory-actions .btn-disabled {
+        width: auto !important;
+        min-height: 28px;
+        padding: 5px 8px;
+        font-size: 9px;
+        white-space: nowrap;
+    }
+}
+</style>
+<style>
+@media (max-width: 760px) {
+    .inventory-table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+        overflow-y: visible;
+    }
+
+    .inventory-table {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        table-layout: auto;
+    }
+
+    .inventory-table thead { display: none !important; }
+    .inventory-table tbody { display: block !important; width: 100%; }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 6px 7px;
+        width: 100%;
+        margin: 0 0 8px;
+        padding: 9px;
+        border: 1px solid #e7eaf0;
+        border-radius: 11px;
+        background: #fff;
+        box-shadow: 0 3px 10px rgba(27,36,53,.035);
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td {
+        display: flex !important;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 3px;
+        width: auto !important;
+        min-width: 0;
+        padding: 6px 7px !important;
+        border: 1px solid #eef0f4;
+        border-radius: 8px;
+        background: #fbfcfd;
+        font-size: 10px !important;
+        line-height: 1.3;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td::before {
+        display: block !important;
+        color: #8790a0;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 1.25;
+        text-transform: uppercase;
+    }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(1) { order: 2; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(2) { order: 1; grid-column: 1 / -1; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(3) { order: 3; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(4) { order: 4; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(5) { order: 5; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(6) { order: 6; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(7) { order: 7; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(8) { order: 8; grid-column: 1 / -1; }
+
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(1)::before { content: "Kod"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(2)::before { content: "Maklumat Barang"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(3)::before { content: "Kategori"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(4)::before { content: "Variasi"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(5)::before { content: "Stok"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(6)::before { content: "Lokasi"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(7)::before { content: "Status"; }
+    .inventory-table tbody tr:not(:has(td[colspan])) td:nth-child(8)::before { content: "Tindakan"; }
+
+    .item-info strong { font-size: 12px; line-height: 1.3; }
+    .item-brand,
+    .item-code,
+    .item-info small,
+    .stock-total { display: block !important; font-size: 9px !important; }
+    .variation-line { display: flex; flex-wrap: wrap; gap: 3px; }
+    .variation-label,
+    .variation-value { font-size: 9px !important; }
+    .stock-main { display: flex; align-items: baseline; gap: 3px; }
+    .stock-main strong { font-size: 11px; }
+    .inventory-status { display: inline-block !important; font-size: 9px !important; white-space: nowrap; }
+    .inventory-actions { display: flex; flex-wrap: wrap; gap: 5px; width: 100%; }
+
+    .inventory-actions .btn-view,
+    .inventory-actions .btn-request,
+    .inventory-actions .btn-disabled {
+        flex: 1 1 75px;
+        width: auto !important;
+        min-height: 30px;
+        padding: 5px 8px;
+        font-size: 9px;
+    }
+
+    .inventory-table td[colspan] {
+        display: block !important;
+        width: 100% !important;
+        padding: 22px 12px !important;
+    }
+}
+</style>
 </head>
 
 
@@ -2232,266 +2670,9 @@
                 </div>
 
 
-                <div class="inventory-user">
-
-
-                    <div class="inventory-user-avatar">
-
-                        <%= htmlEscape(
-                            name.substring(0, 1).toUpperCase()
-                        ) %>
-
-                    </div>
-
-
-                    <span class="inventory-user-name">
-
-                        <%= htmlEscape(name) %>
-
-                    </span>
-
-
+                <div class="inventory-header-actions">
+                    <%@ include file="includes/header-actions.jspf" %>
                 </div>
-
-
-            </div>
-
-
-            <!-- =================================================
-                 INVENTORY SUMMARY
-            ================================================== -->
-
-            <div class="inventory-summary">
-
-
-                <!-- =============================================
-                     TOTAL INVENTORY
-                ============================================== -->
-
-                <div class="inventory-summary-card">
-
-
-                    <div class="summary-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                        >
-                            <path
-                                d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z"
-                            />
-
-                            <path
-                                d="M4 7.5V16l8 5 8-5V7.5"
-                            />
-
-                            <path
-                                d="M12 12v9"
-                            />
-                        </svg>
-
-                    </div>
-
-
-                    <div class="summary-content">
-
-                        <span>
-                            Jumlah Inventori
-                        </span>
-
-                        <strong>
-                            <%= totalItems %>
-                        </strong>
-
-                        <small>
-                            Item direkodkan
-                        </small>
-
-                    </div>
-
-
-                </div>
-
-
-                <!-- =============================================
-                     AVAILABLE
-                ============================================== -->
-
-                <div
-                    class="
-                        inventory-summary-card
-                        summary-available
-                    "
-                >
-
-
-                    <div class="summary-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                        >
-                            <path
-                                d="m5 12 4 4L19 6"
-                            />
-                        </svg>
-
-                    </div>
-
-
-                    <div class="summary-content">
-
-                        <span>
-                            Tersedia
-                        </span>
-
-                        <strong>
-                            <%= availableItems %>
-                        </strong>
-
-                        <small>
-                            Stok mencukupi
-                        </small>
-
-                    </div>
-
-
-                </div>
-
-
-                <!-- =============================================
-                     LOW STOCK
-                ============================================== -->
-
-                <div
-                    class="
-                        inventory-summary-card
-                        summary-low
-                    "
-                >
-
-
-                    <div class="summary-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                        >
-
-                            <path
-                                d="M12 8v5"
-                            />
-
-                            <path
-                                d="M12 17h.01"
-                            />
-
-                            <path
-                                d="
-                                    M10.3 3.7
-                                    2.8 17
-                                    a2 2 0 0 0
-                                    1.7 3
-                                    h15
-                                    a2 2 0 0 0
-                                    1.7-3
-                                    L13.7 3.7
-                                    a2 2 0 0 0
-                                    -3.4 0Z
-                                "
-                            />
-
-                        </svg>
-
-                    </div>
-
-
-                    <div class="summary-content">
-
-                        <span>
-                            Stok Rendah
-                        </span>
-
-                        <strong>
-                            <%= lowStockItems %>
-                        </strong>
-
-                        <small>
-                            Perlu perhatian
-                        </small>
-
-                    </div>
-
-
-                </div>
-
-
-                <!-- =============================================
-                     OUT OF STOCK
-                ============================================== -->
-
-                <div
-                    class="
-                        inventory-summary-card
-                        summary-out
-                    "
-                >
-
-
-                    <div class="summary-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                        >
-
-                            <circle
-                                cx="12"
-                                cy="12"
-                                r="9"
-                            />
-
-                            <path
-                                d="m9 9 6 6"
-                            />
-
-                            <path
-                                d="m15 9-6 6"
-                            />
-
-                        </svg>
-
-                    </div>
-
-
-                    <div class="summary-content">
-
-                        <span>
-                            Kehabisan Stok
-                        </span>
-
-                        <strong>
-                            <%= outOfStockItems %>
-                        </strong>
-
-                        <small>
-                            Tidak tersedia
-                        </small>
-
-                    </div>
-
-
-                </div>
-
-
             </div>
 
 

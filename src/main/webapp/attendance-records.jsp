@@ -962,6 +962,317 @@
             }
         }
 
+        /* Compact mobile layout consistent with the other LeaveHub pages. */
+        @media (max-width: 650px) {
+            html,
+            body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            main.main-content {
+                width: 100% !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                margin-left: 0 !important;
+                padding: 74px 13px 28px !important;
+                overflow-x: hidden !important;
+            }
+
+            .attendance-records-page,
+            .attendance-records-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 0 !important;
+                margin: 0 !important;
+                padding: 0 0 20px !important;
+            }
+
+            .page-header {
+                display: grid !important;
+                grid-template-columns: minmax(0, 1fr) auto !important;
+                align-items: start !important;
+                gap: 10px !important;
+                margin: 0 0 14px !important;
+            }
+
+            .page-title {
+                min-width: 0 !important;
+            }
+
+            .page-title h1 {
+                margin: 0 0 5px !important;
+                font-size: 23px !important;
+                line-height: 1.2 !important;
+            }
+
+            .page-title p {
+                margin: 0 !important;
+                font-size: 12px !important;
+                line-height: 1.4 !important;
+            }
+
+            .pkb-attendance-header-actions {
+                position: static !important;
+                grid-column: 2 !important;
+                grid-row: 1 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-end !important;
+                gap: 6px !important;
+                margin: 0 !important;
+                background: transparent !important;
+            }
+
+            .pkb-attendance-header-actions .pkb-header-actions {
+                display: flex !important;
+                gap: 6px !important;
+            }
+
+            .pkb-attendance-header-actions .pkb-user-name {
+                display: none !important;
+            }
+
+            .pkb-attendance-header-actions .pkb-notification-bell,
+            .pkb-attendance-header-actions .pkb-user-chip {
+                width: 42px !important;
+                min-width: 42px !important;
+                height: 42px !important;
+                min-height: 42px !important;
+                padding: 5px !important;
+                justify-content: center !important;
+            }
+
+            .date-filter {
+                grid-column: 1 / -1 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: flex-end !important;
+                gap: 8px !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                margin: 2px 0 0 !important;
+                padding: 10px !important;
+                border: 1px solid #e2e7ef !important;
+                border-radius: 14px !important;
+                background: #fff !important;
+            }
+
+            .date-field {
+                flex: 1 1 auto !important;
+                min-width: 0 !important;
+            }
+
+            .date-field label {
+                display: block !important;
+                margin-bottom: 4px !important;
+                font-size: 10px !important;
+            }
+
+            .date-field input {
+                width: 100% !important;
+                min-width: 0 !important;
+                height: 40px !important;
+                padding: 0 8px !important;
+                font-size: 12px !important;
+            }
+
+            .filter-button {
+                flex: 0 0 auto !important;
+                width: auto !important;
+                min-height: 40px !important;
+                padding: 0 12px !important;
+                white-space: nowrap !important;
+                font-size: 11px !important;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 9px !important;
+                margin: 0 0 14px !important;
+            }
+
+            .summary-card {
+                min-width: 0 !important;
+                min-height: 76px !important;
+                gap: 9px !important;
+                padding: 10px !important;
+                border-radius: 14px !important;
+            }
+
+            .summary-icon {
+                width: 34px !important;
+                height: 34px !important;
+                min-width: 34px !important;
+                border-radius: 10px !important;
+                font-size: 16px !important;
+            }
+
+            .summary-value {
+                font-size: 20px !important;
+                line-height: 1.05 !important;
+            }
+
+            .summary-label {
+                margin-top: 3px !important;
+                font-size: 9px !important;
+                line-height: 1.25 !important;
+            }
+
+            .record-card {
+                width: 100% !important;
+                min-width: 0 !important;
+                border-radius: 14px !important;
+            }
+
+            .record-card-header {
+                gap: 8px !important;
+                padding: 14px !important;
+            }
+
+            .record-card-header h2 {
+                font-size: 15px !important;
+            }
+
+            .record-card-header p {
+                font-size: 10px !important;
+            }
+
+            .selected-date-badge {
+                flex: 0 0 auto !important;
+                padding: 6px 8px !important;
+                font-size: 9px !important;
+            }
+
+            .table-wrapper {
+                padding: 8px !important;
+                overflow: visible !important;
+            }
+
+            table,
+            tbody {
+                display: block !important;
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+
+            thead {
+                display: none !important;
+            }
+
+            tbody tr:not(:has(.empty-state)) {
+                display: grid !important;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto !important;
+                align-items: center !important;
+                gap: 5px 8px !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                margin: 0 0 8px !important;
+                padding: 10px !important;
+                border: 1px solid #dce2ea !important;
+                border-left: 4px solid #a11f31 !important;
+                border-radius: 12px !important;
+                background: #fff !important;
+                box-shadow: 0 2px 7px rgba(23, 32, 51, .06) !important;
+            }
+
+            tbody td {
+                display: block !important;
+                width: auto !important;
+                min-width: 0 !important;
+                padding: 0 !important;
+                border: 0 !important;
+                font-size: 10px !important;
+                line-height: 1.25 !important;
+            }
+
+            tbody td:nth-child(1) {
+                grid-column: 1 / 3 !important;
+                grid-row: 1 !important;
+                font-size: 12px !important;
+                font-weight: 700 !important;
+            }
+
+            tbody td:nth-child(1) .staff-name {
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                white-space: nowrap !important;
+            }
+
+            tbody td:nth-child(4) {
+                grid-column: 1 !important;
+                grid-row: 2 !important;
+            }
+
+            tbody td:nth-child(5) {
+                grid-column: 2 !important;
+                grid-row: 2 !important;
+            }
+
+            tbody td:nth-child(8) {
+                grid-column: 3 !important;
+                grid-row: 1 / 3 !important;
+                max-width: 78px !important;
+            }
+
+            tbody td:nth-child(9) {
+                grid-column: 1 / -1 !important;
+                grid-row: 3 !important;
+                justify-self: end !important;
+            }
+
+            tbody td:nth-child(4)::before,
+            tbody td:nth-child(5)::before {
+                display: block;
+                margin-bottom: 2px;
+                color: #8792a4;
+                font-size: 8px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            tbody td:nth-child(4)::before { content: "Masuk"; }
+            tbody td:nth-child(5)::before { content: "Keluar"; }
+
+            tbody td:nth-child(8) .status-badge {
+                display: inline-flex !important;
+                max-width: 78px !important;
+                min-height: 22px !important;
+                padding: 5px 7px !important;
+                white-space: normal !important;
+                text-align: center !important;
+                font-size: 8px !important;
+                line-height: 1.15 !important;
+            }
+
+            tbody td:nth-child(9) .view-button {
+                min-height: 28px !important;
+                padding: 0 10px !important;
+                font-size: 9px !important;
+            }
+
+            tbody td:nth-child(2),
+            tbody td:nth-child(3),
+            tbody td:nth-child(6),
+            tbody td:nth-child(7) {
+                display: none !important;
+            }
+
+            tbody tr:has(.empty-state) {
+                display: block !important;
+                width: 100% !important;
+                padding: 22px 12px !important;
+                border: 0 !important;
+            }
+
+            tbody .empty-state {
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+            }
+        }
+
     </style>
 
 </head>

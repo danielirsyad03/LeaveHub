@@ -131,7 +131,24 @@ body.login-page{min-height:100vh;margin:0;padding:22px 16px;display:flex;align-i
 .password-wrapper{position:relative}.password-wrapper input{padding-right:76px}.password-toggle{position:absolute;right:9px;top:50%;transform:translateY(-50%);padding:5px 7px;border:0;background:transparent;color:#8d1f2d;font-family:inherit;font-size:11.5px;font-weight:700;cursor:pointer}.password-toggle:hover{color:#701722}.password-note{margin-top:-5px;margin-bottom:13px}
 .register-actions{margin-top:17px}.register-button,.back-login{width:100%;height:41px;border-radius:9px;font-family:inherit;font-size:12.5px;font-weight:700}.register-button{border:1px solid #8d1f2d;background:linear-gradient(135deg,#8d1f2d,#a72a3b);color:#fff;cursor:pointer;box-shadow:0 4px 12px rgba(141,31,45,.16)}.register-button:hover:not(:disabled){background:linear-gradient(135deg,#701722,#8d1f2d)}.register-button:disabled{opacity:.7;cursor:not-allowed}
 .back-login{display:flex;align-items:center;justify-content:center;margin-top:11px;background:#fff;border:1px solid #d6bfc3;color:#8d1f2d;text-decoration:none}.back-login:hover{background:#fff7f8}.register-footer{margin-top:16px;color:#a0a7b2;text-align:center;font-size:10.5px}
-@media(max-width:620px){body.login-page{padding:14px 10px}.register-card{padding:24px 20px 22px;border-radius:15px}.register-title{font-size:23px}.login-logo{width:128px}}
+@media(max-width:620px){
+    body.login-page{padding:10px 8px}
+    .register-card{padding:15px 14px 14px;border-radius:13px}
+    .login-logo{width:100px}
+    .register-title{margin:8px 0 3px;font-size:20px;line-height:1.2}
+    .register-subtitle{margin:0 0 10px;font-size:11.5px}
+    .register-note,.register-error{margin-bottom:10px;padding:8px 9px;font-size:11px;line-height:1.4}
+    .register-form-group{margin-bottom:9px}
+    .register-form-group label{margin-bottom:4px;font-size:11.5px}
+    .register-form-group input,.register-form-group select{height:38px;padding:0 10px;border-radius:8px;font-size:12px}
+    .register-form-group input::placeholder{font-size:12px}
+    .field-note,.password-note{font-size:10.5px}
+    .password-note{margin-bottom:9px}
+    .register-actions{margin-top:12px}
+    .register-button,.back-login{height:38px;font-size:12px}
+    .back-login{margin-top:8px}
+    .register-footer{margin-top:11px}
+}
 </style>
 
 </head>

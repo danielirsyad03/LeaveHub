@@ -1706,6 +1706,300 @@ body {
     }
 }
 
+/* Shared compact mobile layout. */
+@media (max-width: 650px) {
+    main {
+        width: 100% !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+        padding: 74px 13px 28px !important;
+        overflow-x: hidden !important;
+    }
+
+    .inventory-request-admin-page {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        overflow-x: hidden !important;
+    }
+
+    .inventory-request-admin-header {
+        position: relative !important;
+        display: block !important;
+        min-height: 42px !important;
+        margin: 0 0 14px !important;
+    }
+
+    .inventory-request-admin-title {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding-right: 100px !important;
+    }
+
+    .inventory-request-admin-title h1 {
+        margin: 0 0 5px !important;
+        font-size: 23px !important;
+        line-height: 1.2 !important;
+    }
+
+    .inventory-request-admin-title p {
+        margin: 0 !important;
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+    }
+
+    .inventory-request-header-actions {
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        z-index: 10 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        margin: 0 !important;
+    }
+
+    .inventory-request-header-actions .pkb-header-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 6px !important;
+    }
+
+    .inventory-request-header-actions .pkb-user-name {
+        display: none !important;
+    }
+
+    .inventory-request-header-actions .pkb-notification-bell,
+    .inventory-request-header-actions .pkb-user-chip {
+        width: 42px !important;
+        min-width: 42px !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        padding: 5px !important;
+        justify-content: center !important;
+    }
+
+    .request-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 0 0 14px !important;
+    }
+
+    .request-stat-card {
+        min-width: 0 !important;
+        min-height: 76px !important;
+        padding: 11px 12px !important;
+        border-radius: 14px !important;
+    }
+
+    .request-stat-card span {
+        font-size: 9px !important;
+        line-height: 1.25 !important;
+    }
+
+    .request-stat-card strong {
+        margin-top: 5px !important;
+        font-size: 21px !important;
+    }
+
+    .request-stat-card small {
+        margin-top: 4px !important;
+        font-size: 9px !important;
+        line-height: 1.25 !important;
+    }
+
+    .request-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        border-radius: 14px !important;
+    }
+
+    .request-card-header {
+        align-items: stretch !important;
+        gap: 10px !important;
+        padding: 14px !important;
+    }
+
+    .request-card-title h2 {
+        font-size: 15px !important;
+    }
+
+    .request-card-title p {
+        font-size: 10px !important;
+    }
+
+    .request-card-tools {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 7px !important;
+        width: 100% !important;
+    }
+
+    .request-print-button,
+    .request-search {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 40px !important;
+    }
+
+    .request-toolbar {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+        padding: 10px 13px !important;
+    }
+
+    .request-table-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 8px !important;
+        overflow-x: hidden !important;
+        background: #f5f7fa !important;
+    }
+
+    .request-table {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .request-table thead { display: none !important; }
+
+    .request-table tbody {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    .request-table tbody .inventory-request-row {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        align-items: center !important;
+        gap: 6px 9px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 11px !important;
+        border: 1px solid #dce2ea !important;
+        border-left: 4px solid #a11f31 !important;
+        border-radius: 12px !important;
+        background: #fff !important;
+        box-shadow: 0 2px 7px rgba(23, 32, 51, .06) !important;
+    }
+
+    .request-table tbody .inventory-request-row td {
+        display: block !important;
+        width: auto !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        font-size: 10px !important;
+        line-height: 1.3 !important;
+        overflow-wrap: anywhere !important;
+    }
+
+    .request-table tbody .inventory-request-row td:nth-child(1) { grid-column: 1 / -1 !important; grid-row: 1 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(8) { grid-column: 2 !important; grid-row: 2 !important; justify-self: end !important; }
+    .request-table tbody .inventory-request-row td:nth-child(3) { grid-column: 1 !important; grid-row: 3 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(4) { grid-column: 2 !important; grid-row: 3 !important; justify-self: end !important; }
+    .request-table tbody .inventory-request-row td:nth-child(5) { grid-column: 1 !important; grid-row: 4 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(7) { grid-column: 2 !important; grid-row: 4 !important; justify-self: end !important; }
+    .request-table tbody .inventory-request-row td:nth-child(6) { grid-column: 1 / -1 !important; grid-row: 5 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(9) { grid-column: 1 / -1 !important; grid-row: 6 !important; padding-top: 8px !important; border-top: 1px solid #edf0f4 !important; }
+
+    .request-staff strong,
+    .request-item strong { font-size: 11px !important; line-height: 1.25 !important; }
+    .request-staff small,
+    .request-item small,
+    .request-date { font-size: 9px !important; line-height: 1.25 !important; }
+    .request-purpose { font-size: 9px !important; line-height: 1.3 !important; }
+    .request-quantity strong,
+    .available-stock strong { font-size: 13px !important; }
+    .request-status { max-width: 85px !important; padding: 5px 7px !important; font-size: 8px !important; white-space: normal !important; text-align: center !important; }
+    .request-actions,
+    .request-action-form { display: grid !important; grid-template-columns: minmax(0,1fr) auto !important; gap: 5px !important; width: 100% !important; }
+    .request-action-form input { grid-column: 1 / -1 !important; width: 100% !important; min-width: 0 !important; min-height: 34px !important; font-size: 10px !important; }
+    .request-button { width: auto !important; min-width: 62px !important; min-height: 30px !important; padding: 5px 8px !important; font-size: 9px !important; }
+}
+
+/* Tighten the list header and reduce each request to a compact scan card. */
+@media (max-width: 650px) {
+    .request-card-header {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+        min-height: 0 !important;
+        padding: 12px !important;
+    }
+
+    .request-card-title {
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        min-height: 0 !important;
+    }
+
+    .request-card-title h2 { margin-bottom: 2px !important; }
+    .request-card-title p { line-height: 1.3 !important; }
+
+    .request-card-tools {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 6px !important;
+        width: 100% !important;
+    }
+
+    .request-print-button,
+    .request-search,
+    .request-search input {
+        min-height: 36px !important;
+        height: 36px !important;
+    }
+
+    .request-toolbar { min-height: 0 !important; padding: 8px 12px !important; }
+    .request-table-wrap { padding: 6px !important; }
+    .request-table tbody { gap: 6px !important; }
+
+    .request-table tbody .inventory-request-row {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto !important;
+        gap: 4px 7px !important;
+        padding: 8px !important;
+        border-radius: 10px !important;
+    }
+
+    .request-table tbody .inventory-request-row td { line-height: 1.2 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(1) { grid-column: 1 / 3 !important; grid-row: 1 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(2) { grid-column: 1 / 3 !important; grid-row: 2 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(8) { grid-column: 3 !important; grid-row: 1 !important; justify-self: end !important; }
+    .request-table tbody .inventory-request-row td:nth-child(3) { grid-column: 1 !important; grid-row: 3 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(4) { grid-column: 3 !important; grid-row: 2 !important; justify-self: end !important; }
+    .request-table tbody .inventory-request-row td:nth-child(5) { grid-column: 2 !important; grid-row: 3 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(7) { grid-column: 3 !important; grid-row: 3 !important; justify-self: end !important; }
+    .request-table tbody .inventory-request-row td:nth-child(6) { grid-column: 1 / -1 !important; grid-row: 4 !important; }
+    .request-table tbody .inventory-request-row td:nth-child(9) { grid-column: 1 / -1 !important; grid-row: 5 !important; padding-top: 6px !important; }
+    .request-staff strong,
+    .request-item strong { font-size: 10px !important; }
+    .request-staff small,
+    .request-item small,
+    .request-date,
+    .request-purpose { font-size: 8px !important; }
+    .request-purpose { display: -webkit-box !important; overflow: hidden !important; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
+    .request-status { padding: 4px 6px !important; font-size: 7px !important; }
+    .request-actions { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 6px !important; }
+    .request-action-form { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 4px !important; }
+    .request-action-form input { min-height: 30px !important; height: 30px !important; padding: 0 7px !important; font-size: 9px !important; }
+    .request-button { width: 100% !important; min-height: 28px !important; }
+    .processed-remark { padding: 5px 7px !important; font-size: 8px !important; line-height: 1.2 !important; }
+}
+
 </style>
 
 </head>
@@ -1743,22 +2037,8 @@ body {
                 </div>
 
 
-                <div class="user-chip">
-
-                    <div class="avatar">
-
-                        <%= escapeHtml(
-                            adminName
-                                .substring(0, 1)
-                                .toUpperCase()
-                        ) %>
-
-                    </div>
-
-                    <b>
-                        <%= escapeHtml(adminName) %>
-                    </b>
-
+                <div class="inventory-request-header-actions">
+                    <%@ include file="includes/header-actions.jspf" %>
                 </div>
 
 

@@ -540,6 +540,7 @@
         .status-badge {
             display: inline-flex;
             align-items: center;
+            gap: 6px;
             padding: 6px 10px;
             border-radius: 999px;
             font-size: 10px;
@@ -547,9 +548,13 @@
             white-space: nowrap;
         }
 
-        .status-hadir {
-            background: #eef6ff;
-            color: #2563eb;
+        .status-badge::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            flex: 0 0 6px;
+            border-radius: 50%;
+            background: currentColor;
         }
 
         .status-selesai {
@@ -557,13 +562,51 @@
             color: #16805b;
         }
 
-        .status-late { background: #fff7df; color: #a36a00; }
+        .status-late { background: #fff0e5; color: #b54708; }
         .status-early { background: #f3e8ff; color: #7e22ce; }
+        .status-approved { background: #eef6ff; color: #225ca8; }
+        .status-absent { background: #fff0f2; color: #b42332; }
+        .status-offday { background: #f1f3f6; color: #667085; }
 
         .status-belum {
-            background: #fff7df;
-            color: #a36a00;
+            background: #eef2f6;
+            color: #526277;
         }
+
+        .status-legend {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 15px;
+            padding: 10px 17px;
+            border-bottom: 1px solid #edf0f4;
+            background: #fcfcfd;
+        }
+
+        .status-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #68758a;
+            font-size: 10px;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
+
+        .status-legend-dot {
+            width: 7px;
+            height: 7px;
+            flex: 0 0 7px;
+            border-radius: 50%;
+        }
+
+        .legend-selesai { background: #16805b; }
+        .legend-approved { background: #225ca8; }
+        .legend-late { background: #b54708; }
+        .legend-early { background: #7e22ce; }
+        .legend-absent { background: #b42332; }
+        .legend-belum { background: #526277; }
+        .legend-offday { background: #98a2b3; }
 
         .view-button {
             display: inline-flex;
@@ -1437,6 +1480,16 @@
 
                     </div>
 
+                    <div class="status-legend" aria-label="Petunjuk warna status kehadiran">
+                        <span class="status-legend-item"><span class="status-legend-dot legend-selesai"></span>Tepat masa / lengkap</span>
+                        <span class="status-legend-item"><span class="status-legend-dot legend-approved"></span>Cuti diluluskan</span>
+                        <span class="status-legend-item"><span class="status-legend-dot legend-late"></span>Lewat</span>
+                        <span class="status-legend-item"><span class="status-legend-dot legend-early"></span>Check out awal</span>
+                        <span class="status-legend-item"><span class="status-legend-dot legend-absent"></span>Tidak hadir</span>
+                        <span class="status-legend-item"><span class="status-legend-dot legend-belum"></span>Belum hadir</span>
+                        <span class="status-legend-item"><span class="status-legend-dot legend-offday"></span>Hari tidak bekerja</span>
+                    </div>
+
                     <div class="table-wrapper">
 
                         <table>
@@ -1519,10 +1572,12 @@
                                         Object earlyReasonValue = row.get("earlyCheckoutReason");
                                         String statusLabel = getAttendanceLabel(checkIn, checkOut, lateReasonValue, earlyReasonValue, hasApprovedLeave, selectedDate);
                                         String statusClass = "status-belum";
-                                        if (statusLabel.equals("Tepat Masa") || statusLabel.equals("Lengkap - Tepat Masa") || statusLabel.equals("Cuti Diluluskan")) statusClass = "status-selesai";
+                                        if (statusLabel.equals("Tepat Masa") || statusLabel.equals("Lengkap - Tepat Masa")) statusClass = "status-selesai";
+                                        else if (statusLabel.equals("Cuti Diluluskan")) statusClass = "status-approved";
                                         else if (statusLabel.equals("Lewat") || statusLabel.equals("Lewat Bersebab")) statusClass = "status-late";
                                         else if (statusLabel.equals("Check Out Awal")) statusClass = "status-early";
-                                        else if (statusLabel.equals("Tidak Hadir")) statusClass = "status-late";
+                                        else if (statusLabel.equals("Tidak Hadir")) statusClass = "status-absent";
+                                        else if (statusLabel.equals("Hari Tidak Bekerja")) statusClass = "status-offday";
 
                                         Object checkInDistance =
                                                 row.get(

@@ -694,6 +694,10 @@ public class StaffServlet extends HttpServlet {
                 session.removeAttribute(
                     "temporaryEmail"
                 );
+
+                session.removeAttribute(
+                    "temporaryPasswordReset"
+                );
             }
 
 
@@ -745,6 +749,16 @@ public class StaffServlet extends HttpServlet {
                     break;
 
 
+                case "resetpassword":
+
+                    resetTemporaryPassword(
+                        request,
+                        response
+                    );
+
+                    break;
+
+
                 default:
 
                     response.sendRedirect(
@@ -764,6 +778,97 @@ public class StaffServlet extends HttpServlet {
                 e
             );
         }
+    }
+
+
+    // =========================================================
+    // RESET TEMPORARY PASSWORD
+    // =========================================================
+
+    private void resetTemporaryPassword(
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws SQLException, IOException {
+
+        int userId;
+
+        try {
+            userId = Integer.parseInt(
+                clean(request.getParameter("id"))
+            );
+            if (userId <= 0) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            redirectError(request, response, "notFound");
+            return;
+        }
+
+        String email;
+        String name;
+        String role;
+        String temporaryPassword = generateTemporaryPassword();
+
+        try (Connection con = DBConnection.getConnection()) {
+            con.setAutoCommit(false);
+            try {
+                String sql = """
+                    SELECT email, name, role
+                    FROM users
+                    WHERE id = ?
+                    FOR UPDATE
+                """;
+
+                try (PreparedStatement ps = con.prepareStatement(sql)) {
+                    ps.setInt(1, userId);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (!rs.next() || "HR".equalsIgnoreCase(rs.getString("role"))) {
+                            con.rollback();
+                            redirectError(request, response, "notFound");
+                            return;
+                        }
+                        email = rs.getString("email");
+                        name = rs.getString("name");
+                        role = rs.getString("role");
+                    }
+                }
+
+                String updateSql = """
+                    UPDATE users
+                    SET password = ?, force_password_change = 1
+                    WHERE id = ?
+                """;
+                try (PreparedStatement ps = con.prepareStatement(updateSql)) {
+                    ps.setString(1, PasswordUtil.hash(temporaryPassword));
+                    ps.setInt(2, userId);
+                    if (ps.executeUpdate() != 1) {
+                        throw new SQLException("Kata laluan sementara tidak dapat ditetapkan.");
+                    }
+                }
+
+                ActivityLogUtil.log(
+                    con,
+                    request,
+                    "RESET_TEMP_PASSWORD",
+                    "Menetapkan semula kata laluan sementara untuk: " + name + " (" + role + ")",
+                    "USER",
+                    userId
+                );
+                con.commit();
+            } catch (SQLException | RuntimeException e) {
+                try { con.rollback(); } catch (SQLException ignored) { }
+                throw e;
+            } finally {
+                try { con.setAutoCommit(true); } catch (SQLException ignored) { }
+            }
+        }
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.setAttribute("temporaryPassword", temporaryPassword);
+            session.setAttribute("temporaryEmail", email);
+            session.setAttribute("temporaryPasswordReset", Boolean.TRUE);
+        }
+
+        response.sendRedirect(request.getContextPath() + "/staff?success=passwordReset");
     }
 
 
@@ -1272,6 +1377,10 @@ public class StaffServlet extends HttpServlet {
                 session.setAttribute(
                     "temporaryEmail",
                     email
+                );
+
+                session.removeAttribute(
+                    "temporaryPasswordReset"
                 );
             }
 

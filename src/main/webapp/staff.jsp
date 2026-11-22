@@ -129,6 +129,9 @@
     String temporaryEmail =
         (String) session.getAttribute("temporaryEmail");
 
+    boolean temporaryPasswordReset =
+        Boolean.TRUE.equals(session.getAttribute("temporaryPasswordReset"));
+
     String success = request.getParameter("success");
     String error = request.getParameter("error");
 
@@ -247,13 +250,13 @@ html,body{max-width:100%;overflow-x:hidden}
 /* Table */
 .staff-table-wrap{width:100%;max-width:100%;overflow-x:auto}
 .staff-table{width:100%;min-width:1050px;table-layout:fixed;border-collapse:collapse}
-.staff-table th:nth-child(1),.staff-table td:nth-child(1){width:18%}
-.staff-table th:nth-child(2),.staff-table td:nth-child(2){width:14%}
+.staff-table th:nth-child(1),.staff-table td:nth-child(1){width:17%}
+.staff-table th:nth-child(2),.staff-table td:nth-child(2){width:13%}
 .staff-table th:nth-child(3),.staff-table td:nth-child(3){width:13%}
-.staff-table th:nth-child(4),.staff-table td:nth-child(4){width:17%}
-.staff-table th:nth-child(5),.staff-table td:nth-child(5){width:10%}
-.staff-table th:nth-child(6),.staff-table td:nth-child(6){width:12%}
-.staff-table th:nth-child(7),.staff-table td:nth-child(7){width:16%}
+.staff-table th:nth-child(4),.staff-table td:nth-child(4){width:15%}
+.staff-table th:nth-child(5),.staff-table td:nth-child(5){width:9%}
+.staff-table th:nth-child(6),.staff-table td:nth-child(6){width:11%}
+.staff-table th:nth-child(7),.staff-table td:nth-child(7){width:22%}
 .staff-table thead th{padding:12px 8px;background:#f8f9fb;border-bottom:1px solid #e8ebef;color:#68758a;font-size:11.5px;font-weight:600;line-height:1.3;text-align:left;text-transform:uppercase}
 .staff-table tbody td{padding:13px 8px;border-bottom:1px solid #edf0f3;color:#536075;font-size:13px;font-weight:400;line-height:1.45;vertical-align:middle;overflow-wrap:anywhere}
 .staff-table tbody tr:hover{background:#fdfafa}
@@ -269,8 +272,9 @@ html,body{max-width:100%;overflow-x:hidden}
 .staff-role-badge.HR{background:#eaf8f1;color:#20744b;border:1px solid #d0ebdd}.staff-role-badge.HR:before{background:#24875a}
 .department-badge{display:inline-block;max-width:100%;padding:5px 8px;background:#f7f4f2;border:1px solid #ebe3de;border-radius:7px;color:#655b54;font-size:11px;line-height:1.3}
 .staff-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.staff-actions form{margin:0}
-.staff-table .staff-btn{min-height:34px;padding:7px 10px;font-size:11.5px}
+.staff-actions form{min-width:0;margin:0}
+.staff-table .staff-btn{width:auto;min-width:0;min-height:34px;padding:6px 9px;font-size:11px;line-height:1.1;white-space:normal;overflow-wrap:normal}
+.staff-table td:nth-child(6) .staff-btn.gold{width:auto;min-height:34px;padding:6px 9px;font-size:11px;font-weight:400}
 .staff-table .staff-btn.gold{max-width:none}
 
 /* Empty */
@@ -311,7 +315,7 @@ html,body{max-width:100%;overflow-x:hidden}
 .shared-quota-title{display:block;margin-bottom:4px;color:#5f4916;font-size:14px;font-weight:600}
 .shared-quota-subtitle{color:#8a7953;font-size:12px}
 .shared-quota-badge{display:inline-flex;padding:6px 10px;background:#fff;border:1px solid #eadbb5;border-radius:999px;color:#85600f;font-size:11px;font-weight:500}
-.shared-quota-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.shared-quota-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
 .shared-quota-item{min-height:82px;padding:11px;background:rgba(255,255,255,.7);border:1px solid #eee3ca;border-radius:9px}
 .shared-quota-label{margin-bottom:7px;color:#8b7d5e;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.2px}
 .shared-quota-item input{width:100%;min-height:40px;padding:8px 9px;border:1px solid #dfd4ba;border-radius:8px;font:400 13px inherit;outline:none}
@@ -343,60 +347,6 @@ html,body{max-width:100%;overflow-x:hidden}
   .staff-modal-footer{flex-direction:column-reverse}
   .staff-modal-footer .staff-btn{width:100%}
 }
-
-/* Compact responsive layout consistent with the other LeaveHub pages. */
-@media(max-width:650px){
-  main{width:100%!important;max-width:100vw!important;min-width:0!important;margin-left:0!important;padding:74px 13px 28px!important;overflow-x:hidden!important}
-  .staff-management-page{width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:hidden!important}
-  .staff-page-header{position:relative!important;display:block!important;min-height:42px!important;margin:0 0 14px!important;padding:0!important}
-  .staff-page-title{width:100%!important;min-width:0!important;padding-right:100px!important}
-  .staff-page-title h1{margin:0 0 5px!important;font-size:23px!important;line-height:1.2!important}
-  .staff-page-title p{margin:0!important;font-size:12px!important;line-height:1.4!important}
-  .staff-page-header-actions{position:absolute!important;top:0!important;right:0!important;z-index:10!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;min-width:0!important;margin:0!important}
-  .staff-page-header-actions .pkb-header-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important}
-  .staff-page-header-actions .pkb-user-name{display:none!important}
-  .staff-page-header-actions .pkb-notification-bell,.staff-page-header-actions .pkb-user-chip{width:42px!important;min-width:42px!important;height:42px!important;min-height:42px!important;padding:5px!important;justify-content:center!important}
-  .staff-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin:0 0 14px!important}
-  .staff-summary-card{min-width:0!important;min-height:76px!important;padding:11px 12px!important;border-radius:14px!important}
-  .staff-summary-card span{font-size:9px!important;line-height:1.25!important}
-  .staff-summary-card strong{margin-top:5px!important;font-size:21px!important}
-  .staff-summary-card small{margin-top:4px!important;font-size:9px!important;line-height:1.25!important}
-  .staff-shell{width:100%!important;min-width:0!important;border-radius:14px!important}
-  .staff-shell-header{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;padding:14px!important}
-  .staff-shell-title h2{font-size:16px!important}
-  .staff-shell-title p{font-size:11px!important;line-height:1.4!important}
-  .staff-header-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;width:100%!important}
-  .staff-header-actions .staff-btn{min-width:0!important;min-height:38px!important;padding:7px 8px!important;white-space:normal!important;text-align:center!important;font-size:10px!important}
-  .staff-toolbar{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;padding:11px 13px!important}
-  .staff-count{font-size:11px!important}
-  .staff-search{width:100%!important;max-width:none!important}
-  .staff-search input{height:40px!important;font-size:12px!important}
-  .staff-table-wrap{width:100%!important;max-width:100%!important;overflow-x:hidden!important;padding:8px!important;background:#f5f7fa!important}
-  .staff-table{display:block!important;width:100%!important;min-width:0!important;table-layout:auto!important}
-  .staff-table thead{display:none!important}
-  .staff-table tbody{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;width:100%!important}
-  .staff-table tbody tr.staff-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:center!important;gap:6px 9px!important;width:100%!important;min-width:0!important;padding:11px!important;border:1px solid #dce2ea!important;border-left:4px solid #a11f31!important;border-radius:12px!important;background:#fff!important;box-shadow:0 2px 7px rgba(23,32,51,.06)!important}
-  .staff-table tbody tr.staff-row td{display:block!important;width:auto!important;min-width:0!important;padding:0!important;border:0!important;font-size:10px!important;line-height:1.3!important;overflow-wrap:anywhere!important}
-  .staff-table tbody tr.staff-row td:nth-child(1){grid-column:1!important;grid-row:1!important}
-  .staff-table tbody tr.staff-row td:nth-child(2){grid-column:1!important;grid-row:2!important}
-  .staff-table tbody tr.staff-row td:nth-child(3){grid-column:2!important;grid-row:1!important;justify-self:start!important}
-  .staff-table tbody tr.staff-row td:nth-child(4){grid-column:2!important;grid-row:2!important}
-  .staff-table tbody tr.staff-row td:nth-child(5){grid-column:1!important;grid-row:3!important;color:#68758a!important;font-size:9px!important}
-  .staff-table tbody tr.staff-row td:nth-child(5)::before{content:"Ketua Unit: ";font-weight:700;color:#8792a4}
-  .staff-table tbody tr.staff-row td:nth-child(6){grid-column:2!important;grid-row:3!important}
-  .staff-table tbody tr.staff-row td:nth-child(7){grid-column:1/-1!important;grid-row:4!important;padding-top:7px!important;border-top:1px solid #edf0f4!important}
-  .staff-name strong{font-size:11px!important;line-height:1.25!important;overflow-wrap:anywhere}
-  .staff-email{margin-top:2px!important;font-size:9px!important;overflow-wrap:anywhere}
-  .position-text{font-size:10px!important;line-height:1.3!important}
-  .staff-role-badge,.department-badge{max-width:100%!important;font-size:9px!important;line-height:1.2!important}
-  .staff-table .staff-btn{min-height:31px!important;padding:6px 7px!important;font-size:9px!important;white-space:normal!important}
-  .staff-table .staff-btn.gold{width:100%!important}
-  .staff-actions{display:flex!important;flex-wrap:nowrap!important;gap:6px!important;width:100%!important}
-  .staff-actions>*{flex:1 1 0!important;min-width:0!important}
-  .staff-actions form{display:flex!important}
-  .staff-actions form button{width:100%!important}
-  .staff-empty{display:block!important;padding:26px 12px!important;border:0!important}
-}
 </style>
 </head>
 
@@ -426,8 +376,18 @@ html,body{max-width:100%;overflow-x:hidden}
 
                 </div>
 
-                <div class="staff-page-header-actions">
-                    <%@ include file="includes/header-actions.jspf" %>
+                <div class="user-chip">
+
+                    <div class="avatar">
+                        <%= htmlEscape(
+                            name.substring(0, 1).toUpperCase()
+                        ) %>
+                    </div>
+
+                    <b>
+                        <%= htmlEscape(name) %>
+                    </b>
+
                 </div>
 
             </div>
@@ -626,11 +586,15 @@ html,body{max-width:100%;overflow-x:hidden}
                 <div class="temporary-password-card">
 
                     <h3>
-                        Akaun Pengguna Berjaya Dicipta
+                        <%= temporaryPasswordReset
+                            ? "Kata Laluan Sementara Berjaya Ditetapkan Semula"
+                            : "Akaun Pengguna Berjaya Dicipta" %>
                     </h3>
 
                     <p>
-                        Berikan maklumat log masuk sementara berikut kepada pengguna baharu.
+                        <%= temporaryPasswordReset
+                            ? "Berikan kata laluan sementara baharu berikut kepada pengguna. Kata laluan lama telah dibatalkan."
+                            : "Berikan maklumat log masuk sementara berikut kepada pengguna baharu." %>
                     </p>
 
                     <div class="temporary-credentials">
@@ -652,15 +616,27 @@ html,body{max-width:100%;overflow-x:hidden}
                             </span>
 
                             <strong class="temp-password">
+                                <span id="temporaryPasswordValue">
                                 <%= htmlEscape(temporaryPassword) %>
+                                </span>
                             </strong>
+
+                            <button
+                                type="button"
+                                class="staff-btn secondary"
+                                style="margin-top:8px"
+                                onclick="copyTemporaryPassword()"
+                            >
+                                Salin Kata Laluan
+                            </button>
+                            <span id="temporaryPasswordCopyStatus" aria-live="polite"></span>
 
                         </div>
 
                     </div>
 
                     <p>
-                        Pengguna perlu menukar kata laluan semasa log masuk kali pertama.
+                        Pengguna perlu menukar kata laluan semasa log masuk seterusnya.
                     </p>
 
                     <form
@@ -990,7 +966,7 @@ html,body{max-width:100%;overflow-x:hidden}
 
                                 <td>
 
-                                    <div class="staff-actions">
+                                    <div class="staff-actions <%= "HR".equals(staffRole) ? "staff-actions-admin" : "" %>">
 
                                         <button
                                             type="button"
@@ -1027,6 +1003,21 @@ html,body{max-width:100%;overflow-x:hidden}
                                                 "MANAGEMENT".equals(staffRole)
                                             ) {
                                         %>
+
+                                            <form
+                                                method="post"
+                                                action="<%= request.getContextPath() %>/staff"
+                                                onsubmit="return confirm('Tetapkan kata laluan sementara baharu untuk pengguna ini? Kata laluan lama akan dibatalkan serta-merta.');"
+                                            >
+
+                                                <input type="hidden" name="action" value="resetPassword">
+                                                <input type="hidden" name="id" value="<%= htmlEscape(r.get("id")) %>">
+
+                                                <button type="submit" class="staff-btn secondary">
+                                                    Reset Kata Laluan
+                                                </button>
+
+                                            </form>
 
                                             <form
                                                 method="post"
@@ -1243,49 +1234,37 @@ html,body{max-width:100%;overflow-x:hidden}
                             );
 
                         // =========================================
-                        // CARRY FORWARD + CURRENT YEAR USAGE
+                        // SHARED USED
                         // =========================================
-
-                        int carryForwardDays =
-                            annualBalance == null ||
-                            annualBalance.get("carryForwardDays") == null
-                                ? 0
-                                : ((Number) annualBalance.get("carryForwardDays")).intValue();
-
-                        int carryForwardUsed =
-                            annualBalance == null ||
-                            annualBalance.get("carryForwardUsed") == null
-                                ? 0
-                                : ((Number) annualBalance.get("carryForwardUsed")).intValue();
-
-                        int carryForwardRemaining =
-                            Math.max(0, carryForwardDays - carryForwardUsed);
 
                         int annualUsed =
                             annualBalance == null ||
                             annualBalance.get("usedDays") == null
                                 ? 0
-                                : ((Number) annualBalance.get("usedDays")).intValue();
+                                : ((Number)
+                                    annualBalance.get("usedDays")
+                                  ).intValue();
 
                         int emergencyUsed =
                             emergencyBalance == null ||
                             emergencyBalance.get("usedDays") == null
                                 ? 0
-                                : ((Number) emergencyBalance.get("usedDays")).intValue();
+                                : ((Number)
+                                    emergencyBalance.get("usedDays")
+                                  ).intValue();
 
-                        int totalUsed = annualUsed + emergencyUsed;
-
-                        // usedDays merangkumi penggunaan carry forward.
-                        // Tolak carryForwardUsed supaya hanya penggunaan
-                        // peruntukan tahun semasa diambil kira di sini.
-                        int currentYearUsed =
-                            Math.max(0, totalUsed - carryForwardUsed);
-
-                        int currentYearRemaining =
-                            Math.max(0, sharedEntitlement - currentYearUsed);
+                        int sharedUsed =
+                            annualUsed
+                            +
+                            emergencyUsed;
 
                         int sharedRemaining =
-                            currentYearRemaining + carryForwardRemaining;
+                            Math.max(
+                                0,
+                                sharedEntitlement
+                                -
+                                sharedUsed
+                            );
             %>
 
                 <!-- =================================================
@@ -1431,54 +1410,87 @@ html,body{max-width:100%;overflow-x:hidden}
 
                                     <div class="shared-quota-grid">
 
+                                        <!-- KUOTA -->
+
                                         <div class="shared-quota-item">
-                                            <div class="shared-quota-label">Peruntukan <%= currentYear %></div>
+
+                                            <div class="shared-quota-label">
+                                                Kuota
+                                            </div>
+
                                             <input
                                                 type="number"
                                                 name="sharedEntitlement"
-                                                min="<%= currentYearUsed %>"
+                                                min="<%= sharedUsed %>"
                                                 step="1"
                                                 value="<%= sharedEntitlement %>"
                                                 required
                                             >
-                                            <div class="form-note">hari</div>
+
+                                            <div class="form-note">
+                                                hari
+                                            </div>
+
                                         </div>
 
-                                        <div class="shared-quota-item">
-                                            <div class="shared-quota-label">Dibawa Dari <%= currentYear - 1 %></div>
-                                            <span class="carry-forward-total shared-used-value"><%= carryForwardDays %></span> hari
-                                            <div class="form-note">Baki dibawa ke hadapan</div>
-                                        </div>
+                                        <!-- TAHUNAN DIGUNAKAN -->
 
                                         <div class="shared-quota-item">
-                                            <div class="shared-quota-label">Baki Terdahulu Digunakan</div>
-                                            <span class="carry-forward-used shared-used-value"><%= carryForwardUsed %></span> hari
-                                            <div class="form-note">Digunakan daripada baki lama</div>
+
+                                            <div class="shared-quota-label">
+                                                Tahunan Digunakan
+                                            </div>
+
+                                            <span class="shared-used-value">
+                                                <%= annualUsed %>
+                                            </span>
+
+                                            hari
+
                                         </div>
 
-                                        <div class="shared-quota-item">
-                                            <div class="shared-quota-label">Baki Terdahulu</div>
-                                            <span class="carry-forward-remaining shared-remaining-value"><%= carryForwardRemaining %></span> hari
-                                            <div class="form-note">Baki carry forward yang masih ada</div>
-                                        </div>
+                                        <!-- KECEMASAN DIGUNAKAN -->
 
                                         <div class="shared-quota-item">
-                                            <div class="shared-quota-label">Digunakan Peruntukan <%= currentYear %></div>
-                                            <span class="current-year-used shared-used-value"><%= currentYearUsed %></span> hari
-                                            <div class="form-note">Cuti Tahunan + Cuti Kecemasan</div>
+
+                                            <div class="shared-quota-label">
+                                                Kecemasan Digunakan
+                                            </div>
+
+                                            <span class="shared-used-value">
+                                                <%= emergencyUsed %>
+                                            </span>
+
+                                            hari
+
                                         </div>
 
+                                        <!-- BAKI -->
+
                                         <div class="shared-quota-item">
-                                            <div class="shared-quota-label">Jumlah Baki Semasa</div>
-                                            <span class="shared-remaining-value total-shared-remaining"><%= sharedRemaining %></span> hari
-                                            <div class="form-note">Termasuk baki dibawa ke hadapan</div>
+
+                                            <div class="shared-quota-label">
+                                                Baki Bersama
+                                            </div>
+
+                                            <span class="shared-remaining-value">
+                                                <%= sharedRemaining %>
+                                            </span>
+
+                                            hari
+
                                         </div>
 
                                     </div>
 
-                                    <div class="form-note" style="margin-top:10px;">
-                                        Jumlah baki semasa = baki peruntukan <%= currentYear %>
-                                        + baki yang dibawa dari <%= currentYear - 1 %>.
+                                    <div
+                                        class="form-note"
+                                        style="margin-top:10px;"
+                                    >
+                                        Baki bersama =
+                                        Kuota −
+                                        Cuti Tahunan digunakan −
+                                        Cuti Kecemasan digunakan.
                                     </div>
 
                                 </div>
@@ -2438,6 +2450,20 @@ function closeAddModal() {
 // ADD ROLE
 // =============================================================
 
+function copyTemporaryPassword() {
+    var password = document.getElementById("temporaryPasswordValue");
+    var status = document.getElementById("temporaryPasswordCopyStatus");
+    if (!password || !status) return;
+
+    navigator.clipboard.writeText(password.textContent.trim())
+        .then(function() {
+            status.textContent = "Kata laluan disalin.";
+        })
+        .catch(function() {
+            status.textContent = "Tidak dapat menyalin. Sila pilih dan salin kata laluan secara manual.";
+        });
+}
+
 function updateAddFields() {
 
     const role =
@@ -3094,52 +3120,79 @@ document
 // =============================================================
 
 document
-    .querySelectorAll(".quota-form")
-    .forEach(function(form) {
+    .querySelectorAll(
+        ".quota-form"
+    )
+    .forEach(
+        function(form) {
 
-        const sharedInput =
-            form.querySelector('input[name="sharedEntitlement"]');
+            const sharedInput =
+                form.querySelector(
+                    'input[name="sharedEntitlement"]'
+                );
 
-        const currentYearUsedDisplay =
-            form.querySelector(".current-year-used");
+            const remainingDisplay =
+                form.querySelector(
+                    ".shared-remaining-value"
+                );
 
-        const carryForwardRemainingDisplay =
-            form.querySelector(".carry-forward-remaining");
+            const usedDisplays =
+                form.querySelectorAll(
+                    ".shared-used-value"
+                );
 
-        const remainingDisplay =
-            form.querySelector(".total-shared-remaining");
+            if (
+                sharedInput &&
+                remainingDisplay &&
+                usedDisplays.length >= 2
+            ) {
 
-        if (
-            sharedInput &&
-            currentYearUsedDisplay &&
-            carryForwardRemainingDisplay &&
-            remainingDisplay
-        ) {
+                const annualUsed =
+                    parseInt(
+                        usedDisplays[0]
+                            .textContent
+                            .trim(),
+                        10
+                    ) || 0;
 
-            const currentYearUsed =
-                parseInt(currentYearUsedDisplay.textContent.trim(), 10) || 0;
+                const emergencyUsed =
+                    parseInt(
+                        usedDisplays[1]
+                            .textContent
+                            .trim(),
+                        10
+                    ) || 0;
 
-            const carryForwardRemaining =
-                parseInt(carryForwardRemainingDisplay.textContent.trim(), 10) || 0;
+                const totalUsed =
+                    annualUsed +
+                    emergencyUsed;
 
-            function updateSharedRemaining() {
+                function updateSharedRemaining() {
 
-                const entitlement =
-                    parseInt(sharedInput.value, 10) || 0;
+                    const entitlement =
+                        parseInt(
+                            sharedInput.value,
+                            10
+                        ) || 0;
 
-                const currentYearRemaining =
-                    Math.max(0, entitlement - currentYearUsed);
+                    const remaining =
+                        Math.max(
+                            0,
+                            entitlement -
+                            totalUsed
+                        );
 
-                const totalRemaining =
-                    currentYearRemaining + carryForwardRemaining;
+                    remainingDisplay.textContent =
+                        remaining;
+                }
 
-                remainingDisplay.textContent = totalRemaining;
+                sharedInput.addEventListener(
+                    "input",
+                    updateSharedRemaining
+                );
             }
-
-            sharedInput.addEventListener("input", updateSharedRemaining);
-            updateSharedRemaining();
         }
-    });
+    );
 
 // =============================================================
 // LIVE OTHER LEAVE BALANCE CALCULATION

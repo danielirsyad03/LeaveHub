@@ -342,6 +342,11 @@ public class MyVehicleApplicationsServlet extends HttpServlet {
                     ps.executeUpdate();
                 }
 
+                ActivityLogUtil.log(con, request, "CANCEL_VEHICLE_APPLICATION",
+                        "Membatalkan permohonan kenderaan #" + applicationId
+                                + (reason.isBlank() ? "." : ". Sebab: " + reason),
+                        "VEHICLE_APPLICATION", applicationId);
+
                 con.commit();
                 redirectSuccess(request, response, "Permohonan kenderaan berjaya dibatalkan.");
 
@@ -554,6 +559,11 @@ public class MyVehicleApplicationsServlet extends HttpServlet {
                     ps.setString(11, reason);
                     ps.executeUpdate();
                 }
+
+                ActivityLogUtil.log(con, request, "CREATE_VEHICLE_CHANGE",
+                        "Menghantar permohonan perubahan untuk tempahan kenderaan #" + applicationId
+                                + " kepada " + newStart + " hingga " + newEnd + ".",
+                        "VEHICLE_APPLICATION_CHANGE", applicationId);
 
                 con.commit();
                 redirectSuccess(request, response,

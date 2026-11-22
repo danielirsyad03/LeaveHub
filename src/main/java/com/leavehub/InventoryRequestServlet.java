@@ -931,6 +931,13 @@ public class InventoryRequestServlet extends HttpServlet {
             	    requestId
             	);
 
+            ActivityLogUtil.log(
+                con, request, "CREATE_INVENTORY_REQUEST",
+                "Menghantar permohonan inventori #" + requestId
+                    + " untuk item " + itemName + " (kuantiti: " + requestedQuantity + ").",
+                "INVENTORY_REQUEST", requestId
+            );
+
             // =================================================
             // COMMIT
             // =================================================

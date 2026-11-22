@@ -833,6 +833,12 @@ public class VehicleApplicationServlet extends HttpServlet {
                 ps.executeUpdate();
             }
 
+            ActivityLogUtil.log(
+                con, request, "CREATE_VEHICLE_APPLICATION",
+                "Menghantar permohonan kenderaan " + applicationNo
+                    + " untuk " + useDate + ", destinasi: " + destination + ".",
+                "VEHICLE_APPLICATION", applicationNo
+            );
 
             // =================================================
             // SUCCESS

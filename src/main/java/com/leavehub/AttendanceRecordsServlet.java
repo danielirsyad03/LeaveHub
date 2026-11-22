@@ -157,6 +157,10 @@ public class AttendanceRecordsServlet extends HttpServlet {
                     ps.executeUpdate();
                 }
             }
+            ActivityLogUtil.log(con, req, "UPDATE_ATTENDANCE_RECORD",
+                    "Mengemas kini rekod kehadiran staf ID " + staffId + " untuk " + date
+                            + " (status: " + status + ").",
+                    "ATTENDANCE", staffId + "-" + date);
             redirectWithMessage(req, resp, date, "success", "Rekod kehadiran staf berjaya dikemaskini.");
         } catch (SQLException e) {
             throw new ServletException("Tidak dapat mengemaskini rekod kehadiran.", e);

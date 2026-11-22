@@ -3090,6 +3090,11 @@ main.main-content.dashboard-main {
                 String vehicleImage =
                         "nissan-xtrail-black.png";
 
+                String uploadedVehicleImage =
+                        vehicle.get("imagePath") == null
+                            ? ""
+                            : vehicle.get("imagePath").toString().trim();
+
                 String vehicleNameLower =
                         activeVehicleName
                             .trim()
@@ -3120,6 +3125,10 @@ main.main-content.dashboard-main {
                     vehicleImage =
                             "nissan-xtrail-black.png";
                 }
+
+                String vehicleImageSource = uploadedVehicleImage.isBlank()
+                    ? request.getContextPath() + "/images/" + vehicleImage
+                    : request.getContextPath() + "/" + uploadedVehicleImage;
     %>
 
 
@@ -3137,7 +3146,7 @@ main.main-content.dashboard-main {
                 <div class="vehicle-card-image">
 
                     <img
-                        src="<%= request.getContextPath() %>/images/<%= vehicleImage %>"
+                        src="<%= esc(vehicleImageSource) %>"
                         alt="<%= esc(activeVehicleName) %>"
                         class="vehicle-real-image"
                     >

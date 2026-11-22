@@ -1940,6 +1940,12 @@ public class MedicalDentalServlet extends HttpServlet {
 
 
 
+               ActivityLogUtil.log(
+                       con, request, "RECORD_MEDICAL_DENTAL_CLAIM",
+                       "Merekod tuntutan " + type + " #" + claimId
+                               + " untuk staf ID " + userId + " (bil RM" + bill + ").",
+                       "MEDICAL_DENTAL_CLAIM", claimId);
+
                con.commit();
 
 
@@ -2379,6 +2385,16 @@ public class MedicalDentalServlet extends HttpServlet {
                }
 
 
+
+               if (oldMedical.compareTo(newMedical) != 0
+                       || oldDental.compareTo(newDental) != 0) {
+                   ActivityLogUtil.log(
+                           con, request, "UPDATE_MEDICAL_DENTAL_ALLOCATION",
+                           "Mengemas kini peruntukan manfaat perubatan/pergigian staf ID " + userId
+                                   + " kepada RM" + newMedical + " perubatan dan RM" + newDental + " pergigian."
+                                   + (reason.isBlank() ? "" : " Sebab: " + reason.trim()),
+                           "MEDICAL_DENTAL_BENEFIT", userId);
+               }
 
                con.commit();
 

@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 @WebServlet("/logout")
@@ -41,6 +42,18 @@ public class LogoutServlet extends HttpServlet {
         // =====================================================
 
         if (session != null) {
+
+            try {
+                ActivityLogUtil.log(
+                        request,
+                        "LOGOUT",
+                        "Log keluar.",
+                        "USER",
+                        session.getAttribute("userId")
+                );
+            } catch (SQLException auditError) {
+                auditError.printStackTrace();
+            }
 
             session.invalidate();
         }

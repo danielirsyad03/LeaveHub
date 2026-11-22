@@ -139,6 +139,9 @@ List<Map<String, Object>> logs =
                  case "LOGIN":
                      return "Log Masuk";
 
+                 case "LOGIN_FAILED":
+                     return "Percubaan Log Masuk Gagal";
+
                  case "LOGOUT":
                      return "Log Keluar";
 
@@ -293,6 +296,43 @@ List<Map<String, Object>> logs =
                  case "INVENTORY_RETURN":
                      return "Pemulangan Inventori";
 
+                 // =================================================
+                 // KENDERAAN
+                 // =================================================
+
+                 case "CREATE_VEHICLE_APPLICATION":
+                     return "Hantar Permohonan Kenderaan";
+
+                 case "APPROVE_VEHICLE_APPLICATION":
+                     return "Lulus Permohonan Kenderaan";
+
+                 case "REJECT_VEHICLE_APPLICATION":
+                     return "Tolak Permohonan Kenderaan";
+
+                 case "CANCEL_VEHICLE_APPLICATION":
+                     return "Batal Permohonan Kenderaan";
+
+                 case "CREATE_VEHICLE_CHANGE":
+                     return "Hantar Perubahan Tempahan Kenderaan";
+
+                 case "RECORD_VEHICLE_RETURN":
+                     return "Rekod Pemulangan Kenderaan";
+
+                 case "APPROVE_VEHICLE_CHANGE":
+                     return "Lulus Perubahan Tempahan Kenderaan";
+
+                 case "REJECT_VEHICLE_CHANGE":
+                     return "Tolak Perubahan Tempahan Kenderaan";
+
+                 case "CREATE_VEHICLE":
+                     return "Tambah Kenderaan";
+
+                 case "UPDATE_VEHICLE":
+                     return "Kemaskini Kenderaan";
+
+                 case "DELETE_VEHICLE":
+                     return "Padam Kenderaan";
+
 
                  // =================================================
                  // CETAK
@@ -337,6 +377,24 @@ List<Map<String, Object>> logs =
 
                  case "DELETE_ANNOUNCEMENT":
                      return "Padam Pengumuman";
+
+                 case "ADD_COMPANY_EVENT":
+                     return "Tambah Aktiviti Syarikat";
+
+                 case "UPDATE_COMPANY_EVENT":
+                     return "Kemaskini Aktiviti Syarikat";
+
+                 case "DELETE_COMPANY_EVENT":
+                     return "Padam Aktiviti Syarikat";
+
+                 case "UPDATE_ATTENDANCE_RECORD":
+                     return "Kemaskini Rekod Kehadiran";
+
+                 case "RECORD_MEDICAL_DENTAL_CLAIM":
+                     return "Rekod Tuntutan Perubatan/Pergigian";
+
+                 case "UPDATE_MEDICAL_DENTAL_ALLOCATION":
+                     return "Kemaskini Peruntukan Perubatan/Pergigian";
 
 
                  // =================================================
@@ -435,6 +493,27 @@ List<Map<String, Object>> logs =
 
                 case "ANNOUNCEMENT":
                     return "Pengumuman";
+
+                case "COMPANY_EVENT":
+                    return "Aktiviti Syarikat";
+
+                case "ATTENDANCE":
+                    return "Kehadiran";
+
+                case "MEDICAL_DENTAL_CLAIM":
+                    return "Tuntutan Perubatan/Pergigian";
+
+                case "MEDICAL_DENTAL_BENEFIT":
+                    return "Peruntukan Perubatan/Pergigian";
+
+                case "VEHICLE":
+                    return "Kenderaan";
+
+                case "VEHICLE_APPLICATION":
+                    return "Permohonan Kenderaan";
+
+                case "VEHICLE_APPLICATION_CHANGE":
+                    return "Perubahan Tempahan Kenderaan";
 
                 case "INVENTORY_REQUEST":
                     return "Permohonan Inventori";

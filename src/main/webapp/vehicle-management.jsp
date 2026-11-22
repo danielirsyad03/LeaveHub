@@ -1771,6 +1771,7 @@
         <form
             action="<%= request.getContextPath() %>/vehicle-management"
             method="post"
+            enctype="multipart/form-data"
             autocomplete="off"
         >
 
@@ -1829,6 +1830,18 @@
                         required
                     >
 
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-label">Gambar Kenderaan</label>
+                    <input
+                        type="file"
+                        name="vehicle_image"
+                        class="form-control"
+                        accept="image/jpeg,image/png"
+                    >
+                    <span class="form-hint">Pilihan. JPG atau PNG, maksimum 5 MB.</span>
                 </div>
 
 
@@ -1933,6 +1946,7 @@
         <form
             action="<%= request.getContextPath() %>/vehicle-management"
             method="post"
+            enctype="multipart/form-data"
             autocomplete="off"
         >
 
@@ -1993,6 +2007,18 @@
                         required
                     >
 
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-label">Gantikan Gambar Kenderaan</label>
+                    <input
+                        type="file"
+                        name="vehicle_image"
+                        class="form-control"
+                        accept="image/jpeg,image/png"
+                    >
+                    <span class="form-hint">Pilihan. Biarkan kosong untuk mengekalkan gambar semasa. JPG atau PNG, maksimum 5 MB.</span>
                 </div>
 
 

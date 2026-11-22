@@ -1932,6 +1932,7 @@ public class DashboardServlet extends HttpServlet {
                 id,
                 plate_number,
                 vehicle_name,
+                image_path,
                 status
             FROM vehicles
             WHERE UPPER(TRIM(status)) = 'ACTIVE'
@@ -1967,6 +1968,11 @@ public class DashboardServlet extends HttpServlet {
                 row.put(
                     "vehicleName",
                     rs.getString("vehicle_name")
+                );
+
+                row.put(
+                    "imagePath",
+                    rs.getString("image_path")
                 );
 
                 row.put(

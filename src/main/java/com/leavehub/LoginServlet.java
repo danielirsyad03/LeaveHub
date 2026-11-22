@@ -214,6 +214,18 @@ public class LoginServlet extends HttpServlet {
 
                 if (!rs.next()) {
 
+                    try {
+                        ActivityLogUtil.log(
+                                request,
+                                "LOGIN_FAILED",
+                                "Percubaan log masuk gagal untuk akaun " + email + ".",
+                                "AUTHENTICATION",
+                                email
+                        );
+                    } catch (SQLException auditError) {
+                        auditError.printStackTrace();
+                    }
+
                     response.sendRedirect(
                         request.getContextPath()
                         + "/?error=1"
@@ -359,6 +371,18 @@ public class LoginServlet extends HttpServlet {
                     "forcePasswordChange",
                     forcePasswordChange
                 );
+
+                try {
+                    ActivityLogUtil.log(
+                            request,
+                            "LOGIN",
+                            "Log masuk berjaya.",
+                            "USER",
+                            userId
+                    );
+                } catch (SQLException auditError) {
+                    auditError.printStackTrace();
+                }
 
 
                 // =============================================

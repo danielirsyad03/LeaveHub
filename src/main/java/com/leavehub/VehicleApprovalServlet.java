@@ -1028,6 +1028,11 @@ public class VehicleApprovalServlet extends HttpServlet {
                     }
 
 
+                    ActivityLogUtil.log(con, request, "APPROVE_VEHICLE_APPLICATION",
+                        "Meluluskan permohonan kenderaan " + applicationNo
+                            + (remark.isBlank() ? "." : ". Catatan: " + remark),
+                        "VEHICLE_APPLICATION", applicationId);
+
                     con.commit();
 
                     redirectSuccess(
@@ -1084,6 +1089,11 @@ public class VehicleApprovalServlet extends HttpServlet {
                     ps.executeUpdate();
                 }
 
+
+                ActivityLogUtil.log(con, request, "REJECT_VEHICLE_APPLICATION",
+                    "Menolak permohonan kenderaan " + applicationNo
+                        + (remark.isBlank() ? "." : ". Catatan: " + remark),
+                    "VEHICLE_APPLICATION", applicationId);
 
                 con.commit();
 
@@ -1373,6 +1383,10 @@ public class VehicleApprovalServlet extends HttpServlet {
                     ps.executeUpdate();
                 }
 
+
+                ActivityLogUtil.log(con, request, "RECORD_VEHICLE_RETURN",
+                    "Merekod pemulangan kenderaan " + applicationNo + " pada " + actualDateTime + ".",
+                    "VEHICLE_APPLICATION", applicationId);
 
                 con.commit();
 
@@ -1685,6 +1699,11 @@ public class VehicleApprovalServlet extends HttpServlet {
                     }
 
 
+                    ActivityLogUtil.log(con, request, "REJECT_VEHICLE_CHANGE",
+                        "Menolak perubahan tempahan " + applicationNo
+                            + (reviewRemark.isBlank() ? "." : ". Catatan: " + reviewRemark),
+                        "VEHICLE_APPLICATION_CHANGE", changeId);
+
                     con.commit();
 
 
@@ -1930,6 +1949,11 @@ public class VehicleApprovalServlet extends HttpServlet {
                     ps.executeUpdate();
                 }
 
+
+                ActivityLogUtil.log(con, request, "APPROVE_VEHICLE_CHANGE",
+                    "Meluluskan perubahan tempahan " + applicationNo
+                        + (reviewRemark.isBlank() ? "." : ". Catatan: " + reviewRemark),
+                    "VEHICLE_APPLICATION_CHANGE", changeId);
 
                 con.commit();
 

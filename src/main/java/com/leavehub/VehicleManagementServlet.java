@@ -1,15 +1,21 @@
 package com.leavehub;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,8 +25,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 @WebServlet("/vehicle-management")
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024,
+    maxFileSize = 5 * 1024 * 1024,
+    maxRequestSize = 6 * 1024 * 1024
+)
 public class VehicleManagementServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -80,6 +94,7 @@ public class VehicleManagementServlet extends HttpServlet {
                 id,
                 plate_number,
                 vehicle_name,
+                image_path,
                 status,
                 created_at,
                 updated_at
@@ -117,6 +132,11 @@ public class VehicleManagementServlet extends HttpServlet {
                 vehicle.put(
                     "vehicle_name",
                     rs.getString("vehicle_name")
+                );
+
+                vehicle.put(
+                    "image_path",
+                    rs.getString("image_path")
                 );
 
                 vehicle.put(
@@ -322,9 +342,10 @@ public class VehicleManagementServlet extends HttpServlet {
             (
                 plate_number,
                 vehicle_name,
+                image_path,
                 status
             )
-            VALUES (?, ?, ?)
+            VALUES (?, ?, ?, ?)
         """;
 
         try (
@@ -370,6 +391,8 @@ public class VehicleManagementServlet extends HttpServlet {
             // INSERT
             // -------------------------------------------------
 
+            String imagePath = saveVehicleImage(request);
+
             try (
                 PreparedStatement ps =
                     con.prepareStatement(
@@ -389,11 +412,21 @@ public class VehicleManagementServlet extends HttpServlet {
 
                 ps.setString(
                     3,
+                    imagePath
+                );
+
+                ps.setString(
+                    4,
                     status
                 );
 
                 ps.executeUpdate();
             }
+
+            ActivityLogUtil.log(con, request, "CREATE_VEHICLE",
+                "Menambah kenderaan " + plateNumber + " (" + vehicleName + "), status " + status
+                    + (imagePath == null ? "." : " dengan gambar kenderaan."),
+                "VEHICLE", plateNumber);
 
             redirectSuccess(
                 request,
@@ -401,6 +434,10 @@ public class VehicleManagementServlet extends HttpServlet {
                 "Kenderaan berjaya ditambah."
             );
 
+        } catch (IllegalArgumentException e) {
+            redirectError(request, response, e.getMessage());
+        } catch (ServletException e) {
+            redirectError(request, response, e.getMessage());
         } catch (SQLException e) {
 
             e.printStackTrace();
@@ -498,9 +535,13 @@ public class VehicleManagementServlet extends HttpServlet {
             SET
                 plate_number = ?,
                 vehicle_name = ?,
+                image_path = COALESCE(?, image_path),
                 status = ?
             WHERE id = ?
         """;
+
+        String previousImagePath = null;
+        String newImagePath = null;
 
         try (
             Connection con =
@@ -550,6 +591,20 @@ public class VehicleManagementServlet extends HttpServlet {
             // UPDATE
             // -------------------------------------------------
 
+            try (PreparedStatement ps = con.prepareStatement(
+                    "SELECT image_path FROM vehicles WHERE id = ?")) {
+                ps.setInt(1, id);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (!rs.next()) {
+                        redirectError(request, response, "Kenderaan tidak ditemui.");
+                        return;
+                    }
+                    previousImagePath = rs.getString("image_path");
+                }
+            }
+
+            newImagePath = saveVehicleImage(request);
+
             try (
                 PreparedStatement ps =
                     con.prepareStatement(
@@ -569,11 +624,16 @@ public class VehicleManagementServlet extends HttpServlet {
 
                 ps.setString(
                     3,
+                    newImagePath
+                );
+
+                ps.setString(
+                    4,
                     status
                 );
 
                 ps.setInt(
-                    4,
+                    5,
                     id
                 );
 
@@ -592,12 +652,27 @@ public class VehicleManagementServlet extends HttpServlet {
                 }
             }
 
+            ActivityLogUtil.log(con, request, "UPDATE_VEHICLE",
+                "Mengemas kini kenderaan " + plateNumber + " (" + vehicleName + "), status " + status
+                    + (newImagePath == null ? "." : " dan menggantikan gambar kenderaan."),
+                "VEHICLE", id);
+
+            if (newImagePath != null && !newImagePath.equals(previousImagePath)) {
+                deleteVehicleImage(previousImagePath);
+            }
+
             redirectSuccess(
                 request,
                 response,
                 "Maklumat kenderaan berjaya dikemas kini."
             );
 
+        } catch (IllegalArgumentException e) {
+            deleteVehicleImage(newImagePath);
+            redirectError(request, response, e.getMessage());
+        } catch (ServletException e) {
+            deleteVehicleImage(newImagePath);
+            redirectError(request, response, e.getMessage());
         } catch (SQLException e) {
 
             e.printStackTrace();
@@ -659,6 +734,8 @@ public class VehicleManagementServlet extends HttpServlet {
             WHERE id = ?
         """;
 
+        String imagePath = null;
+
         try (
             Connection con =
                 DBConnection.getConnection()
@@ -703,6 +780,14 @@ public class VehicleManagementServlet extends HttpServlet {
             // DELETE
             // -------------------------------------------------
 
+            try (PreparedStatement ps = con.prepareStatement(
+                    "SELECT image_path FROM vehicles WHERE id = ?")) {
+                ps.setInt(1, id);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) imagePath = rs.getString("image_path");
+                }
+            }
+
             try (
                 PreparedStatement ps =
                     con.prepareStatement(
@@ -730,6 +815,12 @@ public class VehicleManagementServlet extends HttpServlet {
                 }
             }
 
+            ActivityLogUtil.log(con, request, "DELETE_VEHICLE",
+                "Memadam kenderaan ID " + id + ".",
+                "VEHICLE", id);
+
+            deleteVehicleImage(imagePath);
+
             redirectSuccess(
                 request,
                 response,
@@ -745,6 +836,68 @@ public class VehicleManagementServlet extends HttpServlet {
                 response,
                 "Kenderaan tidak dapat dipadam."
             );
+        }
+    }
+
+
+    private String saveVehicleImage(HttpServletRequest request)
+            throws IOException, ServletException {
+
+        Part imagePart = request.getPart("vehicle_image");
+        if (imagePart == null || imagePart.getSize() == 0) {
+            return null;
+        }
+
+        String contentType = imagePart.getContentType();
+        String extension;
+        if ("image/jpeg".equalsIgnoreCase(contentType)) {
+            extension = ".jpg";
+        } else if ("image/png".equalsIgnoreCase(contentType)) {
+            extension = ".png";
+        } else {
+            throw new IllegalArgumentException("Gambar mesti dalam format JPG atau PNG.");
+        }
+
+        BufferedImage decoded;
+        try (InputStream input = imagePart.getInputStream()) {
+            decoded = ImageIO.read(input);
+        }
+        if (decoded == null || decoded.getWidth() <= 0 || decoded.getHeight() <= 0
+                || (long) decoded.getWidth() * decoded.getHeight() > 40000000L) {
+            throw new IllegalArgumentException("Fail gambar tidak sah atau dimensinya terlalu besar.");
+        }
+
+        String uploadRoot = getServletContext().getRealPath("/uploads/vehicles");
+        if (uploadRoot == null) {
+            throw new ServletException("Folder muat naik gambar kenderaan tidak tersedia.");
+        }
+
+        Path directory = Path.of(uploadRoot).toAbsolutePath().normalize();
+        Files.createDirectories(directory);
+        String fileName = UUID.randomUUID() + extension;
+        Path destination = directory.resolve(fileName).normalize();
+        if (!destination.getParent().equals(directory)) {
+            throw new ServletException("Lokasi gambar kenderaan tidak sah.");
+        }
+
+        try (InputStream input = imagePart.getInputStream()) {
+            Files.copy(input, destination, StandardCopyOption.REPLACE_EXISTING);
+        }
+        return "uploads/vehicles/" + fileName;
+    }
+
+
+    private void deleteVehicleImage(String relativePath) {
+        if (relativePath == null || !relativePath.startsWith("uploads/vehicles/")) {
+            return;
+        }
+        String webRoot = getServletContext().getRealPath("/");
+        if (webRoot == null) return;
+        try {
+            Path root = Path.of(webRoot).toAbsolutePath().normalize();
+            Path image = root.resolve(relativePath).normalize();
+            if (image.startsWith(root)) Files.deleteIfExists(image);
+        } catch (IOException ignored) {
         }
     }
 

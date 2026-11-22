@@ -50,7 +50,7 @@ public class CompanyEventServlet extends HttpServlet {
             con.setAutoCommit(false);
             try {
                 if ("saveEvent".equals(action)) saveEvent(con, request, userId);
-                else if ("deleteEvent".equals(action)) deleteEvent(con, positiveId(request.getParameter("id")));
+                else if ("deleteEvent".equals(action)) deleteEvent(con, positiveId(request.getParameter("id")), request);
                 else throw new IllegalArgumentException("Tindakan aktiviti tidak sah.");
                 con.commit(); session.setAttribute("eventSuccess", "Aktiviti berjaya disimpan.");
             } catch (Exception e) {
@@ -66,6 +66,7 @@ public class CompanyEventServlet extends HttpServlet {
 
     private void saveEvent(Connection con, HttpServletRequest req, int userId) throws Exception {
         int id = optionalId(req.getParameter("event_id"));
+        boolean editing = id > 0;
         String title = required(req.getParameter("event_title"), "Nama aktiviti");
         String description = clean(req.getParameter("event_description"));
         String location = clean(req.getParameter("location"));
@@ -103,6 +104,11 @@ public class CompanyEventServlet extends HttpServlet {
                 ps.executeUpdate();
             }
         }
+        ActivityLogUtil.log(con, req,
+                editing ? "UPDATE_COMPANY_EVENT" : "ADD_COMPANY_EVENT",
+                (editing ? "Mengemas kini" : "Menambah") + " aktiviti syarikat: " + title
+                        + " pada " + eventDate + ".",
+                "COMPANY_EVENT", id > 0 ? id : title);
     }
 
     private void bindEvent(PreparedStatement ps, String title, String description, Date eventDate,
@@ -116,11 +122,13 @@ public class CompanyEventServlet extends HttpServlet {
         ps.setString(7, status);
     }
 
-    private void deleteEvent(Connection con, int id) throws SQLException {
+    private void deleteEvent(Connection con, int id, HttpServletRequest req) throws SQLException {
         try (PreparedStatement ps = con.prepareStatement("DELETE FROM company_events WHERE id=?")) {
             ps.setInt(1, id);
             if (ps.executeUpdate() == 0) throw new SQLException("Aktiviti tidak dijumpai.");
         }
+        ActivityLogUtil.log(con, req, "DELETE_COMPANY_EVENT",
+                "Memadam aktiviti syarikat ID " + id + ".", "COMPANY_EVENT", id);
     }
 
     

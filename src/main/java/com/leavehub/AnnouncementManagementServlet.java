@@ -77,13 +77,13 @@ public class AnnouncementManagementServlet extends HttpServlet {
                         saveAnnouncement(con, request, userId);
                         break;
                     case "deleteAnnouncement":
-                        deleteAnnouncement(con, positiveId(request.getParameter("id")));
+                        deleteAnnouncement(con, positiveId(request.getParameter("id")), request);
                         break;
                     case "saveEvent":
                         saveEvent(con, request, userId);
                         break;
                     case "deleteEvent":
-                        deleteEvent(con, positiveId(request.getParameter("id")));
+                        deleteEvent(con, positiveId(request.getParameter("id")), request);
                         break;
                     default:
                         throw new IllegalArgumentException("Tindakan tidak sah.");
@@ -104,6 +104,7 @@ public class AnnouncementManagementServlet extends HttpServlet {
 
     private void saveAnnouncement(Connection con, HttpServletRequest req, int userId) throws Exception {
         int id = optionalId(req.getParameter("id"));
+        boolean editing = id > 0;
         String title = required(req.getParameter("title"), "Tajuk pengumuman");
         String content = required(req.getParameter("content"), "Kandungan pengumuman");
         String category = clean(req.getParameter("category"));
@@ -177,6 +178,11 @@ public class AnnouncementManagementServlet extends HttpServlet {
                 ps.executeBatch();
             }
         }
+
+        ActivityLogUtil.log(con, req,
+                editing ? "UPDATE_ANNOUNCEMENT" : "ADD_ANNOUNCEMENT",
+                (editing ? "Mengemas kini" : "Menerbitkan") + " pengumuman: " + title + ".",
+                "ANNOUNCEMENT", id);
     }
 
     private void bindAnnouncement(PreparedStatement ps, String title, String content, String category,
@@ -192,7 +198,7 @@ public class AnnouncementManagementServlet extends HttpServlet {
         if (expiresAt == null) ps.setNull(8, java.sql.Types.TIMESTAMP); else ps.setTimestamp(8, expiresAt);
     }
 
-    private void deleteAnnouncement(Connection con, int id) throws SQLException {
+    private void deleteAnnouncement(Connection con, int id, HttpServletRequest req) throws SQLException {
         try (PreparedStatement ps = con.prepareStatement("DELETE FROM announcement_recipients WHERE announcement_id=?")) {
             ps.setInt(1, id); ps.executeUpdate();
         }
@@ -200,10 +206,13 @@ public class AnnouncementManagementServlet extends HttpServlet {
             ps.setInt(1, id);
             if (ps.executeUpdate() == 0) throw new SQLException("Pengumuman tidak dijumpai.");
         }
+        ActivityLogUtil.log(con, req, "DELETE_ANNOUNCEMENT",
+                "Memadam pengumuman ID " + id + ".", "ANNOUNCEMENT", id);
     }
 
     private void saveEvent(Connection con, HttpServletRequest req, int userId) throws Exception {
         int id = optionalId(req.getParameter("event_id"));
+        boolean editing = id > 0;
         String title = required(req.getParameter("event_title"), "Nama aktiviti");
         String description = clean(req.getParameter("event_description"));
         String location = clean(req.getParameter("location"));
@@ -243,6 +252,11 @@ public class AnnouncementManagementServlet extends HttpServlet {
                 ps.executeUpdate();
             }
         }
+        ActivityLogUtil.log(con, req,
+                editing ? "UPDATE_COMPANY_EVENT" : "ADD_COMPANY_EVENT",
+                (editing ? "Mengemas kini" : "Menambah") + " aktiviti syarikat: " + title
+                        + " pada " + eventDate + ".",
+                "COMPANY_EVENT", id > 0 ? id : title);
     }
 
     private void bindEvent(PreparedStatement ps, String title, String description, Date eventDate,
@@ -256,11 +270,13 @@ public class AnnouncementManagementServlet extends HttpServlet {
         ps.setString(7, status);
     }
 
-    private void deleteEvent(Connection con, int id) throws SQLException {
+    private void deleteEvent(Connection con, int id, HttpServletRequest req) throws SQLException {
         try (PreparedStatement ps = con.prepareStatement("DELETE FROM company_events WHERE id=?")) {
             ps.setInt(1, id);
             if (ps.executeUpdate() == 0) throw new SQLException("Aktiviti tidak dijumpai.");
         }
+        ActivityLogUtil.log(con, req, "DELETE_COMPANY_EVENT",
+                "Memadam aktiviti syarikat ID " + id + ".", "COMPANY_EVENT", id);
     }
 
     private List<Map<String, Object>> loadAnnouncements(Connection con) throws SQLException {
